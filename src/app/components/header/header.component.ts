@@ -19,14 +19,14 @@ export class HeaderComponent {
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
-    this.translate.setDefaultLang('mn ');
-    this.translate.use('en'); // Set initial language
+    this.translate.setDefaultLang('en ');
+    this.translate.use('mn'); // Set initial language
   }
 
   toggleFlag() {
     console.log('Toggle flag called');
     this.isEnglish = !this.isEnglish;
-    const language = this.isEnglish ? 'en' : 'mn';
+    const language = this.isEnglish ? 'mn' : 'en';
     this.translate.use(language);
   }
 

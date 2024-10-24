@@ -1,5 +1,5 @@
 <header class="bg-white text-black sticky z-50 top-0 p-4 w-full mx-auto">
-  <nav class="flex justify-between items-center relative custom-w mx-auto">
+  <nav class="flex justify-evenly items-center relative custom-w mx-auto">
     <!-- Desktop Logo -->
     <img
       src="https://archaeology.ac.mn/public/uploads/968ac044-1651-4ae8-bdb5-bf31b32999ad/a7624841-219d-43c2-99b2-9576df296f60.png"
@@ -50,7 +50,6 @@
           </div>
         </li>
       </ul>
-      <!-- flag-language -->
       <!-- flag-language -->
       <img
         [src]="
@@ -122,7 +121,7 @@
             class="flex justify-between items-center font-medium"
             (click)="toggleMobileCat(item.id)"
           >
-            {{ item.name }}
+            {{ item.name | translate }}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -141,7 +140,7 @@
               <a
                 [routerLink]="sub.path"
                 class="block uppercase pl-1 text-xs cursor-pointer"
-                >-{{ sub.title }}</a
+                >-{{ sub.title | translate }}</a
               >
             </li>
           </ul>
@@ -150,7 +149,3 @@
     </div>
   </nav>
 </header>
-<div>
-  <h1>{{ "HELLO" | translate }}</h1>
-  <p>{{ "WELCOME" | translate }}</p>
-</div>
