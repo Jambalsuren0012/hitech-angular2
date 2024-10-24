@@ -1,0 +1,21 @@
+.mobile-menu {
+  transform: translateX(100%); /* Off-screen to the right */
+  opacity: 0; /* Hidden initially */
+}
+
+.mobile-menu.open {
+  transform: translateX(0); /* On-screen */
+  opacity: 1; /* Fully visible */
+}
+
+.transition-transform {
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+}
+.custom-w {
+  max-width: 1920px;
+}
+.dropdown-menu {
+  z-index: 10 !important;
+}

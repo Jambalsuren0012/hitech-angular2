@@ -1,0 +1,156 @@
+<header class="bg-white text-black sticky z-50 top-0 p-4 w-full mx-auto">
+  <nav class="flex justify-between items-center relative custom-w mx-auto">
+    <!-- Desktop Logo -->
+    <img
+      src="https://archaeology.ac.mn/public/uploads/968ac044-1651-4ae8-bdb5-bf31b32999ad/a7624841-219d-43c2-99b2-9576df296f60.png"
+      class="w-80 mx-2 hidden md:block"
+      alt="Logo"
+    />
+    <!-- Mobile Logo -->
+    <img
+      src="/assets/img/logomob.png"
+      class="h-16 w-16 block md:hidden"
+      alt="Logo mobile"
+    />
+
+    <div class="flex items-center">
+      <!-- Desktop Menu -->
+      <ul class="w-full hidden xl:flex">
+        <li
+          *ngFor="let item of menuItems"
+          class="dropdown relative inline px-4 cursor-pointer uppercase tracking-wide group"
+        >
+          <a class="flex text-sm font-medium items-center">
+            {{ item.name | translate }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 15 15"
+              class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180"
+            >
+              <path
+                fill="currentColor"
+                d="m13.959 5.18-6.46 6.375L1.04 5.18a.614.614 0 0 0-.862 0 .596.596 0 0 0-.131.656c.03.073.075.14.13.195l6.872 6.784a.642.642 0 0 0 .902 0l6.872-6.783A.595.595 0 0 0 15 5.605a.6.6 0 0 0-.178-.427.614.614 0 0 0-.863 0v.001Z"
+              ></path>
+            </svg>
+          </a>
+          <!-- dropdown-menu -->
+          <div
+            class="dropdown-menu w-96 z-50 absolute hidden group-hover:block h-auto flex pt-4"
+          >
+            <ul class="block w-full bg-white shadow px-6 py-2">
+              <li class="py-1" *ngFor="let sub of item.subtitle">
+                <a
+                  [routerLink]="sub.path"
+                  class="block uppercase text-xs font-semibold hover:text-sky-500 cursor-pointer"
+                  >{{ sub.title | translate }}</a
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <!-- flag-language -->
+      <!-- flag-language -->
+      <img
+        [src]="
+          isEnglish
+            ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg/1200px-Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg.png'
+            : 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Mongolia.svg/800px-Flag_of_Mongolia.svg.png?20221024175312'
+        "
+        alt="Flag"
+        width="40px"
+        height="40px"
+        (click)="toggleFlag()"
+        style="cursor: pointer"
+      />
+
+      <!-- Mobile Search & Hamburger Icon -->
+      <div class="flex items-center justify-between mx-auto w-80 md:max-w-md">
+        <input
+          type="email"
+          placeholder="Таны хайх түлхүүр үг"
+          class="w-80 outline-none border-b-2 bg-white text-gray-600 text-sm px-4 py-3"
+        />
+        <button type="button" class="flex items-center justify-center px-5">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 192.904 192.904"
+            width="16px"
+            class="fill-black"
+          >
+            <path
+              d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"
+            ></path>
+          </svg>
+        </button>
+
+        <!-- Hamburger Menu Icon -->
+        <button
+          class="flex items-center xl:hidden ml-2"
+          (click)="toggleMobileMenu()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="w-8 h-8"
+          >
+            <path
+              fill="currentColor"
+              d="M3 6h18M3 12h18m-18 6h18"
+              stroke="black"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      [ngClass]="{ 'mobile-menu': true, open: isMobileMenuOpen }"
+      class="fixed top-24 right-0 z-50 flex flex-col bg-white shadow-lg transition-transform duration-300 ease-in-out xl:hidden"
+      style="max-height: calc(100vh - 4rem); overflow-y: auto; width: 60vw"
+    >
+      <ul class="p-4">
+        <li
+          *ngFor="let item of menuItems"
+          class="dropdown px-4 py-2 cursor-pointer uppercase tracking-wide"
+        >
+          <a
+            class="flex justify-between items-center font-medium"
+            (click)="toggleMobileCat(item.id)"
+          >
+            {{ item.name }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 15 15"
+              class="w-4 h-4 ml-1 transition-transform duration-300"
+              [ngClass]="{ 'rotate-180': activeItemId === item.id }"
+            >
+              <path
+                fill="currentColor"
+                d="m13.959 5.18-6.46 6.375L1.04 5.18a.614.614 0 0 0-.862 0 .596.596 0 0 0-.131.656c.03.073.075.14.13.195l6.872 6.784a.642.642 0 0 0 .902 0l6.872-6.783A.595.595 0 0 0 15 5.605a.6.6 0 0 0-.178-.427.614.614 0 0 0-.863 0v.001Z"
+              ></path>
+            </svg>
+          </a>
+          <ul class="mt-2" *ngIf="activeItemId === item.id">
+            <li class="py-2" *ngFor="let sub of item.subtitle">
+              <a
+                [routerLink]="sub.path"
+                class="block uppercase pl-1 text-xs cursor-pointer"
+                >-{{ sub.title }}</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<div>
+  <h1>{{ "HELLO" | translate }}</h1>
+  <p>{{ "WELCOME" | translate }}</p>
+</div>

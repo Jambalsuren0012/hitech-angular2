@@ -1,0 +1,19 @@
+<div class="new-book-carousel relative">
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let book of bookData">
+      <ng-template carouselSlide>
+        <div class="book-item">
+          <img
+            class="h-96 w-32 px-10"
+            [src]="book.imgUrl"
+            alt="{{ book.title }}"
+            loading="lazy"
+          />
+          <h3>{{ book.title }}</h3>
+          <h5>{{ book.describtion }}</h5>
+          <button (click)="openPdf(book.pdfUrl)">View PDF</button>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>
