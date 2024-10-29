@@ -27,7 +27,7 @@ body {
   border-radius: 0.5rem;
   flex: 1;
   min-width: 290px;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -webkit-transform: translate3d(0, 0, 0);
@@ -155,7 +155,7 @@ body {
 
 .carousel-background {
   background: url("https://www.archeo.ru/petroglyphs.png") repeat; /* Repeat the background image */
-  background-color: #0a0176; /* Fallback color */
+  background-color: #ffffff; /* Fallback color */
   background-position: center; /* Center the image */
   background-size: 900px 500px; /* Adjust the size to fit your design */
 

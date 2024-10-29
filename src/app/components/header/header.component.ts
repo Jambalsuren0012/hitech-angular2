@@ -1,16 +1,18 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import path from 'path';
 import { TranslateService } from '@ngx-translate/core';
+import { MenuService } from '../../service/menu.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isMobileMenuOpen = false;
   isMobileMenuCat = false;
   activeItemId: number | null = null;
   isEnglish: boolean = true;
+  menuItems: any = [];
 
   currentFlag: string =
     'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Mongolia.svg/800px-Flag_of_Mongolia.svg.png?20221024175312';
@@ -18,9 +20,23 @@ export class HeaderComponent {
   constructor(
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
+    private menuService: MenuService,
   ) {
     this.translate.setDefaultLang('en ');
     this.translate.use('mn'); // Set initial language
+  }
+  ngOnInit() {
+    this.loadmenu();
+  }
+
+  loadmenu() {
+    this.menuService.menulist().subscribe({
+      next: (data) => {
+        this.menuItems = data;
+        console.log(this.menuItems);
+      },
+      error: (err) => console.log(err),
+    });
   }
 
   toggleFlag() {
@@ -43,7 +59,7 @@ export class HeaderComponent {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
-  menuItems = [
+  menuItem = [
     {
       id: 1,
       name: 'ABOUT_US', // Translation key for "Бидний тухай"

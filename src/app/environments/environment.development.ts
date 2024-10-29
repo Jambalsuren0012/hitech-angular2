@@ -1,4 +1,4 @@
 export const environment = {
-  apiUrl: 'https://sodtech.mn/ardour-backend/api/',
-  imgUrl: 'https://sodtech.mn/ardour-backend/',
-}
+  apiUrl: 'http://172.16.0.113/arch_new/api/',
+  imgUrl: 'http://172.16.0.113/arch_new/',
+};

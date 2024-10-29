@@ -1,0 +1,15 @@
+<div class="flex">
+  <div #mapContainer style="width: 50%; height: 400px"></div>
+  <ul>
+    <li>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius nesciunt
+        amet incidunt fugit provident atque quibusdam corrupti sunt cumque
+        sequi.
+      </p>
+    </li>
+    <li *ngFor="let item of coordinates">
+      <a routerLink="{{ item.url }}">{{ item.title }}</a>
+    </li>
+  </ul>
+</div>

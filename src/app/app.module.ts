@@ -13,13 +13,17 @@ import { NewsCardComponent } from './components/news-card/news-card.component';
 import { NewscardSliderComponent } from './components/newscard-slider/newscard-slider.component';
 import { SearchPipe } from './search.pipe';
 import { NewBookComponent } from './components/new-book/new-book.component';
-import { NewsPageComponent } from './pages/news-page/news-page.component';
-import { TestComponent } from './test/test.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { HttpClient } from '@angular/common/http';
 import { appConfig } from './app.config';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient } from '@angular/common/http';
+import { MapComponent } from './map/map.component';
+import { TargetpageComponent } from './targetpage/targetpage.component';
+import { BookDetailsPageComponent } from './book-details-page/book-details-page.component';
+import { NewsDetailsPageComponent } from './news-details-page/news-details-page.component';
+import { BooksPageComponent } from './books-page/books-page.component';
+import { NewsPageComponent } from './news-page/news-page.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -31,19 +35,24 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeHeroComponent,
     NewsCardComponent,
     NewscardSliderComponent,
     SearchPipe,
     NewBookComponent,
+    HomeHeroComponent,
+    MapComponent,
+    TargetpageComponent,
+    HomePageComponent,
+    BookDetailsPageComponent,
+    NewsDetailsPageComponent,
+    BooksPageComponent,
     NewsPageComponent,
-    TestComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CarouselModule,
-    HttpClientModule, // Ensure HttpClientModule is imported here
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

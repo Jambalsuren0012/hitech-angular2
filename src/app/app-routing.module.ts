@@ -1,8 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { TargetpageComponent } from './targetpage/targetpage.component';
+import { BookDetailsPageComponent } from './book-details-page/book-details-page.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'target', component: TargetpageComponent },
+  { path: '', component: HomePageComponent },
+  { path: 'book/category/:bookid', component: BookDetailsPageComponent },
+  { path: 'news/category/:newsid', component: BookDetailsPageComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

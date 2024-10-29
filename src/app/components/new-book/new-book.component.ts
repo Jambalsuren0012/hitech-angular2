@@ -9,32 +9,32 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class NewBookComponent {
   bookData = [
     {
-      imgUrl:
-        'https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg',
+      id: '1',
+      imgUrl: '/assets/img/book/1_2.jpeg',
       title: 'Book 1',
       describtion: 'Lorem ipsum dolor sit amet.',
       pdfUrl:
         'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
     },
     {
-      imgUrl:
-        'https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg',
+      id: '2',
+      imgUrl: '/assets/img/book/1_13.jpeg',
       title: 'Book 1',
       describtion: 'Lorem ipsum dolor sit amet.',
       pdfUrl:
         'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
     },
     {
-      imgUrl:
-        'https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg',
+      id: '3',
+      imgUrl: '/assets/img/book/1.jpeg',
       title: 'Book 1',
       describtion: 'Lorem ipsum dolor sit amet.',
       pdfUrl:
         'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
     },
     {
-      imgUrl:
-        'https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg',
+      id: '4',
+      imgUrl: '/assets/img/book/2_1.jpeg',
       title: 'Book 1',
       describtion: 'Lorem ipsum dolor sit amet.',
       pdfUrl:
@@ -49,14 +49,16 @@ export class NewBookComponent {
     pullDrag: true,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: ['<', '>'], // Add custom left and right arrows
     responsive: {
       0: { items: 1 },
       400: { items: 2 },
       740: { items: 3 },
-      940: { items: 4 },
+      940: { items: 5 },
+      1160: { items: 5 },
+      1200: { items: 6 },
     },
-    nav: true,
+    nav: true, // Enables navigation
   };
 
   openPdf(pdfUrl: string) {

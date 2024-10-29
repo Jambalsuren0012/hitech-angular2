@@ -8,6 +8,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class NewscardSliderComponent {
   newsCardsData = [
     {
+      id: '1',
       title: 'Amazing First Title',
       postDate: 'Jan 29, 2018',
       description:
@@ -18,6 +19,7 @@ export class NewscardSliderComponent {
       bookcategoryid: '',
     },
     {
+      id: '2',
       title: 'Amazing Second Title that is Quite Long',
       postDate: 'Jan 29, 2018',
       description:
@@ -28,6 +30,7 @@ export class NewscardSliderComponent {
       bookcategoryid: '',
     },
     {
+      id: '3',
       title: 'Amazing Title',
       postDate: 'Jan 29, 2018',
       description:
@@ -38,6 +41,7 @@ export class NewscardSliderComponent {
       bookcategoryid: '',
     },
     {
+      id: '4',
       title: 'Amazing Forth Title that is Quite Long',
       postDate: 'Jan 29, 2018',
       description:
@@ -48,6 +52,7 @@ export class NewscardSliderComponent {
       bookcategoryid: '',
     },
     {
+      id: '5',
       title: 'Amazing Fifth Title',
       postDate: 'Jan 29, 2018',
       description:
@@ -58,6 +63,7 @@ export class NewscardSliderComponent {
       bookcategoryid: '',
     },
     {
+      id: '6',
       title: 'Amazing 6th Title',
       postDate: 'Jan 29, 2018',
       description:
