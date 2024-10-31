@@ -28,7 +28,8 @@ export class NewBookComponent {
       id: '3',
       imgUrl: '/assets/img/book/1.jpeg',
       title: 'Book 1',
-      describtion: 'Lorem ipsum dolor sit amet.',
+      describtion:
+        'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.',
       pdfUrl:
         'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
     },
@@ -52,11 +53,11 @@ export class NewBookComponent {
     navText: ['<', '>'], // Add custom left and right arrows
     responsive: {
       0: { items: 1 },
-      400: { items: 2 },
-      740: { items: 3 },
-      940: { items: 5 },
-      1160: { items: 5 },
-      1200: { items: 6 },
+      400: { items: 1 },
+      740: { items: 2 },
+      940: { items: 3 },
+      1160: { items: 4 },
+      1200: { items: 4 },
     },
     nav: true, // Enables navigation
   };

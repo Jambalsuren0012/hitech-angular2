@@ -5,7 +5,7 @@ import { TargetpageComponent } from './targetpage/targetpage.component';
 import { BookDetailsPageComponent } from './book-details-page/book-details-page.component';
 
 const routes: Routes = [
-  { path: 'target', component: TargetpageComponent },
+  { path: 'map/:mapid', component: TargetpageComponent },
   { path: '', component: HomePageComponent },
   { path: 'book/category/:bookid', component: BookDetailsPageComponent },
   { path: 'news/category/:newsid', component: BookDetailsPageComponent },

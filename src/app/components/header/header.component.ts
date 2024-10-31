@@ -134,5 +134,24 @@ export class HeaderComponent implements OnInit {
         { title: 'Зургийн цомог', path: '/' },
       ],
     },
+    {
+      id: 7,
+      name: 'Мэдээ мэдээлэл', // Translation key for "Салбарууд"
+      subtitle: [
+        { title: 'ADMINISTRATION', path: '/' }, // Translation key for "Захиргаа, аж ахуй"
+        { title: 'STONE_AGE_RESEARCH', path: '/' }, // Translation key for "Чулуун зэвсгийн судалгааны салбар Судлаачид"
+        {
+          title: 'BRONZE_AND_IRON_RESEARCH',
+          path: '/', // Translation key for "Хүрэл, төмрийн үеийн судалгааны салбар Судлаачид"
+        },
+        {
+          title: 'HUNNUS_AND_ANCIENT_STUDIES',
+          path: '/', // Translation key for "Хүннү ба эртний улсуудын судалгааны салбар Судлаачид"
+        },
+        { title: 'MEDIEVAL_RESEARCH', path: '/' }, // Translation key for "Дундад зууны судалгааны салбар Судлаачид"
+        { title: 'INNOVATION_AND_COOPERATION', path: '/' }, // Translation key for "Инновац, хамтын ажиллагааны салбар Судлаачид"
+        { title: 'ARCHIVE_AND_LABORATORY', path: '/' }, // Translation key for "Сан хөмрөг, лабораторийн салбар Судлаачид"
+      ],
+    },
   ];
 }

@@ -24,6 +24,8 @@ import { BookDetailsPageComponent } from './book-details-page/book-details-page.
 import { NewsDetailsPageComponent } from './news-details-page/news-details-page.component';
 import { BooksPageComponent } from './books-page/books-page.component';
 import { NewsPageComponent } from './news-page/news-page.component';
+import { ListPageComponent } from './list-page/list-page.component';
+import { PrimaryPageComponent } from './pages/primary-page/primary-page.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -47,6 +49,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewsDetailsPageComponent,
     BooksPageComponent,
     NewsPageComponent,
+    ListPageComponent,
+    PrimaryPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,11 +11,42 @@ export class MapComponent implements AfterViewInit {
 
   // Define coordinates as a class-level property so it can be accessed in the template
   coordinates = [
-    { coords: [47.9221, 106.9155], url: '/target', title: 'Ulaanbaatar' },
-    { coords: [47.9795, 91.6348], url: '/khovd', title: 'Khovd' },
-    { coords: [46.1772, 100.7119], url: '/baynhongor', title: 'Bayankhongor' },
-    { coords: [43.5, 104.2861], url: '/umnugovi', title: 'Umnugovi' },
-    { coords: [48.2388, 96.0703], url: '/zavhan', title: 'Zavkhan' },
+    {
+      coords: [47.9221, 106.9155],
+      id: '1',
+      title: 'Ulaanbaatar',
+      description: 'Capital of Mongolia',
+    },
+    {
+      coords: [47.9795, 91.6348],
+      id: '2',
+      title: 'Khovd',
+      description: 'City in western Mongolia',
+    },
+    {
+      coords: [46.1772, 100.7119],
+      id: '3',
+      title: 'Bayankhongor',
+      description: 'City in central Mongolia',
+    },
+    {
+      coords: [43.5, 104.2861],
+      id: '4',
+      title: 'Umnugovi',
+      description: 'Province in southern Mongolia',
+    },
+    {
+      coords: [48.2388, 96.0703],
+      id: '5',
+      title: 'Zavkhan',
+      description: 'Province in northwestern Mongolia',
+    },
+    {
+      coords: [47.2327, 98.5547],
+      id: '1',
+      title: 'Ulaanbaatar',
+      description: 'Capital of Mongolia',
+    },
   ];
 
   constructor(private router: Router) {}
@@ -38,14 +69,27 @@ export class MapComponent implements AfterViewInit {
       },
     );
 
-    // Use the class-level `coordinates` property in the map initialization
-    this.coordinates.forEach(({ coords, url }) => {
+    this.coordinates.forEach(({ coords, id, title, description }) => {
+      const balloonContent = `
+        <div>
+          <strong>${title}</strong><br>
+          <p>${description}</p>
+          <a href="#" id="link-${id}"> <strong>Судалгаа үзэх</strong></a>
+        </div>
+      `;
+
       const myPlacemark = new (window as any).ymaps.Placemark(coords, {
-        balloonContent: `Location: ${coords[0].toFixed(4)}, ${coords[1].toFixed(4)}`,
+        balloonContent,
       });
 
-      myPlacemark.events.add('click', () => {
-        this.router.navigate([url]);
+      // Add event listener to navigate when the title is clicked
+      myPlacemark.events.add('balloonopen', () => {
+        document
+          .getElementById(`link-${id}`)
+          ?.addEventListener('click', (event) => {
+            event.preventDefault();
+            this.router.navigate(['map', id]);
+          });
       });
 
       myMap.geoObjects.add(myPlacemark);

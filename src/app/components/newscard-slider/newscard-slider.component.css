@@ -154,8 +154,8 @@ body {
 }
 
 .carousel-background {
-  background: url("https://www.archeo.ru/petroglyphs.png") repeat; /* Repeat the background image */
-  background-color: #ffffff; /* Fallback color */
+  background: url("https://www.archeo.ru/petroglyphs.png") repeat;
+  background-color: #ffffff;
   background-position: center; /* Center the image */
   background-size: 900px 500px; /* Adjust the size to fit your design */
 
