@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { TargetpageComponent } from './targetpage/targetpage.component';
-import { BookDetailsPageComponent } from './book-details-page/book-details-page.component';
+import { TargetpageComponent } from './components/targetpage/targetpage.component';
+import { BookDetailsPageComponent } from './pages/book-details-page/book-details-page.component';
 
 const routes: Routes = [
   { path: 'map/:mapid', component: TargetpageComponent },

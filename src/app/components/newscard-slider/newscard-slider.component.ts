@@ -6,14 +6,23 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrl: './newscard-slider.component.css',
 })
 export class NewscardSliderComponent {
-  newsCardsData = [
+  newsCardsData: Array<{
+    id: string; // Change to string (or number if preferred)
+    title: string;
+    postDate: string;
+    description: string;
+    link: string; // Change from any to string
+    bookcategoryid: string;
+    imgUrl: string; // Make sure this has a type (string or another type if needed)
+    compressedUrl?: string; // Optional
+  }> = [
     {
       id: '1',
       title: 'Amazing First Title',
       postDate: 'Jan 29, 2018',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia iure architecto deserunt distinctio, pariatur…',
-      imageURL:
+      imgUrl:
         'https://www.archeo.ru/_next/image?url=https%3A%2F%2Fapi.archeo.ru%2Farcheo_media%2FNews%2Fnovost-vadimu-sergeevichu%2FBochkarev.jpg&w=1200&q=75',
       link: '#',
       bookcategoryid: '',
@@ -24,7 +33,7 @@ export class NewscardSliderComponent {
       postDate: 'Jan 29, 2018',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam obcaecati ex natus nulla rem sequi laborum quod fugit…',
-      imageURL:
+      imgUrl:
         'https://www.archeo.ru/_next/image?url=https%3A%2F%2Fapi.archeo.ru%2Farcheo_media%2FNews%2Fnovost-epohi-kurganyi-nah%2Folen.tif&w=1200&q=75',
       link: '#',
       bookcategoryid: '',
@@ -35,7 +44,7 @@ export class NewscardSliderComponent {
       postDate: 'Jan 29, 2018',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
-      imageURL:
+      imgUrl:
         'https://www.archeo.ru/_next/image?url=https%3A%2F%2Fapi.archeo.ru%2Farcheo_media%2FNews%2Fnovost-nizhnepaleolitiche%2F%25D0%259A%25D0%25B5%25D1%2580%25D0%25BC%25D0%25B5%25D0%25BA.PNG&w=1200&q=75',
       link: '#',
       bookcategoryid: '',
@@ -46,7 +55,7 @@ export class NewscardSliderComponent {
       postDate: 'Jan 29, 2018',
       description:
         'Lorem ipsum dolor sit amet! orem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
-      imageURL:
+      imgUrl:
         'https://www.archeo.ru/_next/image?url=https%3A%2F%2Fapi.archeo.ru%2Farcheo_media%2FNews%2Fnovost-mesta-krusheniya-l%2F1.jpg&w=1200&q=75',
       link: '#',
       bookcategoryid: '',
@@ -57,7 +66,7 @@ export class NewscardSliderComponent {
       postDate: 'Jan 29, 2018',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia iure architecto deserunt distinctio…',
-      imageURL:
+      imgUrl:
         'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
       link: '#',
       bookcategoryid: '',
@@ -68,7 +77,7 @@ export class NewscardSliderComponent {
       postDate: 'Jan 29, 2018',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia.',
-      imageURL:
+      imgUrl:
         'https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
       link: '#',
       bookcategoryid: '',
@@ -108,4 +117,60 @@ export class NewscardSliderComponent {
     autoplayHoverPause: true,
     autoplaySpeed: 1000,
   };
+  ngOnInit(): void {
+    this.compressImages();
+  }
+
+  async compressImages() {
+    const maxWidth = 800; // Define your max width
+    const maxHeight = 600; // Define your max height
+
+    for (const image of this.newsCardsData) {
+      try {
+        const compressedUrl = await this.resizeImage(
+          image.imgUrl,
+          maxWidth,
+          maxHeight,
+        );
+        image.compressedUrl = compressedUrl;
+      } catch (error) {
+        console.error(`Error compressing image ${image.imgUrl}:`, error);
+        // Optionally, you can set a fallback or keep the original URL
+        image.compressedUrl = image.imgUrl; // Keep original in case of error
+      }
+    }
+  }
+
+  resizeImage(
+    url: string,
+    maxWidth: number,
+    maxHeight: number,
+  ): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = url;
+
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        if (!ctx) {
+          reject(new Error('Failed to get canvas context'));
+          return;
+        }
+
+        const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+        canvas.width = img.width * ratio;
+        canvas.height = img.height * ratio;
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const compressedUrl = canvas.toDataURL('image/jpeg', 0.8); // JPEG with 80% quality
+        resolve(compressedUrl);
+      };
+
+      img.onerror = () => {
+        reject(new Error('Failed to load image'));
+      };
+    });
+  }
 }

@@ -1,13 +1,24 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-new-book',
   templateUrl: './new-book.component.html',
   styleUrls: ['./new-book.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewBookComponent {
-  bookData = [
+  trackById(index: number, book: any): string {
+    return book.id; // or return book.id as a unique identifier
+  }
+  bookData: Array<{
+    id: string;
+    title: string;
+    describtion: string;
+    pdfUrl: string;
+    imgUrl: string;
+    compressedUrl?: string;
+  }> = [
     {
       id: '1',
       imgUrl: '/assets/img/book/1_2.jpeg',
@@ -53,16 +64,72 @@ export class NewBookComponent {
     navText: ['<', '>'], // Add custom left and right arrows
     responsive: {
       0: { items: 1 },
-      400: { items: 1 },
-      740: { items: 2 },
-      940: { items: 3 },
-      1160: { items: 4 },
-      1200: { items: 4 },
+      400: { items: 2 },
+      740: { items: 3 },
+      940: { items: 5 },
+      1160: { items: 5 },
+      1200: { items: 6 },
     },
     nav: true, // Enables navigation
   };
 
   openPdf(pdfUrl: string) {
     window.open(pdfUrl, '_blank'); // Open PDF in a new tab
+  }
+  ngOnInit(): void {
+    this.compressImages();
+  }
+
+  async compressImages() {
+    const maxWidth = 800; // Define your max width
+    const maxHeight = 600; // Define your max height
+
+    for (const image of this.bookData) {
+      try {
+        const compressedUrl = await this.resizeImage(
+          image.imgUrl,
+          maxWidth,
+          maxHeight,
+        );
+        image.compressedUrl = compressedUrl;
+      } catch (error) {
+        console.error(`Error compressing image ${image.imgUrl}:`, error);
+        // Optionally, you can set a fallback or keep the original URL
+        image.compressedUrl = image.imgUrl; // Keep original in case of error
+      }
+    }
+  }
+
+  resizeImage(
+    url: string,
+    maxWidth: number,
+    maxHeight: number,
+  ): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = url;
+
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        if (!ctx) {
+          reject(new Error('Failed to get canvas context'));
+          return;
+        }
+
+        const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+        canvas.width = img.width * ratio;
+        canvas.height = img.height * ratio;
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const compressedUrl = canvas.toDataURL('image/jpeg', 0.8); // JPEG with 80% quality
+        resolve(compressedUrl);
+      };
+
+      img.onerror = () => {
+        reject(new Error('Failed to load image'));
+      };
+    });
   }
 }

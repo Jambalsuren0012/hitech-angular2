@@ -3,7 +3,11 @@
     <ng-container *ngFor="let item of newsCardsData">
       <ng-template carouselSlide>
         <div class="news-card w-96">
-          <img [src]="item.imageURL" alt="" class="news-card__image" />
+          <img
+            [src]="item.compressedUrl || item.imgUrl"
+            alt=""
+            class="news-card__image"
+          />
           <div class="news-card__text-wrapper">
             <h2 class="news-card__title">{{ item.title }}</h2>
             <div class="news-card__post-date">{{ item.postDate }}</div>

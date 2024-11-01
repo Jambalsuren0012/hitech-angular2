@@ -2,7 +2,7 @@
   <owl-carousel-o [options]="customOptions">
     <ng-template carouselSlide *ngFor="let item of img">
       <img
-        [src]="item.url"
+        [src]="item.compressedUrl || item.url"
         alt="Background Image"
         class="w-full h-[50vh] md:h-[70vh] object-cover object-center"
       />

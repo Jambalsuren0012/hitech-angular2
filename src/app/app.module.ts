@@ -18,14 +18,16 @@ import { HttpClient } from '@angular/common/http';
 import { appConfig } from './app.config';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MapComponent } from './map/map.component';
-import { TargetpageComponent } from './targetpage/targetpage.component';
-import { BookDetailsPageComponent } from './book-details-page/book-details-page.component';
-import { NewsDetailsPageComponent } from './news-details-page/news-details-page.component';
-import { BooksPageComponent } from './books-page/books-page.component';
-import { NewsPageComponent } from './news-page/news-page.component';
-import { ListPageComponent } from './list-page/list-page.component';
+import { MapComponent } from './components/map/map.component';
+import { TargetpageComponent } from './components/targetpage/targetpage.component';
+import { BookDetailsPageComponent } from './pages/book-details-page/book-details-page.component';
+import { NewsDetailsPageComponent } from './pages/news-details-page/news-details-page.component';
+import { BooksPageComponent } from './pages/books-page/books-page.component';
+
+import { ListPageComponent } from './pages/list-page/list-page.component';
 import { PrimaryPageComponent } from './pages/primary-page/primary-page.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { NgxImageCompressService } from 'ngx-image-compress';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -48,9 +50,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     BookDetailsPageComponent,
     NewsDetailsPageComponent,
     BooksPageComponent,
-    NewsPageComponent,
     ListPageComponent,
     PrimaryPageComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,11 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
   ],
-  providers: [provideClientHydration(), ...appConfig.providers], // Use appConfig providers
+  providers: [
+    provideClientHydration(),
+    ...appConfig.providers,
+    NgxImageCompressService,
+  ], // Use appConfig providers
   bootstrap: [AppComponent],
 })
 export class AppModule {}
