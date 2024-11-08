@@ -23,7 +23,7 @@ export class NewscardSliderComponent {
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia iure architecto deserunt distinctio, pariatur…',
       imgUrl:
-        'https://www.archeo.ru/_next/image?url=https%3A%2F%2Fapi.archeo.ru%2Farcheo_media%2FNews%2Fnovost-vadimu-sergeevichu%2FBochkarev.jpg&w=1200&q=75',
+        'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
       link: '#',
       bookcategoryid: '',
     },
@@ -34,7 +34,7 @@ export class NewscardSliderComponent {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam obcaecati ex natus nulla rem sequi laborum quod fugit…',
       imgUrl:
-        'https://www.archeo.ru/_next/image?url=https%3A%2F%2Fapi.archeo.ru%2Farcheo_media%2FNews%2Fnovost-epohi-kurganyi-nah%2Folen.tif&w=1200&q=75',
+        'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
       link: '#',
       bookcategoryid: '',
     },
@@ -45,7 +45,7 @@ export class NewscardSliderComponent {
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
       imgUrl:
-        'https://www.archeo.ru/_next/image?url=https%3A%2F%2Fapi.archeo.ru%2Farcheo_media%2FNews%2Fnovost-nizhnepaleolitiche%2F%25D0%259A%25D0%25B5%25D1%2580%25D0%25BC%25D0%25B5%25D0%25BA.PNG&w=1200&q=75',
+        'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
       link: '#',
       bookcategoryid: '',
     },
@@ -56,7 +56,7 @@ export class NewscardSliderComponent {
       description:
         'Lorem ipsum dolor sit amet! orem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
       imgUrl:
-        'https://www.archeo.ru/_next/image?url=https%3A%2F%2Fapi.archeo.ru%2Farcheo_media%2FNews%2Fnovost-mesta-krusheniya-l%2F1.jpg&w=1200&q=75',
+        'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
       link: '#',
       bookcategoryid: '',
     },
@@ -90,7 +90,6 @@ export class NewscardSliderComponent {
     pullDrag: true,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
     responsive: {
       0: {
         items: 1, // For mobile devices
@@ -122,8 +121,13 @@ export class NewscardSliderComponent {
   }
 
   async compressImages() {
-    const maxWidth = 800; // Define your max width
-    const maxHeight = 600; // Define your max height
+    if (typeof window === 'undefined') {
+      // If we're on the server, do nothing
+      return;
+    }
+
+    const maxWidth = 800;
+    const maxHeight = 600;
 
     for (const image of this.newsCardsData) {
       try {
@@ -135,8 +139,7 @@ export class NewscardSliderComponent {
         image.compressedUrl = compressedUrl;
       } catch (error) {
         console.error(`Error compressing image ${image.imgUrl}:`, error);
-        // Optionally, you can set a fallback or keep the original URL
-        image.compressedUrl = image.imgUrl; // Keep original in case of error
+        image.compressedUrl = image.imgUrl; // Fallback to original image
       }
     }
   }
@@ -148,6 +151,7 @@ export class NewscardSliderComponent {
   ): Promise<string> {
     return new Promise((resolve, reject) => {
       const img = new Image();
+      img.crossOrigin = 'anonymous'; // Enable CORS
       img.src = url;
 
       img.onload = () => {

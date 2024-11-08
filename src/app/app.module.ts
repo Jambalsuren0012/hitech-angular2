@@ -23,11 +23,17 @@ import { TargetpageComponent } from './components/targetpage/targetpage.componen
 import { BookDetailsPageComponent } from './pages/book-details-page/book-details-page.component';
 import { NewsDetailsPageComponent } from './pages/news-details-page/news-details-page.component';
 import { BooksPageComponent } from './pages/books-page/books-page.component';
-
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { PrimaryPageComponent } from './pages/primary-page/primary-page.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { NgxImageCompressService } from 'ngx-image-compress';
+
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { CarouselComponent } from './carousel/carousel.component';
+
+import { NewsSliderComponent } from './news-slider/news-slider.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Map2Component } from './map2/map2.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -53,12 +59,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     ListPageComponent,
     PrimaryPageComponent,
     SpinnerComponent,
+    CarouselComponent,
+    NewsSliderComponent,
+    Map2Component,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CarouselModule,
-
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -73,5 +82,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxImageCompressService,
   ], // Use appConfig providers
   bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule {}

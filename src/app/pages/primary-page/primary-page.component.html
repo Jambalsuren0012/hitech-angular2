@@ -2,43 +2,94 @@
   <h1
     class="text-lg sm:text-xl md:text-2xl font-medium text-center sm:text-left"
   >
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam sint quo ipsum
-    in non ducimus aspernatur officia natus omnis excepturi?
-    <strong>title</strong>
+    {{ content[0].title }}
   </h1>
   <div class="my-6">
     <img
       class="w-3/5 float-left pr-2 rounded-lg shadow-lg object-cover"
-      src="https://archaeology.ac.mn/public/uploads/968ac044-1651-4ae8-bdb5-bf31b32999ad/baf4728c-d952-467b-86a4-57b71d82764d.jpg?width=960&rmode=Crop&"
+      [src]="content[0].small_picurl"
       alt=""
     />
-    <p class="text-justify">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit ab
-      architecto dolorum harum quo modi provident ducimus, fugiat voluptatum
-      mollitia praesentium, dolores reiciendis, voluptatibus id recusandae Lorem
-      ipsum dolor sit amet consectetur adipisicing elit. Officia amet, mollitia
-      harum suscipit pariatur molestias voluptatum cupiditate ab animi natus
-      obcaecati reprehenderit illo ullam alias aliquam odit facere saepe
-      sapiente quisquam fugiat esse, in deserunt! Eaque tenetur nobis optio
-      aperiam eos nam nesciunt accusantium possimus nostrum libero maxime
-      voluptate, magnam hic assumenda in suscipit aliquid iure corrupti dolore
-      voluptatem labore. In quo ipsa repellat ea, laborum tempore molestias
-      consequatur perspiciatis quia natus debitis nihil placeat eum pariatur
-      veritatis reiciendis officia fuga deleniti ex beatae optio numquam hic
-      laboriosam? Beatae, eligendi aperiam. Quod soluta nemo optio laudantium
-      earum molestias voluptate accusamus nihil sunt saepe? Quis optio iusto
-      pariatur, libero officia itaque dicta natus accusamus consectetur nihil ex
-      assumenda commodi error asperiores consequuntur nulla maxime modi
-      blanditiis. Illo explicabo iure alias repellat debitis ut obcaecati
-      maiores cupiditate blanditiis exercitationem veritatis, non sint
-      laudantium eum facilis esse eos fugit. Inventore ipsa eius velit!
-    </p>
+    <p class="text-justify" [innerHTML]="content[0].info"></p>
   </div>
-  <div class="w-full mx-auto my-6 clear-both pt-6">
-    <img
-      class="w-full rounded-lg shadow-lg object-cover"
-      src="https://archaeology.ac.mn/public/uploads/968ac044-1651-4ae8-bdb5-bf31b32999ad/baf4728c-d952-467b-86a4-57b71d82764d.jpg?width=960&rmode=Crop&"
-      alt=""
-    />
+
+  <div class="w-[100%] h-[40%] mx-auto my-6 clear-both pt-6 relative">
+    <!-- Left Navigation Button -->
+    <button
+      (click)="carousel.prev()"
+      class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-l"
+    >
+      <svg
+        fill="#ffffff"
+        height="200px"
+        width="200px"
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 330.002 330.002"
+        xml:space="preserve"
+        transform="rotate(270)"
+        stroke="#ffffff"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            id="XMLID_105_"
+            d="M324.001,209.25L173.997,96.75c-5.334-4-12.667-4-18,0L6.001,209.25c-6.627,4.971-7.971,14.373-3,21 c2.947,3.93,7.451,6.001,12.012,6.001c3.131,0,6.29-0.978,8.988-3.001L164.998,127.5l141.003,105.75c6.629,4.972,16.03,3.627,21-3 C331.972,223.623,330.628,214.221,324.001,209.25z"
+          ></path>
+        </g>
+      </svg>
+    </button>
+
+    <owl-carousel-o [options]="customOptions" #carousel>
+      <ng-container *ngFor="let sub of content[0].picurl">
+        <ng-template carouselSlide>
+          <div class="news-card">
+            <img [src]="sub.url" alt="Image" class="news-card__image" />
+            <p *ngIf="!sub.url">Image URL not found!</p>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+
+    <!-- Right Navigation Button -->
+    <button
+      (click)="carousel.next()"
+      class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-r"
+    >
+      <svg
+        fill="#ffffff"
+        height="200px"
+        width="200px"
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 330.002 330.002"
+        xml:space="preserve"
+        transform="rotate(90)"
+        stroke="#ffffff"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            id="XMLID_105_"
+            d="M324.001,209.25L173.997,96.75c-5.334-4-12.667-4-18,0L6.001,209.25c-6.627,4.971-7.971,14.373-3,21 c2.947,3.93,7.451,6.001,12.012,6.001c3.131,0,6.29-0.978,8.988-3.001L164.998,127.5l141.003,105.75c6.629,4.972,16.03,3.627,21-3 C331.972,223.623,330.628,214.221,324.001,209.25z"
+          ></path>
+        </g>
+      </svg>
+      <!-- Right arrow -->
+    </button>
   </div>
 </div>

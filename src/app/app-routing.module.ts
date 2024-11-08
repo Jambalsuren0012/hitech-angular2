@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'book/category/:bookid', component: BookDetailsPageComponent },
   { path: 'news/category/:newsid', component: BookDetailsPageComponent },
+  { path: '', redirectTo: '/map2', pathMatch: 'full' },
 ];
 
 @NgModule({

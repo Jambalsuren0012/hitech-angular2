@@ -1,0 +1,15 @@
+.embla__viewport {
+  overflow: hidden; /* Hide overflow */
+  width: 100%; /* Full width */
+  height: 100%; /* Adjust height as needed */
+}
+
+.embla__container {
+  display: flex; /* Use flexbox to align items in a row */
+}
+
+.embla__slide {
+  position: relative;
+  flex: 0 0 auto; /* Prevent flex items from growing or shrinking */
+  width: 100%; /* Set each slide to take full width */
+}

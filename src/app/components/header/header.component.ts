@@ -7,7 +7,7 @@ import { MenuService } from '../../service/menu.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   isMobileMenuOpen = false;
   isMobileMenuCat = false;
   activeItemId: number | null = null;
@@ -22,22 +22,22 @@ export class HeaderComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private menuService: MenuService,
   ) {
-    this.translate.setDefaultLang('en ');
-    this.translate.use('mn'); // Set initial language
+    this.translate.setDefaultLang('en');
+    this.translate.use('mn');
   }
-  ngOnInit() {
-    this.loadmenu();
-  }
+  // ngOnInit() {
+  //   this.loadmenu();
+  // }
 
-  loadmenu() {
-    this.menuService.menulist().subscribe({
-      next: (data) => {
-        this.menuItems = data;
-        console.log(this.menuItems);
-      },
-      error: (err) => console.log(err),
-    });
-  }
+  // loadmenu() {
+  //   this.menuService.menulist().subscribe({
+  //     next: (data) => {
+  //       this.menuItems = data;
+  //       console.log(this.menuItems);
+  //     },
+  //     error: (err) => console.log(err),
+  //   });
+  // }
 
   toggleFlag() {
     console.log('Toggle flag called');

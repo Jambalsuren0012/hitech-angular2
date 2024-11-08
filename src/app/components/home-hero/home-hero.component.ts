@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-home-hero',
   templateUrl: './home-hero.component.html',
-  styleUrls: ['./home-hero.component.css'], // Fixed the property name from styleUrl to styleUrls
+  styleUrls: ['./home-hero.component.css'],
 })
 export class HomeHeroComponent implements OnInit {
   img: Array<{ url: string; compressedUrl?: string }> = [
@@ -11,78 +11,47 @@ export class HomeHeroComponent implements OnInit {
     { url: '/assets/img/home-slid/Image0098.jpg' },
     { url: '/assets/img/home-slid/Антро-2.jpg' },
   ];
+  isLoading: boolean = true;
 
   customOptions = {
     loop: true,
-    margin: 10,
     items: 1,
-    center: true,
-    stagePadding: 100,
+    center: false, // Set to false to prevent centering that causes side gaps
+    stagePadding: 0, // Remove padding to avoid left-right gaps
+    nav: false,
+    dots: false,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
     autoplay: true,
     autoplayTimeout: 6000,
     smartSpeed: 2500,
     animateIn: 'animate__animated animate__fadeIn',
     animateOut: 'animate__animated animate__fadeOut',
     responsive: {
-      0: { items: 1, stagePadding: 50 },
-      768: { items: 1, stagePadding: 100 },
+      0: { items: 1 },
+      768: { items: 1 },
     },
   };
 
   ngOnInit(): void {
-    this.compressImages();
+    this.checkImagesLoaded();
   }
 
-  async compressImages() {
-    const maxWidth = 800; // Define your max width
-    const maxHeight = 600; // Define your max height
-
-    for (const image of this.img) {
-      try {
-        const compressedUrl = await this.resizeImage(
-          image.url,
-          maxWidth,
-          maxHeight,
-        );
-        image.compressedUrl = compressedUrl;
-      } catch (error) {
-        console.error(`Error compressing image ${image.url}:`, error);
-        // Optionally, you can set a fallback or keep the original URL
-        image.compressedUrl = image.url; // Keep original in case of error
-      }
+  checkImagesLoaded() {
+    // Check if the window object is available (indicating that the code is running in the browser)
+    if (typeof window !== 'undefined') {
+      let loadedImages = 0;
+      this.img.forEach((image) => {
+        const img = new Image();
+        img.src = image.url;
+        img.onload = () => {
+          loadedImages++;
+          if (loadedImages === this.img.length) {
+            this.isLoading = false;
+          }
+        };
+      });
     }
-  }
-
-  resizeImage(
-    url: string,
-    maxWidth: number,
-    maxHeight: number,
-  ): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.src = url;
-
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-
-        if (!ctx) {
-          reject(new Error('Failed to get canvas context'));
-          return;
-        }
-
-        const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
-        canvas.width = img.width * ratio;
-        canvas.height = img.height * ratio;
-
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        const compressedUrl = canvas.toDataURL('image/jpeg', 0.8); // JPEG with 80% quality
-        resolve(compressedUrl);
-      };
-
-      img.onerror = () => {
-        reject(new Error('Failed to load image'));
-      };
-    });
   }
 }
