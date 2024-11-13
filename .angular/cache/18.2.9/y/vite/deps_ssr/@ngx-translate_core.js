@@ -10,7 +10,6 @@ import {
   Input,
   NgModule,
   Pipe,
-  require_cjs,
   require_operators,
   setClassMetadata,
   ɵɵdefineDirective,
@@ -21,7 +20,10 @@ import {
   ɵɵdirectiveInject,
   ɵɵgetInheritedFactory,
   ɵɵinject
-} from "./chunk-TW4XVQZD.js";
+} from "./chunk-Q3R2RZWL.js";
+import {
+  require_cjs
+} from "./chunk-2H3L6IVL.js";
 import {
   __spreadValues,
   __toESM

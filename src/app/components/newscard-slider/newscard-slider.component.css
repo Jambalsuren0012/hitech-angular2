@@ -1,0 +1,29 @@
+.carousel-background {
+  max-width: 100%;
+  height: auto;
+}
+
+.owl-carousel .item {
+  display: flex;
+  justify-content: center;
+}
+
+.owl-carousel .owl-item {
+  display: flex;
+  justify-content: center;
+}
+
+.card-container {
+  height: auto; /* Ensure it can grow based on content */
+}
+.two-line-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5; /* Adjust line height as necessary */
+  height: 4rem; /* Adjust to match 2 lines of text height */
+}
+owl-carousel-o {
+  position: relative;
+}

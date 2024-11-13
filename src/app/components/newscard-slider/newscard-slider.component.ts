@@ -1,86 +1,233 @@
 import { Component } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CarouselComponent } from 'ngx-owl-carousel-o';
+import { ViewChild } from '@angular/core';
 @Component({
   selector: 'app-newscard-slider',
   templateUrl: './newscard-slider.component.html',
   styleUrl: './newscard-slider.component.css',
 })
 export class NewscardSliderComponent {
-  newsCardsData: Array<{
-    id: string; // Change to string (or number if preferred)
-    title: string;
-    postDate: string;
-    description: string;
-    link: string; // Change from any to string
-    bookcategoryid: string;
-    imgUrl: string; // Make sure this has a type (string or another type if needed)
-    compressedUrl?: string; // Optional
-  }> = [
+  trackById(index: number, news: any): string {
+    return news.id;
+  }
+  // newsCardsData: Array<{
+  //   id: string; // Change to string (or number if preferred)
+  //   title: string;
+  //   postDate: string;
+  //   description: string;
+  //   link: string; // Change from any to string
+  //   bookcategoryid: string;
+  //   imgUrl: string; // Make sure this has a type (string or another type if needed)
+  //   compressedUrl?: string; // Optional
+  // }> = [
+  //   {
+  //     id: '1',
+  //     title: 'Amazing First Title',
+  //     postDate: 'Jan 29, 2018',
+  //     description:
+  //       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia iure architecto deserunt distinctio, pariatur…',
+  //     imgUrl:
+  //       'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  //     link: '#',
+  //     bookcategoryid: '',
+  //   },
+  //   {
+  //     id: '2',
+  //     title: 'Amazing Second Title that is Quite Long',
+  //     postDate: 'Jan 29, 2018',
+  //     description:
+  //       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam obcaecati ex natus nulla rem sequi laborum quod fugit…',
+  //     imgUrl:
+  //       'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  //     link: '#',
+  //     bookcategoryid: '',
+  //   },
+  //   {
+  //     id: '3',
+  //     title: 'Amazing Title',
+  //     postDate: 'Jan 29, 2018',
+  //     description:
+  //       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae… Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
+  //     imgUrl:
+  //       'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  //     link: '#',
+  //     bookcategoryid: '',
+  //   },
+  //   {
+  //     id: '4',
+  //     title: 'Amazing Forth Title that is Quite Long',
+  //     postDate: 'Jan 29, 2018',
+  //     description:
+  //       'Lorem ipsum dolor sit amet! orem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae… Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
+  //     imgUrl:
+  //       'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  //     link: '#',
+  //     bookcategoryid: '',
+  //   },
+  //   {
+  //     id: '5',
+  //     title: 'Amazing Fifth Title',
+  //     postDate: 'Jan 29, 2018',
+  //     description:
+  //       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia iure architecto deserunt distinctio… Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
+  //     imgUrl:
+  //       'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  //     link: '#',
+  //     bookcategoryid: '',
+  //   },
+  //   {
+  //     id: '6',
+  //     title: 'Amazing 6th Title',
+  //     postDate: 'Jan 29, 2018',
+  //     description:
+  //       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
+  //     imgUrl:
+  //       'https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  //     link: '#',
+  //     bookcategoryid: '',
+  //   },
+  // ];
+  newsCardsData2 = [
     {
       id: '1',
-      title: 'Amazing First Title',
-      postDate: 'Jan 29, 2018',
+      title: 'ERI-001A',
+      postDate: '2024-09-06 12:19:43',
       description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia iure architecto deserunt distinctio, pariatur…',
+        'lorem23 text lorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 text',
+      link: 'https://example.com/news/eri-001a',
+      bookcategoryid: '1',
       imgUrl:
         'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
+      small_picurl: 'images/product/w-576/urdaas_bage.jpg',
+      home_picurl: 'images/product/Cover_zurag.jpg',
+      home_small_picurl: 'images/product/w-576/Cover_zurag.jpg',
+      bgcolor: '#000000',
+      status: '1',
+      created_at: '2024-09-06 12:19:43',
+      created_user: '0',
+      updated_at: '2024-09-25 04:06:38',
+      updated_user: '0',
     },
     {
       id: '2',
-      title: 'Amazing Second Title that is Quite Long',
-      postDate: 'Jan 29, 2018',
+      title: 'ERI-001A',
+      postDate: '2024-09-06 12:19:43',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam obcaecati ex natus nulla rem sequi laborum quod fugit…',
+        'lorem23 text lorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 text',
+      link: 'https://example.com/news/eri-001a',
+      bookcategoryid: '1',
       imgUrl:
         'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
+      small_picurl: 'images/product/w-576/urdaas_bage.jpg',
+      home_picurl: 'images/product/Cover_zurag.jpg',
+      home_small_picurl: 'images/product/w-576/Cover_zurag.jpg',
+      bgcolor: '#000000',
+      status: '1',
+      created_at: '2024-09-06 12:19:43',
+      created_user: '0',
+      updated_at: '2024-09-25 04:06:38',
+      updated_user: '0',
     },
     {
       id: '3',
-      title: 'Amazing Title',
-      postDate: 'Jan 29, 2018',
+      title: 'ERI-001A',
+      postDate: '2024-09-06 12:19:43',
       description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
+        'lorem23 text lorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 text',
+      link: 'https://example.com/news/eri-001a',
+      bookcategoryid: '1',
       imgUrl:
         'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
+      small_picurl: 'images/product/w-576/urdaas_bage.jpg',
+      home_picurl: 'images/product/Cover_zurag.jpg',
+      home_small_picurl: 'images/product/w-576/Cover_zurag.jpg',
+      bgcolor: '#000000',
+      status: '1',
+      created_at: '2024-09-06 12:19:43',
+      created_user: '0',
+      updated_at: '2024-09-25 04:06:38',
+      updated_user: '0',
     },
     {
       id: '4',
-      title: 'Amazing Forth Title that is Quite Long',
-      postDate: 'Jan 29, 2018',
+      title: 'ERI-001A',
+      postDate: '2024-09-06 12:19:43',
       description:
-        'Lorem ipsum dolor sit amet! orem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
+        'lorem23 text lorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 text',
+      link: 'https://example.com/news/eri-001a',
+      bookcategoryid: '1',
       imgUrl:
         'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
+      small_picurl: 'images/product/w-576/urdaas_bage.jpg',
+      home_picurl: 'images/product/Cover_zurag.jpg',
+      home_small_picurl: 'images/product/w-576/Cover_zurag.jpg',
+      bgcolor: '#000000',
+      status: '1',
+      created_at: '2024-09-06 12:19:43',
+      created_user: '0',
+      updated_at: '2024-09-25 04:06:38',
+      updated_user: '0',
     },
     {
       id: '5',
-      title: 'Amazing Fifth Title',
-      postDate: 'Jan 29, 2018',
+      title: 'ERI-001A',
+      postDate: '2024-09-06 12:19:43',
       description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia iure architecto deserunt distinctio…',
+        'lorem23 text lorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 text',
+      link: 'https://example.com/news/eri-001a',
+      bookcategoryid: '1',
       imgUrl:
         'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
+      small_picurl: 'images/product/w-576/urdaas_bage.jpg',
+      home_picurl: 'images/product/Cover_zurag.jpg',
+      home_small_picurl: 'images/product/w-576/Cover_zurag.jpg',
+      bgcolor: '#000000',
+      status: '1',
+      created_at: '2024-09-06 12:19:43',
+      created_user: '0',
+      updated_at: '2024-09-25 04:06:38',
+      updated_user: '0',
     },
     {
       id: '6',
-      title: 'Amazing 6th Title',
-      postDate: 'Jan 29, 2018',
+      title: 'ERI-001A',
+      postDate: '2024-09-06 12:19:43',
       description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia.',
+        'lorem23 text lorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 text',
+      link: 'https://example.com/news/eri-001a',
+      bookcategoryid: '1',
       imgUrl:
-        'https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
+        'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+      small_picurl: 'images/product/w-576/urdaas_bage.jpg',
+      home_picurl: 'images/product/Cover_zurag.jpg',
+      home_small_picurl: 'images/product/w-576/Cover_zurag.jpg',
+      bgcolor: '#000000',
+      status: '1',
+      created_at: '2024-09-06 12:19:43',
+      created_user: '0',
+      updated_at: '2024-09-25 04:06:38',
+      updated_user: '0',
+    },
+    {
+      id: '7',
+      title: 'ERI-001A',
+      postDate: '2024-09-06 12:19:43',
+      description:
+        'lorem23 text lorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 textlorem23 text',
+      link: 'https://example.com/news/eri-001a',
+      bookcategoryid: '1',
+      imgUrl:
+        'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+      small_picurl: 'images/product/w-576/urdaas_bage.jpg',
+      home_picurl: 'images/product/Cover_zurag.jpg',
+      home_small_picurl: 'images/product/w-576/Cover_zurag.jpg',
+      bgcolor: '#000000',
+      status: '1',
+      created_at: '2024-09-06 12:19:43',
+      created_user: '0',
+      updated_at: '2024-09-25 04:06:38',
+      updated_user: '0',
     },
   ];
   customOptions: OwlOptions = {
@@ -90,6 +237,7 @@ export class NewscardSliderComponent {
     pullDrag: true,
     dots: false,
     navSpeed: 700,
+
     responsive: {
       0: {
         items: 1, // For mobile devices
@@ -110,71 +258,72 @@ export class NewscardSliderComponent {
         items: 4, // Wider screens or large desktops
       },
     },
-    nav: false,
-    autoplay: true,
+
+    autoplay: false,
     autoplayTimeout: 3000,
     autoplayHoverPause: true,
     autoplaySpeed: 1000,
   };
-  ngOnInit(): void {
-    this.compressImages();
-  }
 
-  async compressImages() {
-    if (typeof window === 'undefined') {
-      // If we're on the server, do nothing
-      return;
-    }
+  // ngOnInit(): void {
+  //   this.compressImages();
+  // }
 
-    const maxWidth = 800;
-    const maxHeight = 600;
+  // async compressImages() {
+  //   if (typeof window === 'undefined') {
+  //     // If we're on the server, do nothing
+  //     return;
+  //   }
 
-    for (const image of this.newsCardsData) {
-      try {
-        const compressedUrl = await this.resizeImage(
-          image.imgUrl,
-          maxWidth,
-          maxHeight,
-        );
-        image.compressedUrl = compressedUrl;
-      } catch (error) {
-        console.error(`Error compressing image ${image.imgUrl}:`, error);
-        image.compressedUrl = image.imgUrl; // Fallback to original image
-      }
-    }
-  }
+  //   const maxWidth = 800;
+  //   const maxHeight = 600;
 
-  resizeImage(
-    url: string,
-    maxWidth: number,
-    maxHeight: number,
-  ): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.crossOrigin = 'anonymous'; // Enable CORS
-      img.src = url;
+  //   for (const image of this.newsCardsData) {
+  //     try {
+  //       const compressedUrl = await this.resizeImage(
+  //         image.imgUrl,
+  //         maxWidth,
+  //         maxHeight,
+  //       );
+  //       image.compressedUrl = compressedUrl;
+  //     } catch (error) {
+  //       console.error(`Error compressing image ${image.imgUrl}:`, error);
+  //       image.compressedUrl = image.imgUrl; // Fallback to original image
+  //     }
+  //   }
+  // }
 
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+  // resizeImage(
+  //   url: string,
+  //   maxWidth: number,
+  //   maxHeight: number,
+  // ): Promise<string> {
+  //   return new Promise((resolve, reject) => {
+  //     const img = new Image();
+  //     img.crossOrigin = 'anonymous'; // Enable CORS
+  //     img.src = url;
 
-        if (!ctx) {
-          reject(new Error('Failed to get canvas context'));
-          return;
-        }
+  //     img.onload = () => {
+  //       const canvas = document.createElement('canvas');
+  //       const ctx = canvas.getContext('2d');
 
-        const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
-        canvas.width = img.width * ratio;
-        canvas.height = img.height * ratio;
+  //       if (!ctx) {
+  //         reject(new Error('Failed to get canvas context'));
+  //         return;
+  //       }
 
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        const compressedUrl = canvas.toDataURL('image/jpeg', 0.8); // JPEG with 80% quality
-        resolve(compressedUrl);
-      };
+  //       const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+  //       canvas.width = img.width * ratio;
+  //       canvas.height = img.height * ratio;
 
-      img.onerror = () => {
-        reject(new Error('Failed to load image'));
-      };
-    });
-  }
+  //       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  //       const compressedUrl = canvas.toDataURL('image/jpeg', 0.8); // JPEG with 80% quality
+  //       resolve(compressedUrl);
+  //     };
+
+  //     img.onerror = () => {
+  //       reject(new Error('Failed to load image'));
+  //     };
+  //   });
+  // }
 }

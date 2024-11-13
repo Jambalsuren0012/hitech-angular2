@@ -1,48 +1,130 @@
-<!-- <div class="carousel-background">
-  <owl-carousel-o [options]="customOptions">
-    <ng-container *ngFor="let item of newsCardsData">
-      <ng-template class="items-center" carouselSlide> </ng-template>
-    </ng-container>
-  </owl-carousel-o>
-  <div class="justify-end">
+<div class="carousel-background flex flex-col justify-end relative">
+  <!-- Left button -->
+  <div class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10">
     <button
-      class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+      (click)="carousel.prev()"
+      class="py-2 px-2 text-black hover:text-gray-500"
       type="button"
     >
-      Read more
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-8 h-8"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z"
+            fill="currentColor"
+          ></path>
+        </g>
+      </svg>
     </button>
   </div>
-</div> -->
 
-<owl-carousel-o [options]="customOptions">
-  <div *ngFor="let item of newsCardsData">
-    <div
-      class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96"
+  <owl-carousel-o #carousel [options]="customOptions">
+    <ng-container *ngFor="let item of newsCardsData2">
+      <ng-template class="items-center" carouselSlide>
+        <div class="flex justify-center">
+          <div
+            class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 h-auto"
+          >
+            <div
+              class="relative h-56 m-2.5 overflow-hidden text-white rounded-md"
+            >
+              <img
+                src="{{ item.imgUrl }}"
+                alt="card-image"
+                class="object-cover w-full h-full"
+              />
+            </div>
+            <div class="p-4">
+              <h6
+                class="mb-2 text-slate-800 text-xl font-semibold two-line-text"
+              >
+                {{ item.title }}
+              </h6>
+              <p class="text-slate-600 leading-normal font-light">
+                {{ item.description | slice: 0 : 150 }}
+              </p>
+              <a
+                [routerLink]="['/news', item.id]"
+                class="inline-flex items-center mt-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Read more
+                <svg
+                  class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+
+  <!-- Right button -->
+  <div class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10">
+    <button
+      (click)="carousel.next()"
+      class="rounded-full py-2 px-4 text-black hover:text-gray-500"
+      type="button"
     >
-      <div class="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-        <img
-          src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
-          alt="card-image"
-        />
-      </div>
-      <div class="p-4">
-        <h6 class="mb-2 text-slate-800 text-xl font-semibold">
-          Website Review Check
-        </h6>
-        <p class="text-slate-600 leading-normal font-light">
-          The place is close to Barceloneta Beach and bus stop just 2 min by
-          walk and near to &quot;Naviglio&quot; where you can enjoy the main
-          night life in Barcelona.
-        </p>
-      </div>
-      <div class="px-4 pb-4 pt-0 mt-2">
-        <button
-          class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-          type="button"
-        >
-          Read more
-        </button>
-      </div>
-    </div>
+      <!-- Right arrow SVG icon -->
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-8 h-8"
+        transform="rotate(180)"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z"
+            fill="currentColor"
+          ></path>
+        </g>
+      </svg>
+    </button>
   </div>
-</owl-carousel-o>
+
+  <!-- Flexbox button placed at the bottom-left -->
+  <div class="flex justify-end p-4 mt-auto">
+    <a routerLink="">
+      <button
+        class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="button"
+      >
+        Бүгдийг харах
+      </button>
+    </a>
+  </div>
+</div>

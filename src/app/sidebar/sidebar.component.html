@@ -1,0 +1,18 @@
+<div class="max-w-xl mx-auto rounded-lg mx-5 shadow-lg sticky top-36">
+  <!-- Header Section with Icon and Title -->
+  <div class="flex items-center p-4 border-b bg-white">
+    <h2 class="font-semibold text-gray-800">Хууль, эрхзүйн акт</h2>
+  </div>
+
+  <!-- List of Categories -->
+  <ul class="bg-white">
+    <li
+      *ngFor="let item of categories"
+      class="hover:bg-gray-100 cursor-pointer"
+    >
+      <a href="#" class="block p-4 border-b border-gray-200 text-gray-800">
+        {{ item.name }}
+      </a>
+    </li>
+  </ul>
+</div>

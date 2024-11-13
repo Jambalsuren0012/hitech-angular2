@@ -1,22 +1,9 @@
-<div class="max-w-screen-lg mx-auto p-4">
-  <div class="flex flex-col lg:flex-row gap-4">
+<div class="max-w-screen-xl mx-auto p-4">
+  <div class="flex flex-col lg:flex-row gap-4 my-4 bg-white rounded-lg">
     <!-- Sidebar for categories -->
-    <div class="lg:w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">
-      <h2 class="text-lg font-semibold mb-4">Categories</h2>
-      <ul class="space-y-2">
-        <li *ngFor="let category of categories">
-          <a
-            [routerLink]="['/book/category', category.id]"
-            class="block py-2 px-4 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors"
-          >
-            {{ category.name }}
-          </a>
-        </li>
-      </ul>
-    </div>
-
+    <app-sidebar></app-sidebar>
     <!-- Book details section -->
-    <div class="lg:w-3/4 bg-white p-4 rounded-lg shadow-md">
+    <div class="lg:w-3/4 p-4 rounded-lg">
       <div *ngIf="bookdetailslist" class="flex flex-col md:flex-row gap-4">
         <div class="md:w-1/3">
           <img
