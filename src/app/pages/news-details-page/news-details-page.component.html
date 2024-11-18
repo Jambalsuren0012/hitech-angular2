@@ -1,21 +1,21 @@
-<div class="max-w-screen-xl mx-auto px-4 py-8" *ngIf="newsdetailslist">
+<div *ngIf="newsDetails" class="max-w-screen-xl mx-auto px-4 py-8">
   <h1
     class="text-lg sm:text-xl md:text-2xl font-medium text-center sm:text-left"
   >
-    {{ newsdetailslist.title }}
+    {{ newsDetails.title }}
   </h1>
   <div class="my-6">
     <img
       class="w-3/5 float-left pr-2 rounded-lg shadow-lg object-cover"
-      [src]="newsdetailslist.small_picurl"
-      alt="news image"
+      [src]="newsDetails.picurl"
+      alt=""
     />
-    <p class="text-justify" [innerHTML]="newsdetailslist.info"></p>
+    <p class="text-justify" [innerHTML]="newsDetails.info"></p>
   </div>
 
   <div class="w-[100%] h-[40%] mx-auto my-6 clear-both pt-6 relative">
     <!-- Left Navigation Button -->
-    <!-- <button
+    <button
       (click)="carousel.prev()"
       class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-l"
     >
@@ -45,21 +45,21 @@
           ></path>
         </g>
       </svg>
-    </button> -->
+    </button>
 
-    <!-- <owl-carousel-o [options]="customOptions" #carousel>
-      <ng-container *ngFor="let sub of newsdetailslist[0].imgUrl>
+    <owl-carousel-o [options]="customOptions" #carousel>
+      <ng-container *ngFor="let image of slider!">
         <ng-template carouselSlide>
           <div class="news-card">
-            <img [src]="sub.url" alt="Image" class="news-card__image" />
-            <p *ngIf="!sub.url">Image URL not found!</p>
+            <img [src]="image.picurl" alt="Image" class="news-card__image" />
+            <p *ngIf="!newsDetails.url">Image URL not found!</p>
           </div>
         </ng-template>
       </ng-container>
-    </owl-carousel-o> -->
+    </owl-carousel-o>
 
     <!-- Right Navigation Button -->
-    <!-- <button
+    <button
       (click)="carousel.next()"
       class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-r"
     >
@@ -90,6 +90,6 @@
         </g>
       </svg>
       <!-- Right arrow -->
-    <!-- </button> -->
+    </button>
   </div>
 </div>

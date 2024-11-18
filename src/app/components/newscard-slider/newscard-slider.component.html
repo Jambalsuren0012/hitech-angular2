@@ -34,7 +34,7 @@
   </div>
 
   <owl-carousel-o #carousel [options]="customOptions">
-    <ng-container *ngFor="let item of newsCardsData2">
+    <ng-container *ngFor="let item of newsCards; trackBy: trackById">
       <ng-template class="items-center" carouselSlide>
         <div class="flex justify-center">
           <div
@@ -44,7 +44,7 @@
               class="relative h-56 m-2.5 overflow-hidden text-white rounded-md"
             >
               <img
-                src="{{ item.imgUrl }}"
+                src="{{ item.picurl }}"
                 alt="card-image"
                 class="object-cover w-full h-full transition-transform duration-300 ease-in-out transform group-hover:scale-110"
               />

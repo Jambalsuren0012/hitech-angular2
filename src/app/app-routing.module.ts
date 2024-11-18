@@ -10,7 +10,7 @@ import { ListPageComponent } from './pages/list-page/list-page.component';
 const routes: Routes = [
   { path: 'map/:mapid', component: TargetpageComponent },
   { path: '', component: HomePageComponent },
-  { path: 'news/:newsid', component: NewsDetailsPageComponent },
+  { path: 'news/:id', component: NewsDetailsPageComponent },
 
   { path: 'book/category/:bookid', component: BookDetailsPageComponent },
   { path: 'news/category/:newsid', component: BookDetailsPageComponent },
