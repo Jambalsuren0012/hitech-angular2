@@ -57,20 +57,19 @@ export class NewBookComponent {
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    touchDrag: false,
+    touchDrag: true,
     pullDrag: true,
-    dots: false,
+    dots: true,
     navSpeed: 700,
-    navText: ['<', '>'], // Add custom left and right arrows
+
     responsive: {
       0: { items: 1 },
-      400: { items: 2 },
-      740: { items: 3 },
-      940: { items: 5 },
-      1160: { items: 5 },
-      1200: { items: 6 },
+      400: { items: 1 },
+      740: { items: 2 },
+      940: { items: 4 },
+      1160: { items: 4 },
+      1200: { items: 4 },
     },
-    nav: true, // Enables navigation
   };
 
   openPdf(pdfUrl: string) {

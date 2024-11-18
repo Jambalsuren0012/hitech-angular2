@@ -25,16 +25,13 @@ import { NewsDetailsPageComponent } from './pages/news-details-page/news-details
 import { BooksPageComponent } from './pages/books-page/books-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { PrimaryPageComponent } from './pages/primary-page/primary-page.component';
-import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CarouselComponent } from './carousel/carousel.component';
-import { NewsSliderComponent } from './news-slider/news-slider.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Map2Component } from './map2/map2.component';
-import { TestComponent } from './test/test.component';
-import { NewsdetailsComponent } from './newsdetails/newsdetails.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { Map2Component } from './components/map2/map2.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -61,10 +58,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PrimaryPageComponent,
     SpinnerComponent,
     CarouselComponent,
-    NewsSliderComponent,
     Map2Component,
-    TestComponent,
-    NewsdetailsComponent,
     SidebarComponent,
   ],
   imports: [

@@ -1,22 +1,22 @@
 <div
-  class="flex flex-col md:flex-row justify-center gap-4 max-w-screen-xl mx-auto"
+  class="flex flex-col md:flex-row relative justify-center gap-4 max-w-screen-xl mx-auto"
 >
   <!-- Sidebar Component -->
   <div
-    class="md:max-w-xs w-full md:w-60 rounded-lg shadow-lg h-full sticky top-4 mb-4 md:mb-0"
+    class="md:max-w-xs w-full md:w-80 rounded-lg mt-14 shadow-lg h-full md:sticky md:top-40 my-4 md:mb-0 z-20"
   >
     <!-- Header Section with Icon and Title -->
-    <div class="flex items-center p-4 border-b bg-white">
-      <h2 class="font-semibold text-gray-800">Хууль, эрхзүйн акт</h2>
+    <div class="flex bg-blue-600 items-center p-3 rounded-t-md border-b z-20">
+      <h2 class="font-semibold text-white">Хууль, эрхзүйн акт</h2>
     </div>
 
     <!-- List of Categories -->
-    <ul class="bg-white">
+    <ul class="bg-white rounded-b-md">
       <li
         *ngFor="let item of categories"
         class="hover:bg-gray-100 cursor-pointer"
       >
-        <a href="#" class="block p-4 border-b border-gray-200 text-gray-800">
+        <a href="#" class="block p-3 border-b border-gray-200 text-gray-800">
           {{ item.name }}
         </a>
       </li>
@@ -24,7 +24,11 @@
   </div>
 
   <!-- Content Section with Cards and Pagination -->
-  <div class="flex flex-col items-center w-full max-w-screen-xl">
+  <div class="flex flex-col items-center w-full max-w-screen-xl pt-8">
+    <h1 class="items-start text-2xl font-bold text-blue-500">
+      Хууль, эрхзүйн акт
+    </h1>
+    <!-- Added top padding -->
     <!-- Cards Grid -->
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 w-full">
       <ng-container *ngFor="let item of paginatedItems">
@@ -80,22 +84,9 @@
       <button
         (click)="previousPage()"
         [disabled]="currentPage === 1"
-        class="px-3 py-2 h-10 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        class="px-3 py-2 text-blue-600 border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4 h-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
+        «
       </button>
 
       <!-- Page Numbers -->
@@ -104,8 +95,10 @@
       >
         <button
           (click)="changePage(i + 1)"
-          [class.bg-blue-800]="currentPage === i + 1"
-          class="px-3 py-2 text-sm h-10 font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          [class.bg-blue-600]="currentPage === i + 1"
+          [class.text-gray-100]="currentPage === i + 1"
+          [class.hover:bg-gray-200]="currentPage !== i + 1"
+          class="px-3 py-2 text-blue-600 border border-gray-300 rounded-md focus:outline-none"
         >
           {{ i + 1 }}
         </button>
@@ -115,22 +108,9 @@
       <button
         (click)="nextPage()"
         [disabled]="currentPage === totalPages"
-        class="px-3 py-2 h-10 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        class="px-3 py-2 text-blue-600 border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4 h-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
+        »
       </button>
     </div>
   </div>

@@ -16,22 +16,22 @@ import { Router } from '@angular/router'; // Import Router for navigation
 export class Map2Component implements OnInit {
   coordinates = [
     {
-      coords: [47.9221, 106.9155],
+      coords: [44.42533, 101.10134],
       id: '1',
-      title: 'Ulaanbaatar',
-      description: 'Capital of Mongolia',
+      title: 'Баянхонгор, Баянлиг, ',
+      description: ' Цагаан агуй ,Ил суурин агуй',
     },
     {
       coords: [47.9795, 91.6348],
       id: '2',
-      title: 'Khovd',
-      description: 'City in western Mongolia',
+      title: 'Завхан Эрдэнэхайрхан, Дөрвөлжин',
+      description: 'Их Хайрхан уул',
     },
     {
-      coords: [46.1772, 100.7119],
+      coords: [48.3163, 101.2529],
       id: '3',
-      title: 'Bayankhongor',
-      description: 'City in central Mongolia',
+      title: 'Архангай Эрдэнэмандал ',
+      description: 'Өлзийт дэнж',
     },
     {
       coords: [43.5, 104.2861],

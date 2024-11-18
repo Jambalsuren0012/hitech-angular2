@@ -235,7 +235,8 @@ export class NewscardSliderComponent {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
+    dots: true,
+
     navSpeed: 700,
 
     responsive: {

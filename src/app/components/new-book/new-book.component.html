@@ -1,23 +1,101 @@
-<div class="new-book-carousel relative my-2">
-  <owl-carousel-o [options]="customOptions">
+<div class="new-book-carousel relative my-2 mx-auto">
+  <h1 class="text-2xl pl-8 font-bold text-blue-500">Ном</h1>
+  <!-- Left button -->
+  <div
+    class="absolute hidden lg:block left-0 top-1/2 transform -translate-y-1/2 z-10"
+  >
+    <button
+      (click)="carousel.prev()"
+      class="py-2 px-2 text-gray-600 hover:text-gray-300"
+      type="button"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-8 h-8"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z"
+            fill="currentColor"
+          ></path>
+        </g>
+      </svg>
+    </button>
+  </div>
+  <owl-carousel-o #carousel [options]="customOptions">
     <ng-container *ngFor="let book of bookData; trackBy: trackById">
       <ng-template carouselSlide>
         <div class="book-item flex">
           <a [routerLink]="['book/category', book.id]">
             <img
-              class="h-96 w-32 px-10"
+              class="h-72 w-32 px-10"
               [src]="book.compressedUrl || book.imgUrl"
               alt="{{ book.title }}"
               loading="lazy"
             />
           </a>
-          <div>
+          <div class="">
             <h3>{{ book.title }}</h3>
-            <h5>{{ book.describtion }}</h5>
+            <h5 class="w-40">{{ book.describtion }}</h5>
             <button (click)="openPdf(book.pdfUrl)">View PDF</button>
           </div>
         </div>
       </ng-template>
     </ng-container>
   </owl-carousel-o>
+  <div
+    class="absolute hidden lg:block right-0 top-1/2 transform -translate-y-1/2 z-10"
+  >
+    <button
+      (click)="carousel.next()"
+      class="rounded-full py-2 px-4 text-gray-600 hover:text-gray-300"
+      type="button"
+    >
+      <!-- Right arrow SVG icon -->
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-8 h-8"
+        transform="rotate(180)"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z"
+            fill="currentColor"
+          ></path>
+        </g>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Flexbox button placed at the bottom-left -->
+  <div class="flex justify-end p-4 mt-auto">
+    <a routerLink="">
+      <button
+        class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="button"
+      >
+        Бүгдийг харах
+      </button>
+    </a>
+  </div>
 </div>

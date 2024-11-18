@@ -5,6 +5,7 @@ import { TargetpageComponent } from './components/targetpage/targetpage.componen
 import { BookDetailsPageComponent } from './pages/book-details-page/book-details-page.component';
 import { PrimaryPageComponent } from './pages/primary-page/primary-page.component';
 import { NewsDetailsPageComponent } from './pages/news-details-page/news-details-page.component';
+import { ListPageComponent } from './pages/list-page/list-page.component';
 
 const routes: Routes = [
   { path: 'map/:mapid', component: TargetpageComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
 
   { path: 'book/category/:bookid', component: BookDetailsPageComponent },
   { path: 'news/category/:newsid', component: BookDetailsPageComponent },
+  { path: 'news', component: ListPageComponent },
   { path: '', redirectTo: '/map2', pathMatch: 'full' },
 ];
 
