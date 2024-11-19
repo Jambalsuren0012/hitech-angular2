@@ -30,3 +30,7 @@ button:hover {
   width: 100%;
   overflow: hidden;
 }
+fa-icon {
+  margin-right: 5px;
+  color: gray;
+}

@@ -4,6 +4,10 @@
   >
     {{ newsDetails.title }}
   </h1>
+  <h6>
+    <fa-icon [icon]="faClock"></fa-icon>
+    {{ getFormattedDate(newsDetails.created_at) }}
+  </h6>
   <div class="my-6">
     <img
       class="w-3/5 float-left pr-2 rounded-lg shadow-lg object-cover"

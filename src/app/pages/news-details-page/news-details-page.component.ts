@@ -3,6 +3,8 @@ import { NewsService } from '../../service/news.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-news-details-page',
@@ -13,11 +15,15 @@ export class NewsDetailsPageComponent implements OnInit {
   newsDetails: any = null;
   imgUrl = environment.imgUrl;
   slider: any = null;
+  faClock = faClock;
 
   constructor(
     private newsService: NewsService,
     private route: ActivatedRoute,
   ) {}
+  getFormattedDate(dateString: string): string {
+    return format(new Date(dateString), 'yyyy-MM-dd');
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -38,6 +44,7 @@ export class NewsDetailsPageComponent implements OnInit {
       },
     );
   }
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,

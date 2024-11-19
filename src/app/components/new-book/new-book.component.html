@@ -1,5 +1,5 @@
-<div class="new-book-carousel relative my-2 mx-auto">
-  <h1 class="text-2xl pl-8 font-bold text-blue-500">Ном</h1>
+<div class="new-book-carousel relative my-2 mx-auto max-w-full overflow-hidden">
+  <h1 class="text-2xl pl-8 font-bold text-blue-500">Ном, Бүтээл</h1>
   <!-- Left button -->
   <div
     class="absolute hidden lg:block left-0 top-1/2 transform -translate-y-1/2 z-10"
@@ -32,27 +32,40 @@
       </svg>
     </button>
   </div>
-  <owl-carousel-o #carousel [options]="customOptions">
+  <owl-carousel-o #carousel [options]="customOptions" class="w-full">
     <ng-container *ngFor="let book of bookData; trackBy: trackById">
       <ng-template carouselSlide>
-        <div class="book-item flex">
-          <a [routerLink]="['book/category', book.id]">
+        <div class="book-item px-4 relative group">
+          <a [routerLink]="['book/category', book.id]" class="relative block">
             <img
-              class="h-72 w-32 px-10"
+              class="h-1/3 w-1/4 object-cover group-hover:blur-sm transition duration-300"
               [src]="book.compressedUrl || book.imgUrl"
               alt="{{ book.title }}"
               loading="lazy"
             />
+            <button
+              class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition duration-300"
+            >
+              Дэлгэрэнгүй
+            </button>
           </a>
-          <div class="">
-            <h3>{{ book.title }}</h3>
-            <h5 class="w-40">{{ book.describtion }}</h5>
-            <button (click)="openPdf(book.pdfUrl)">View PDF</button>
+          <div class="mt-4">
+            <h3 class="text-blue-800 text-xl">{{ book.title }}</h3>
+            <h5 class="text-slate-600 leading-normal font-light">
+              {{ book.describtion }}
+            </h5>
+            <button
+              class="text-sm font-medium text-gray-600 hover:text-gray-900"
+              (click)="openPdf(book.pdfUrl)"
+            >
+              View PDF
+            </button>
           </div>
         </div>
       </ng-template>
     </ng-container>
   </owl-carousel-o>
+
   <div
     class="absolute hidden lg:block right-0 top-1/2 transform -translate-y-1/2 z-10"
   >

@@ -36,9 +36,9 @@
   <owl-carousel-o #carousel [options]="customOptions">
     <ng-container *ngFor="let item of newsCards; trackBy: trackById">
       <ng-template class="items-center" carouselSlide>
-        <div class="flex justify-center">
+        <div class="flex justify-center px-4">
           <div
-            class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 h-auto"
+            class="relative flex flex-col my-6 transform hover:scale-105 ease-out duration-300 bg-white shadow-sm border border-slate-200 rounded-lg w-96 h-auto"
           >
             <div
               class="relative h-56 m-2.5 overflow-hidden text-white rounded-md"
@@ -48,21 +48,25 @@
                 alt="card-image"
                 class="object-cover w-full h-full transition-transform duration-300 ease-in-out transform group-hover:scale-110"
               />
-            </div>
-            <div class="p-4">
               <h6
-                class="mb-2 text-slate-800 text-xl font-semibold two-line-text"
+                class="absolute bottom-0 left-0 text-lg font-semibold bg-black bg-opacity-60 text-white rounded"
               >
                 {{ item.title }}
               </h6>
-              <p class="text-slate-600 leading-normal font-light">
+            </div>
+            <div class="px-4">
+              <h6 class="text-xs text-gray-600">
+                <fa-icon [icon]="faClock"></fa-icon>
+                {{ getTimeAgo(item.created_at) }}
+              </h6>
+              <p class="text-slate-700 leading-normal font-light">
                 {{ item.description | slice: 0 : 150 }}
               </p>
               <a
                 [routerLink]="['/news', item.id]"
-                class="inline-flex items-center mt-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                class="inline-flex items-center mt-2 py-2 text-sm font-medium text-center text-gray-600 hover:text-gray-900"
               >
-                Read more
+                Дэлгэрэнгүй
                 <svg
                   class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
                   aria-hidden="true"

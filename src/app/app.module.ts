@@ -18,7 +18,6 @@ import { HttpClient } from '@angular/common/http';
 import { appConfig } from './app.config';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MapComponent } from './components/map/map.component';
 import { TargetpageComponent } from './components/targetpage/targetpage.component';
 import { BookDetailsPageComponent } from './pages/book-details-page/book-details-page.component';
 import { NewsDetailsPageComponent } from './pages/news-details-page/news-details-page.component';
@@ -32,6 +31,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Map2Component } from './components/map2/map2.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -48,7 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SearchPipe,
     NewBookComponent,
     HomeHeroComponent,
-    MapComponent,
+
     TargetpageComponent,
     HomePageComponent,
     BookDetailsPageComponent,
@@ -66,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     CarouselModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

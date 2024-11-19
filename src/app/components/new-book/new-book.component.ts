@@ -56,19 +56,17 @@ export class NewBookComponent {
 
   customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: true,
+    mouseDrag: false,
     touchDrag: true,
     pullDrag: true,
     dots: true,
     navSpeed: 700,
-
     responsive: {
-      0: { items: 1 },
-      400: { items: 1 },
-      740: { items: 2 },
+      0: { items: 2 },
+      400: { items: 2 },
+      740: { items: 4 },
       940: { items: 4 },
-      1160: { items: 4 },
-      1200: { items: 4 },
+      1160: { items: 6 }, // Ensure this is effective
     },
   };
 
