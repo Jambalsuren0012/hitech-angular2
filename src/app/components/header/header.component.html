@@ -60,7 +60,7 @@
         <!-- Desktop Menu -->
         <ul class="hidden xl:flex items-center">
           <li
-            *ngFor="let item of menuItem"
+            *ngFor="let item of menuItems"
             class="dropdown relative px-4 cursor-pointer uppercase tracking-wide group"
           >
             <a class="flex items-center text-white text-sm font-medium">
@@ -87,7 +87,7 @@
                   [ngStyle]="{ animationDelay: i * 0.2 + 's' }"
                 >
                   <a
-                    [routerLink]="sub.path"
+                    [routerLink]="['/type', sub.type, sub.id]"
                     class="block uppercase text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-sky-500 cursor-pointer"
                     >{{ sub.title | translate }}</a
                   >
@@ -140,7 +140,7 @@
         >
           <ul class="p-4">
             <li
-              *ngFor="let item of menuItem"
+              *ngFor="let item of menuItems"
               class="dropdown px-4 py-2 cursor-pointer uppercase tracking-wide"
             >
               <a

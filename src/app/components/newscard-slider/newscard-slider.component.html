@@ -1,12 +1,12 @@
 <div class="carousel-background mx-auto flex flex-col justify-end relative">
-  <h1 class="text-2xl font-bold text-blue-500 pl-8 pt-2">Мэдээ мэдээлэл</h1>
+  <h1 class="text-2xl font-bold text-blue-500 pt-2">Мэдээ мэдээлэл</h1>
   <!-- Left button -->
   <div
     class="absolute hidden lg:block left-0 top-1/2 transform -translate-y-1/2 z-10"
   >
     <button
       (click)="carousel.prev()"
-      class="py-2 px-2 text-gray-600 hover:text-gray-300"
+      class="py-2 px-2 text-blue-600 hover:text-blue-800"
       type="button"
     >
       <svg
@@ -34,7 +34,7 @@
   </div>
 
   <owl-carousel-o #carousel [options]="customOptions">
-    <ng-container *ngFor="let item of newsCards; trackBy: trackById">
+    <ng-container class="" *ngFor="let item of newsCards; trackBy: trackById">
       <ng-template class="items-center" carouselSlide>
         <div class="flex justify-center px-4">
           <div
@@ -49,7 +49,7 @@
                 class="object-cover w-full h-full transition-transform duration-300 ease-in-out transform group-hover:scale-110"
               />
               <h6
-                class="absolute bottom-0 left-0 text-lg font-semibold bg-black bg-opacity-60 text-white rounded"
+                class="absolute bottom-0 left-0 pl-1 text-lg font-semibold bg-black bg-opacity-60 text-white rounded"
               >
                 {{ item.title }}
               </h6>

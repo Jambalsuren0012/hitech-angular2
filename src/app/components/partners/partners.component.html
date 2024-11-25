@@ -1,0 +1,23 @@
+<owl-carousel-o #carousel [options]="customOptions">
+  <ng-container *ngFor="let item of partners">
+    <ng-template carouselSlide>
+      <div class="flex justify-center px-4">
+        <div
+          class="relative flex flex-col my-6 transform hover:scale-105 ease-out duration-300 bg-white shadow-sm border border-slate-200 rounded-lg w-60 h-40"
+        >
+          <div
+            class="flex justify-center items-center w-full h-full overflow-hidden"
+          >
+            <a href="{{ item.url }}">
+              <img
+                src="{{ item.imgurl }}"
+                alt="card-image"
+                class="max-w-full max-h-full transition-transform duration-300 ease-in-out transform group-hover:scale-110"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>

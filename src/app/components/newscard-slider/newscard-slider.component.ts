@@ -14,6 +14,7 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./newscard-slider.component.css'],
 })
 export class NewscardSliderComponent implements OnInit {
+  isHovered = false;
   newsid: string | null = null;
   newsDetails: any = null;
   newsCards: any[] = []; // Array to hold news items

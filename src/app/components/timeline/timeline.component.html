@@ -1,0 +1,20 @@
+<div class="con222">
+  <div class="timeline-container" id="timeline-1">
+    <div class="timeline-header">
+      <h2 class="timeline-header__title">Архелогийн хүрээлэн</h2>
+      <h3 class="timeline-header__subtitle">Эрдэм шинжилгээний хурал</h3>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item" *ngFor="let item of timelineItems">
+        <div class="timeline__content">
+          <img class="timeline__img" [src]="item.img" alt="Timeline image" />
+          <h2 class="timeline__content-title">{{ item.date }}</h2>
+          <!-- Iterate over the titles array -->
+          <div *ngFor="let subtitle of item.titles">
+            <p class="timeline__content-desc">- {{ subtitle.title }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

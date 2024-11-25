@@ -18,7 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import { appConfig } from './app.config';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TargetpageComponent } from './components/targetpage/targetpage.component';
+import { TargetpageComponent } from './pages/targetpage/targetpage.component';
 import { BookDetailsPageComponent } from './pages/book-details-page/book-details-page.component';
 import { NewsDetailsPageComponent } from './pages/news-details-page/news-details-page.component';
 import { BooksPageComponent } from './pages/books-page/books-page.component';
@@ -32,6 +32,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Map2Component } from './components/map2/map2.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TimelineComponent } from './components/timeline/timeline.component';
+import { PartnersComponent } from './components/partners/partners.component';
+import { MenuListPageComponent } from './menu-list-page/menu-list-page.component';
+import { DefaultPageComponent } from './default-page/default-page.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -48,7 +52,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SearchPipe,
     NewBookComponent,
     HomeHeroComponent,
-
+    TimelineComponent,
     TargetpageComponent,
     HomePageComponent,
     BookDetailsPageComponent,
@@ -60,6 +64,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     CarouselComponent,
     Map2Component,
     SidebarComponent,
+    PartnersComponent,
+    MenuListPageComponent,
+    DefaultPageComponent,
   ],
   imports: [
     BrowserModule,

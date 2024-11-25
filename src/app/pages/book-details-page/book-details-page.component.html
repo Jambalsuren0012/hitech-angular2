@@ -1,9 +1,84 @@
 <div class="max-w-screen-xl mx-auto p-4">
   <div class="flex flex-col lg:flex-row gap-4 my-4 bg-white rounded-lg">
     <!-- Sidebar for categories -->
-    <app-sidebar></app-sidebar>
+    <!-- Sidebar for menu by subtitles -->
+    <div
+      class="max-w-xs w-full bg-white rounded-lg shadow-lg sticky top-36 p-4"
+    >
+      <!-- Header Section with Icon and Title -->
+      <div class="flex items-center border-b mb-4">
+        <h2 class="font-semibold text-gray-800">Menu</h2>
+      </div>
+
+      <!-- List of Menus (Sidebar Items) -->
+      <ul class="space-y-2">
+        <li *ngFor="let item of menuItems" class="cursor-pointer">
+          <!-- Menu Title -->
+          <a
+            (click)="toggleMenu(item.id)"
+            class="block p-4 border-b border-gray-200 text-gray-800 hover:bg-gray-100 font-medium"
+          >
+            {{ item.name }}
+          </a>
+
+          <!-- Conditionally display subtitles -->
+          <ul
+            *ngIf="selectedMenu === item.id"
+            class="space-y-1 ml-4 bg-gray-50"
+          >
+            <li
+              *ngFor="let subtitle of item.subtitle"
+              class="hover:bg-gray-100 cursor-pointer"
+            >
+              <a
+                href="{{ subtitle.path }}"
+                class="block p-4 border-b border-gray-200 text-gray-700"
+              >
+                {{ subtitle.title }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
     <!-- Book details section -->
     <div class="lg:w-3/4 p-4 rounded-lg">
+      <div
+        *ngIf="bookdetailslist"
+        class="flex justify-between border-t border-b py-2"
+      >
+        <h6>
+          <fa-icon [icon]="faClock"></fa-icon>
+          {{ getFormattedDate(bookdetailslist.created_at) }}
+        </h6>
+        <div class="flex gap-4">
+          <a
+            [href]="
+              'https://www.facebook.com/sharer/sharer.php?u=' + currentPageUrl
+            "
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              class="h-8 w-8"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1024px-2021_Facebook_icon.svg.png"
+              alt="Share on Facebook"
+            />
+          </a>
+          <a
+            [href]="'https://x.com/intent/tweet?url=' + +currentPageUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              class="h-8 w-8"
+              src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-black-icon.png"
+              alt="Share on X"
+            />
+          </a>
+        </div>
+      </div>
       <div *ngIf="bookdetailslist" class="flex flex-col md:flex-row gap-4">
         <div class="md:w-1/3">
           <img

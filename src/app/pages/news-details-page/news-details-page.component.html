@@ -4,17 +4,48 @@
   >
     {{ newsDetails.title }}
   </h1>
-  <h6>
-    <fa-icon [icon]="faClock"></fa-icon>
-    {{ getFormattedDate(newsDetails.created_at) }}
-  </h6>
-  <div class="my-6">
-    <img
-      class="w-3/5 float-left pr-2 rounded-lg shadow-lg object-cover"
-      [src]="newsDetails.picurl"
-      alt=""
-    />
-    <p class="text-justify" [innerHTML]="newsDetails.info"></p>
+  <div class="flex justify-between border-t border-b py-2">
+    <h6>
+      <fa-icon [icon]="faClock"></fa-icon>
+      {{ getFormattedDate(newsDetails.created_at) }}
+    </h6>
+    <div class="flex gap-4">
+      <a
+        [href]="
+          'https://www.facebook.com/sharer/sharer.php?u=' + currentPageUrl
+        "
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="h-8 w-8"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1024px-2021_Facebook_icon.svg.png"
+          alt="Share on Facebook"
+        />
+      </a>
+      <a
+        [href]="'https://x.com/intent/tweet?url=' + +currentPageUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="h-8 w-8"
+          src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-black-icon.png"
+          alt="Share on X"
+        />
+      </a>
+    </div>
+  </div>
+  <div class="flex flex-col lg:flex-row gap-4 my-4 bg-white rounded-lg">
+    <app-sidebar></app-sidebar>
+    <div class="my-6">
+      <img
+        class="w-3/5 float-left pr-2 rounded-lg shadow-lg object-cover"
+        [src]="newsDetails.picurl"
+        alt=""
+      />
+      <p class="text-justify" [innerHTML]="newsDetails.info"></p>
+    </div>
   </div>
 
   <div class="w-[100%] h-[40%] mx-auto my-6 clear-both pt-6 relative">
@@ -56,7 +87,8 @@
         <ng-template carouselSlide>
           <div class="news-card">
             <img [src]="image.picurl" alt="Image" class="news-card__image" />
-            <p *ngIf="!newsDetails.url">Image URL not found!</p>
+            <p *ngIf="!image.picurl">Image URL not found!</p>
+            <!-- Fixed the condition to check image.picurl -->
           </div>
         </ng-template>
       </ng-container>

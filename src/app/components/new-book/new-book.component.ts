@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { formatDistanceToNow } from 'date-fns';
+import { mn } from 'date-fns/locale';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-new-book',
@@ -11,6 +14,7 @@ export class NewBookComponent {
   trackById(index: number, book: any): string {
     return book.id; // or return book.id as a unique identifier
   }
+
   bookData: Array<{
     id: string;
     title: string;
@@ -18,12 +22,16 @@ export class NewBookComponent {
     pdfUrl: string;
     imgUrl: string;
     compressedUrl?: string;
+    created_at: string;
   }> = [
     {
       id: '1',
       imgUrl: '/assets/img/book/1_2.jpeg',
       title: 'Book 1',
-      describtion: 'Lorem ipsum dolor sit amet.',
+      describtion:
+        'Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.',
+
+      created_at: '2024-11-11 12:19:43',
       pdfUrl:
         'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
     },
@@ -32,6 +40,7 @@ export class NewBookComponent {
       imgUrl: '/assets/img/book/1_13.jpeg',
       title: 'Book 1',
       describtion: 'Lorem ipsum dolor sit amet.',
+      created_at: '2024-11-12 12:19:43',
       pdfUrl:
         'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
     },
@@ -39,6 +48,7 @@ export class NewBookComponent {
       id: '3',
       imgUrl: '/assets/img/book/1.jpeg',
       title: 'Book 1',
+      created_at: '2024-11-13 12:19:43',
       describtion:
         'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.',
       pdfUrl:
@@ -48,6 +58,34 @@ export class NewBookComponent {
       id: '4',
       imgUrl: '/assets/img/book/2_1.jpeg',
       title: 'Book 1',
+      created_at: '2024-11-14 12:19:43',
+      describtion: 'Lorem ipsum dolor sit amet.',
+      pdfUrl:
+        'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
+    },
+    {
+      id: '5',
+      imgUrl: '/assets/img/book/2_1.jpeg',
+      title: 'Book 1',
+      created_at: '2024-11-15 12:19:43',
+      describtion: 'Lorem ipsum dolor sit amet.',
+      pdfUrl:
+        'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
+    },
+    {
+      id: '6',
+      imgUrl: '/assets/img/book/2_1.jpeg',
+      title: 'Book 1',
+      created_at: '2024-11-16 12:19:43',
+      describtion: 'Lorem ipsum dolor sit amet.',
+      pdfUrl:
+        'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
+    },
+    {
+      id: '7',
+      imgUrl: '/assets/img/book/2_1.jpeg',
+      title: 'Book 1',
+      created_at: '2024-11-17 12:19:43',
       describtion: 'Lorem ipsum dolor sit amet.',
       pdfUrl:
         'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
@@ -66,9 +104,19 @@ export class NewBookComponent {
       400: { items: 2 },
       740: { items: 4 },
       940: { items: 4 },
-      1160: { items: 6 }, // Ensure this is effective
+      1160: { items: 6 }, // This is the main breakpoint to show 6 items
+      1400: { items: 6 }, // Optional: add a larger screen breakpoint
     },
   };
+  getTimeAgo(dateString: string): string {
+    return formatDistanceToNow(new Date(dateString), {
+      addSuffix: true,
+      locale: mn,
+    });
+  }
+  getFormattedDate(dateString: string): string {
+    return format(new Date(dateString), 'yyyy-MM-dd');
+  }
 
   openPdf(pdfUrl: string) {
     window.open(pdfUrl, '_blank'); // Open PDF in a new tab

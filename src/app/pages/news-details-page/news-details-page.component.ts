@@ -16,6 +16,7 @@ export class NewsDetailsPageComponent implements OnInit {
   imgUrl = environment.imgUrl;
   slider: any = null;
   faClock = faClock;
+  currentPageUrl: string = encodeURIComponent(window.location.href);
 
   constructor(
     private newsService: NewsService,
@@ -30,6 +31,7 @@ export class NewsDetailsPageComponent implements OnInit {
       const newsid = params.get('id'); // Get the `id` from the route
       if (newsid) {
         this.fetchNewsDetails(newsid);
+        this.slider = this.fetchNewsDetails(newsid); // Update the slider with the correct newsid
       }
     });
   }

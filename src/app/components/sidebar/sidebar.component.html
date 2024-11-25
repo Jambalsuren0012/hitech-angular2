@@ -1,18 +1,36 @@
+<!-- Sidebar -->
 <div class="max-w-xl rounded-lg mx-5 shadow-lg sticky top-36">
-  <!-- Header Section with Icon and Title -->
-  <div class="flex items-center p-4 border-b bg-white">
-    <h2 class="font-semibold text-gray-800">Хууль, эрхзүйн акт</h2>
+  <!-- Menu Item List -->
+  <div
+    *ngFor="let item of menuItems"
+    class="flex items-center p-4 border-b bg-white"
+  >
+    <h2 class="font-semibold text-gray-800">{{ item.name }}</h2>
   </div>
 
-  <!-- List of Categories -->
+  <!-- List of Categories (Subtitles) -->
   <ul class="bg-white">
     <li
-      *ngFor="let item of categories"
+      *ngFor="let subtitle of selectedItem?.subtitle"
       class="hover:bg-gray-100 cursor-pointer"
     >
-      <a href="#" class="block p-4 border-b border-gray-200 text-gray-800">
-        {{ item.name }}
+      <a
+        href="#"
+        (click)="setSidebarContent(subtitle)"
+        class="block p-4 border-b border-gray-200 text-gray-800"
+      >
+        {{ subtitle.title }}
       </a>
     </li>
   </ul>
+</div>
+
+<!-- Sidebar Content Area -->
+<div class="sidebar-content">
+  <div class="p-4">
+    <h2 class="font-semibold text-gray-800">
+      {{ selectedItem?.name }} - {{ selectedSubtitle?.title }}
+    </h2>
+    <p class="text-gray-600">{{ selectedSubtitle?.path }}</p>
+  </div>
 </div>

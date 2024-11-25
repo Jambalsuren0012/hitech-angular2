@@ -1,5 +1,5 @@
 <div class="new-book-carousel relative my-2 mx-auto max-w-full overflow-hidden">
-  <h1 class="text-2xl pl-8 font-bold text-blue-500">Ном, Бүтээл</h1>
+  <h1 class="text-2xl font-bold text-blue-500">Ном, Бүтээл</h1>
   <!-- Left button -->
   <div
     class="absolute hidden lg:block left-0 top-1/2 transform -translate-y-1/2 z-10"
@@ -37,12 +37,16 @@
       <ng-template carouselSlide>
         <div class="book-item px-4 relative group">
           <a [routerLink]="['book/category', book.id]" class="relative block">
-            <img
-              class="h-1/3 w-1/4 object-cover group-hover:blur-sm transition duration-300"
-              [src]="book.compressedUrl || book.imgUrl"
-              alt="{{ book.title }}"
-              loading="lazy"
-            />
+            <div
+              class="w-full h-64 overflow-hidden relative flex items-center justify-center"
+            >
+              <img
+                class="w-full h-full object-cover group-hover:blur-sm transition duration-300"
+                [src]="book.compressedUrl || book.imgUrl"
+                alt="{{ book.title }}"
+                loading="lazy"
+              />
+            </div>
             <button
               class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition duration-300"
             >
@@ -50,9 +54,12 @@
             </button>
           </a>
           <div class="mt-4">
-            <h3 class="text-blue-800 text-xl">{{ book.title }}</h3>
+            <h3 class="text-blue-800 text-xl">
+              {{ book.title }}
+            </h3>
+
             <h5 class="text-slate-600 leading-normal font-light">
-              {{ book.describtion }}
+              {{ book.describtion | slice: 0 : 80 }}
             </h5>
             <button
               class="text-sm font-medium text-gray-600 hover:text-gray-900"
