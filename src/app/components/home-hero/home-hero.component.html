@@ -1,4 +1,4 @@
-<div class="w-full h-[50vh] md:h-[70vh] bg-cover bg-center relative">
+<div class="w-full mt-4 h-[50vh] md:h-[70vh] bg-cover bg-center relative">
   <!-- Loading Spinner -->
   <div
     *ngIf="isLoading"
@@ -19,7 +19,7 @@
         <img
           [src]="item.url"
           alt="Background Image"
-          class="w-full h-[50vh] md:h-[70vh] object-cover object-center"
+          class="w-full h-[50vh] md:h-[70vh] rounded-lg object-cover object-center"
         />
       </ng-template>
     </owl-carousel-o>

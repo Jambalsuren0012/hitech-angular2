@@ -37,15 +37,15 @@
     </div>
   </div>
   <div class="flex flex-col lg:flex-row gap-4 my-4 bg-white rounded-lg">
-    <app-sidebar></app-sidebar>
     <div class="my-6">
       <img
-        class="w-3/5 float-left pr-2 rounded-lg shadow-lg object-cover"
+        class="w-3/5 float-left pr-2 object-cover"
         [src]="newsDetails.picurl"
         alt=""
       />
       <p class="text-justify" [innerHTML]="newsDetails.info"></p>
     </div>
+    <app-sidebar></app-sidebar>
   </div>
 
   <div class="w-[100%] h-[40%] mx-auto my-6 clear-both pt-6 relative">

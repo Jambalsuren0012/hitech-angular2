@@ -34,8 +34,11 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { PartnersComponent } from './components/partners/partners.component';
-import { MenuListPageComponent } from './menu-list-page/menu-list-page.component';
-import { DefaultPageComponent } from './default-page/default-page.component';
+import { MenuListPageComponent } from './pages/menu-list-page/menu-list-page.component';
+import { DefaultPageComponent } from './pages/default-page/default-page.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+import { VideoComponent } from './components/video/video.component';
+import { HomeNewsComponent } from './components/home-news/home-news.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -50,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewsCardComponent,
     NewscardSliderComponent,
     SearchPipe,
+    VideoComponent,
     NewBookComponent,
     HomeHeroComponent,
     TimelineComponent,
@@ -67,6 +71,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PartnersComponent,
     MenuListPageComponent,
     DefaultPageComponent,
+    HomeNewsComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +79,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CarouselModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    YouTubePlayerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

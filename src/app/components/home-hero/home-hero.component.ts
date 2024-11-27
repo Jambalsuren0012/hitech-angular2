@@ -7,9 +7,9 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 })
 export class HomeHeroComponent implements OnInit {
   img: Array<{ url: string; compressedUrl?: string }> = [
-    { url: '/assets/img/home-slid/DD-40.jpg' },
-    { url: '/assets/img/home-slid/Image0098.jpg' },
-    { url: '/assets/img/home-slid/Антро-2.jpg' },
+    { url: '/assets/img/home-slid/2.jpg' },
+    { url: '/assets/img/home-slid/3.jpg' },
+    { url: '/assets/img/home-slid/3.png' },
   ];
   isLoading: boolean = true;
 

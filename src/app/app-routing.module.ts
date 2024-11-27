@@ -7,8 +7,8 @@ import { PrimaryPageComponent } from './pages/primary-page/primary-page.componen
 import { NewsDetailsPageComponent } from './pages/news-details-page/news-details-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
-import { DefaultPageComponent } from './default-page/default-page.component';
-import { MenuListPageComponent } from './menu-list-page/menu-list-page.component';
+import { DefaultPageComponent } from './pages/default-page/default-page.component';
+import { MenuListPageComponent } from './pages/menu-list-page/menu-list-page.component';
 
 const routes: Routes = [
   { path: 'map/:mapid', component: TargetpageComponent },
