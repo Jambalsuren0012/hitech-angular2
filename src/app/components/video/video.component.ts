@@ -6,6 +6,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
   styleUrls: ['./video.component.css'],
 })
 export class VideoComponent implements OnInit {
+  videoHeight: number | undefined;
+  videoWidth: number | undefined;
   Videodata = [
     {
       url: 'https://www.youtube.com/watch?v=l-dsOwXAFrU',
@@ -44,6 +46,7 @@ export class VideoComponent implements OnInit {
   ngOnInit() {
     // Set the last video as the default active video
     this.activeVideo = this.Videodata[this.Videodata.length - 1];
+    this.updateVideoDimensions(); // Set initial dimensions
   }
 
   setActiveVideo(video: any) {
@@ -56,6 +59,7 @@ export class VideoComponent implements OnInit {
     const match = url.match(regex);
     return match ? match[1] : '';
   }
+
   isMobile: boolean;
 
   constructor() {
@@ -65,5 +69,12 @@ export class VideoComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: { target: { innerWidth: number } }) {
     this.isMobile = event.target.innerWidth < 768;
+    this.updateVideoDimensions(); // Recalculate dimensions
+  }
+
+  updateVideoDimensions() {
+    const screenWidth = window.innerWidth;
+    this.videoWidth = screenWidth > 1024 ? 900 : screenWidth * 0.9; // 90% width for smaller screens
+    this.videoHeight = (this.videoWidth * 9) / 16; // Maintain 16:9 aspect ratio
   }
 }

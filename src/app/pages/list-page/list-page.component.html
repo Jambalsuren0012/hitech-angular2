@@ -94,6 +94,7 @@
         *ngFor="let page of [].constructor(totalPages); let i = index"
       >
         <button
+          *ngIf="i + 5 > currentPage && i < currentPage + 5"
           (click)="changePage(i + 1)"
           [class.bg-[#4D695A]]="currentPage === i + 1"
           [class.text-gray-100]="currentPage === i + 1"

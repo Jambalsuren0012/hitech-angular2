@@ -16,7 +16,7 @@ export class ListPageComponent {
     { id: '5', name: 'Biography' },
     { id: '5', name: 'Чулуун зэвсгийн судалгааны салбар Судлаачид' },
   ];
-  items = Array.from({ length: 100 }, (_, i) => ({
+  items = Array.from({ length: 1000 }, (_, i) => ({
     id: i + 1,
     imgUrl:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4m6WeuZ4-B7rXmWyimaFdN3UlPrmSrpQBhA&s',

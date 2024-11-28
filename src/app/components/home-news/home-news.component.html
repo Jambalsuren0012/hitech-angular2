@@ -1,6 +1,9 @@
-<div class="max-w-screen-2xl mx-auto">
+<div class="max-w-screen-2xl mx-auto mt-4">
   <!-- Sidebar Section -->
-  <div class="lg:flex lg:flex-row mt-8">
+  <a routerLink="/news">
+    <h1 class="text-2xl text-blue-800 font-bold">Мэдээ мэдээлэл</h1>
+  </a>
+  <div class="lg:flex lg:flex-row">
     <!-- Main content area for the sidebar -->
     <div class="lg:w-3/4 p-4">
       <!-- Showing only the most recent news (1 data) -->
@@ -15,9 +18,11 @@
         >
           <h1 class="text-xl font-bold text-white">{{ news.title }} s</h1>
           <p class="text-white">{{ news.description | slice: 0 : 150 }}</p>
-          <h6 class="text-xs text-[#0A0078]">
-            <fa-icon [icon]="faClock"></fa-icon>
-            <p class="text-blue-900 font-bold text-lg">{{ news.created_at }}</p>
+          <h6 class="flex gap-2 text-xs text-[#D4AF37]">
+            <fa-icon class="text-lg text-[#D4AF37]" [icon]="faClock"></fa-icon>
+            <p class="text-[#D4AF37] font-bold text-lg">
+              {{ news.created_at }}
+            </p>
           </h6>
         </div>
 
@@ -43,9 +48,9 @@
             [src]="news.picurl"
             alt="News Image"
           />
-          <div class="bg-[#b7bb87] rounded-b-lg h-24">
+          <div class="bg-[#4D695A] rounded-b-lg h-24">
             <h3
-              class="text-lg font-bold p-2 text-pretty line-clamp-3 text-black hover:text-[#0A0078]"
+              class="text-lg font-bold p-2 text-pretty line-clamp-3 text-white hover:text-blue-900"
             >
               {{ news.title }}
             </h3>
@@ -71,9 +76,9 @@
             <!-- News Title -->
             <a [routerLink]="['/news', news.id]">
               <h1
-                class="text-lg font-semibold text-[#252525] hover:text-[#0A0078]"
+                class="text-lg font-semibold line-clamp-3 text-[#252525] hover:text-[#D4AF37]"
               >
-                {{ news.title | slice: 0 : 40 }}
+                {{ news.title }}
               </h1>
             </a>
           </div>

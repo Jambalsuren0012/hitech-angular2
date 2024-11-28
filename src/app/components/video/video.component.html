@@ -1,18 +1,26 @@
-<div class="max-w-screen-2xl bg-gray-800 mx-auto px-4">
-  <h1 class="text-white text-2xl font-bold mb-4">Videos</h1>
-
+<div class="max-w-screen-2xl mt-4 bg-gray-800 mx-auto px-4">
+  <a [routerLink]="">
+    <h1 class="text-white hover:text-red-400 text-2xl font-bold mb-4">
+      Videos >
+    </h1>
+  </a>
   <!-- Main video section -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Large video on the left -->
     <div class="col-span-1 lg:col-span-2 flex flex-col items-center">
       <!-- Active Video Player -->
-      <div class="w-full transition-all duration-300 ease-in-out">
+      <div
+        #youTubePlayer
+        class="w-full bg-black rounded-lg overflow-hidden transition-all duration-300 ease-in-out"
+        [style.width.px]="videoWidth"
+        [style.height.px]="videoHeight"
+      >
         <youtube-player
           [videoId]="getVideoId(activeVideo.url)"
-          width="100%"
-          [height]="isMobile ? 200 : 315"
+          class="w-full h-full"
         ></youtube-player>
       </div>
+
       <div class="text-center">
         <h2 class="text-white text-xl font-semibold mt-4">
           {{ activeVideo.title }}
@@ -22,7 +30,7 @@
     </div>
 
     <!-- Sidebar for other videos -->
-    <div class="col-span-1 space-y-8">
+    <div class="col-span-1 space-y-8 py-4">
       <!-- Limit to 4 videos in the sidebar -->
       <div
         *ngFor="let video of Videodata.slice(0, 4)"
