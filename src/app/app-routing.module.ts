@@ -10,14 +10,17 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { DefaultPageComponent } from './pages/default-page/default-page.component';
 import { MenuListPageComponent } from './pages/menu-list-page/menu-list-page.component';
 import { BooksPageComponent } from './pages/books-page/books-page.component';
+import { MapPageComponent } from './pages/map-page/map-page.component';
+import { MenuAboutPageComponent } from './pages/menu-about-page/menu-about-page.component';
 
 const routes: Routes = [
-  { path: 'map/:mapid', component: TargetpageComponent },
+  { path: 'map/:id', component: TargetpageComponent },
   { path: '', component: HomePageComponent },
   { path: 'news/:id', component: NewsDetailsPageComponent },
   { path: 'type/1/:id', component: MenuListPageComponent },
   { path: 'type/2/:id', component: DefaultPageComponent },
-
+  { path: 'aboutus/:id', component: MenuAboutPageComponent },
+  { path: 'map', component: MapPageComponent },
   { path: 'book/category/:bookid', component: BookDetailsPageComponent },
   { path: 'news/category/:newsid', component: BookDetailsPageComponent },
   { path: 'news', component: ListPageComponent },

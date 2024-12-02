@@ -1,9 +1,10 @@
 <div *ngIf="selectedMenu; else notFound">
   <h1>{{ selectedMenu.name }}</h1>
   <ul>
-    <li *ngFor="let subtitle of selectedMenu.subtitle">
-      {{ subtitle.title }} - {{ subtitle.info }}
-    </li>
+    <li
+      *ngFor="let subtitle of selectedMenu.subtitle"
+      [innerHTML]="subtitle.info"
+    ></li>
   </ul>
 </div>
 

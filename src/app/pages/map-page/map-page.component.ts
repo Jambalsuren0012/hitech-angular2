@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 import { CoordinatesService } from '../../service/coordinates.service'; // Import the service
 
 @Component({
-  selector: 'app-map2',
-  templateUrl: './map2.component.html',
-  styleUrls: ['./map2.component.css'],
+  selector: 'app-map-page',
+  templateUrl: './map-page.component.html',
+  styleUrl: './map-page.component.css',
 })
-export class Map2Component implements OnInit {
+export class MapPageComponent implements OnInit {
   coordinates: any[] = []; // Dynamic coordinates array
   private map: any;
 

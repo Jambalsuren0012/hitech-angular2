@@ -38,9 +38,10 @@ export class HeaderComponent {
     this.menuService.menulist().subscribe({
       next: (data) => {
         this.menuItems = data;
-        console.log(this.menuItems);
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        console.error('Error fetching menu:', err); // Log any errors
+      },
     });
   }
 

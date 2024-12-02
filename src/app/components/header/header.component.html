@@ -64,7 +64,7 @@
             class="dropdown relative px-4 cursor-pointer uppercase tracking-wide group"
           >
             <a class="flex items-center text-[#FFFFF0] text-sm font-medium">
-              {{ item.name | translate }}
+              {{ item.menuname | translate }}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -88,9 +88,13 @@
                   [ngStyle]="{ animationDelay: i * 0.2 + 's' }"
                 >
                   <a
-                    [routerLink]="['/type', sub.type, sub.id]"
+                    [routerLink]="
+                      sub.type === 'aboutus'
+                        ? ['/aboutus', sub.id]
+                        : ['/type', sub.type, sub.id]
+                    "
                     class="block uppercase text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
-                    >{{ sub.title | translate }}</a
+                    >{{ sub.menuname | translate }}</a
                   >
                 </li>
               </ul>
@@ -148,7 +152,7 @@
                 class="flex justify-between text-white items-center font-medium"
                 (click)="toggleMobileCat(item.id)"
               >
-                {{ item.name | translate }}
+                {{ item.menuname | translate }}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -167,7 +171,7 @@
                   <a
                     [routerLink]="['/type', sub.type, sub.id]"
                     class="block uppercase text-white pl-1 text-xs cursor-pointer"
-                    >-{{ sub.title | translate }}</a
+                    >-{{ sub.menuname | translate }}</a
                   >
                 </li>
               </ul>

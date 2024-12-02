@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CoordinatesService } from '../../service/coordinates.service';
 
 @Component({
   selector: 'app-targetpage',
@@ -8,11 +9,31 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TargetpageComponent implements OnInit {
   mapid: string | null = null;
+  coordinatDetails: any = null;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private coordinatesService: CoordinatesService,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
-    // Get mapid from route parameter
-    this.mapid = this.route.snapshot.paramMap.get('mapid');
+    this.route.paramMap.subscribe((params) => {
+      this.mapid = params.get('id');
+      if (this.mapid) {
+        this.fetchcoordinatDetails(this.mapid);
+      }
+    });
+  }
+
+  fetchcoordinatDetails(coordinateid: string): void {
+    this.coordinatesService.coordinatlist().subscribe(
+      (data) => {
+        this.coordinatDetails =
+          data.find((item: any) => item.id === coordinateid) || null;
+      },
+      (error) => {
+        console.error('Error fetching details:', error);
+      },
+    );
   }
 }

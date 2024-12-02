@@ -40,6 +40,8 @@ export class VideoComponent implements OnInit {
       thumbnailUrl: 'https://img.youtube.com/vi/asgAqJTvNuQ/0.jpg',
     },
   ];
+  screenWidth: number | undefined;
+  screenHeight: number | undefined;
 
   activeVideo: any = {}; // Store the active video details
 
@@ -47,6 +49,8 @@ export class VideoComponent implements OnInit {
     // Set the last video as the default active video
     this.activeVideo = this.Videodata[this.Videodata.length - 1];
     this.updateVideoDimensions(); // Set initial dimensions
+    this.screenWidth = window.innerWidth * 0.5;
+    this.screenHeight = window.innerHeight * 0.5; // 30% of the viewport height
   }
 
   setActiveVideo(video: any) {
@@ -71,10 +75,17 @@ export class VideoComponent implements OnInit {
     this.isMobile = event.target.innerWidth < 768;
     this.updateVideoDimensions(); // Recalculate dimensions
   }
-
   updateVideoDimensions() {
     const screenWidth = window.innerWidth;
-    this.videoWidth = screenWidth > 1024 ? 900 : screenWidth * 0.9; // 90% width for smaller screens
-    this.videoHeight = (this.videoWidth * 9) / 16; // Maintain 16:9 aspect ratio
+
+    if (this.isMobile) {
+      this.videoWidth = screenWidth * 0.9; // Use 90% of the screen width on mobile
+    } else {
+      this.videoWidth = screenWidth > 1024 ? 900 : screenWidth * 0.7; // Use 70% of width for larger screens
+    }
+
+    this.videoHeight = (this.videoWidth * 9) / 16; // Maintain the 16:9 aspect ratio
+    this.screenWidth = this.videoWidth;
+    this.screenHeight = this.videoHeight;
   }
 }
