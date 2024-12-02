@@ -1,7 +1,7 @@
-<div class="max-w-screen-2xl mt-4 bg-gray-800 mx-auto px-4">
+<div class="max-w-screen-2xl mt-4 mx-auto px-4">
   <a [routerLink]="">
     <h1 class="text-white hover:text-red-400 text-2xl font-bold mb-4">
-      Videos >
+      Videos →
     </h1>
   </a>
   <!-- Main video section -->
@@ -23,7 +23,7 @@
       </div>
 
       <div class="text-center">
-        <h2 class="text-white text-xl font-semibold mt-4">
+        <h2 class="text text-xl font-semibold mt-4">
           {{ activeVideo.title }}
         </h2>
         <p class="text-gray-400">{{ activeVideo.created_at }}</p>
@@ -47,7 +47,7 @@
 
         <!-- Video title and created date on the right of the thumbnail -->
         <div class="flex flex-col">
-          <h2 class="text-white text-sm">{{ video.title }}</h2>
+          <h2 class="text-sm">{{ video.title }}</h2>
           <p class="text-gray-400 text-xs">{{ video.created_at }}</p>
         </div>
       </div>
