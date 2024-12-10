@@ -41,6 +41,8 @@ import { VideoComponent } from './components/video/video.component';
 import { HomeNewsComponent } from './components/home-news/home-news.component';
 import { MapPageComponent } from './pages/map-page/map-page.component';
 import { MenuAboutPageComponent } from './pages/menu-about-page/menu-about-page.component';
+import { MembersComponent } from './components/members/members.component';
+import { ResponsiveHtmlPipe } from './responsive-html.pipe';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -76,6 +78,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeNewsComponent,
     MapPageComponent,
     MenuAboutPageComponent,
+    MembersComponent,
+    ResponsiveHtmlPipe,
   ],
   imports: [
     BrowserModule,

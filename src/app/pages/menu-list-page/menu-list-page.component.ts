@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./menu-list-page.component.css'],
 })
 export class MenuListPageComponent implements OnInit {
-  selectedMenu: any;
+  selectedItem: any;
 
   constructor(
     private menuService: MenuService,
@@ -17,11 +17,14 @@ export class MenuListPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      const id = +params.get('id')!;
+      const id = params.get('id')!; // Keep as string
       this.menuService.menulist().subscribe((menuItems) => {
-        this.selectedMenu = menuItems.find(
-          (item: { id: any }) => item.id === id,
-        );
+        this.selectedItem = menuItems
+          .flatMap((menu: { subtitle: any }) => menu.subtitle)
+          .find(
+            (subtitle: { id: string; type: string }) =>
+              subtitle.id === id && subtitle.type === 'list',
+          );
       });
     });
   }

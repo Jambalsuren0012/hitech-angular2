@@ -15,7 +15,7 @@
         </a>
         <!-- Desktop Search Input, hidden on smaller screens -->
         <div class="xl:flex gap-4">
-          <div class="flex items-center hidden xl:flex w-full xl:w-auto">
+          <div class="flex hidden xl:flex w-full xl:w-auto">
             <input
               type="text"
               placeholder="Таны хайх түлхүүр үг"
@@ -53,17 +53,17 @@
       </div>
     </div>
     <!-- Second Row: Navigation, Search Input, and Mobile Menu Icon -->
-    <div class="bg-[#4D695A] w-full">
+    <div class="bg-[#1A3675] w-full">
       <nav
-        class="max-w-screen-xl mx-auto flex justify-between px-5 bg-[#4D695A] py-4 items-center"
+        class="max-w-screen-2xl mx-auto flex gap-8 px-5 bg-[#1A3675] py-4 items-center"
       >
         <!-- Desktop Menu -->
-        <ul class="hidden xl:flex items-center">
+        <ul class="hidden xl:flex justify-between space-x-8">
           <li
             *ngFor="let item of menuItems"
-            class="dropdown relative px-4 cursor-pointer uppercase tracking-wide group"
+            class="dropdown relative px-4 cursor-pointer capitalize tracking-wide group"
           >
-            <a class="flex items-center text-[#FFFFF0] text-sm font-medium">
+            <a class="flex items-center text-[#FFFFF0] text-lg font-light">
               {{ item.menuname | translate }}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,9 +77,8 @@
                 ></path>
               </svg>
             </a>
-
             <div
-              class="dropdown-menu absolute hidden group-hover:block bg-[#4D695A] shadow-lg pt-4"
+              class="dropdown-menu absolute hidden group-hover:block bg-[#1A3675] shadow-lg pt-4"
             >
               <ul class="p-2 w-80">
                 <li
@@ -91,10 +90,13 @@
                     [routerLink]="
                       sub.type === 'aboutus'
                         ? ['/aboutus', sub.id]
-                        : ['/type', sub.type, sub.id]
+                        : sub.type === 'member'
+                          ? ['/member']
+                          : ['/list', sub.type, sub.id]
                     "
                     class="block uppercase text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
-                    >{{ sub.menuname | translate }}</a
+                  >
+                    {{ sub.menuname | translate }}</a
                   >
                 </li>
               </ul>
@@ -140,7 +142,7 @@
         <!-- mobile menu  -->
         <div
           [ngClass]="{ 'mobile-menu': true, open: isMobileMenuOpen }"
-          class="fixed top-36 right-0 flex flex-col bg-[#4D695A] shadow-lg transition-transform duration-300 ease-in-out xl:hidden"
+          class="fixed top-36 right-0 flex flex-col bg-[#1A3675] shadow-lg transition-transform duration-300 ease-in-out xl:hidden"
           style="max-height: calc(100vh - 4rem); overflow-y: auto; width: 60vw"
         >
           <ul class="p-4">

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment';
 import { CoordinatesService } from '../../service/coordinates.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-targetpage',
@@ -10,21 +12,11 @@ import { CoordinatesService } from '../../service/coordinates.service';
 export class TargetpageComponent implements OnInit {
   mapid: string | null = null;
   coordinatDetails: any = null;
-
+  imgUrl = environment.imgUrl;
   constructor(
     private coordinatesService: CoordinatesService,
     private route: ActivatedRoute,
   ) {}
-
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.mapid = params.get('id');
-      if (this.mapid) {
-        this.fetchcoordinatDetails(this.mapid);
-      }
-    });
-  }
-
   fetchcoordinatDetails(coordinateid: string): void {
     this.coordinatesService.coordinatlist().subscribe(
       (data) => {
@@ -32,8 +24,17 @@ export class TargetpageComponent implements OnInit {
           data.find((item: any) => item.id === coordinateid) || null;
       },
       (error) => {
-        console.error('Error fetching details:', error);
+        console.error('Error fetching news details:', error);
       },
     );
+  }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.mapid = params.get('id'); // Match the route parameter key
+      if (this.mapid) {
+        this.fetchcoordinatDetails(this.mapid);
+      }
+    });
   }
 }

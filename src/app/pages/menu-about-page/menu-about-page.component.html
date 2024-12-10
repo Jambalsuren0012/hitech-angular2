@@ -1,8 +1,14 @@
-<div *ngIf="selectedItem; else notFound">
+<div
+  class="max-w-screen-xl bg-white mx-auto px-4 py-8"
+  *ngIf="selectedItem; else notFound"
+>
+  <img [src]="selectedItem.picurl" alt="{{ selectedItem.title }}" />
   <h1>{{ selectedItem.title }}</h1>
-  <div [innerHTML]="selectedItem.info"></div>
+  <div class="text-justify" [innerHTML]="selectedItem.info"></div>
 </div>
 
 <ng-template #notFound>
-  <p>Item not found .</p>
+  <div class="text-center text-black font-semibold text-xl max-w-screen-xl">
+    <p>Энэ хуудсанд одоогоор мэдээлэл оруулаагүй байна</p>
+  </div>
 </ng-template>

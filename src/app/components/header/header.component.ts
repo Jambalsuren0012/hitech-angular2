@@ -23,11 +23,17 @@ export class HeaderComponent {
     private cdr: ChangeDetectorRef,
     private menuService: MenuService,
   ) {
-    this.translate.setDefaultLang('en');
-    this.translate.use('mn');
+    this.translate.setDefaultLang('en'); // Default language
+    this.translate.use('mn'); // Start with Mongolian
+
     this.translate.onLangChange.subscribe((event) => {
       console.log('Language changed:', event.lang);
+      this.cdr.detectChanges(); // Trigger Angular's change detection
     });
+
+    // Debugging available languages and current language
+    console.log('Available Languages:', this.translate.getLangs());
+    console.log('Current Language:', this.translate.currentLang);
   }
 
   ngOnInit() {

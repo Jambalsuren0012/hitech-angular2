@@ -16,12 +16,12 @@ export class MenuAboutPageComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      const id = +params.get('id')!;
+      const id = params.get('id')!; // Keep as string
       this.menuService.menulist().subscribe((menuItems) => {
         this.selectedItem = menuItems
           .flatMap((menu: { subtitle: any }) => menu.subtitle)
           .find(
-            (subtitle: { id: number; type: string }) =>
+            (subtitle: { id: string; type: string }) =>
               subtitle.id === id && subtitle.type === 'aboutus',
           );
       });

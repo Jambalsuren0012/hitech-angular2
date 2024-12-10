@@ -1,7 +1,9 @@
-<div class="max-w-screen-2xl mx-auto mt-4">
+<div class="w-full mx-auto mt-4">
   <!-- Sidebar Section -->
   <a routerLink="/news">
-    <h1 class="text-2xl text-blue-800 font-bold">Мэдээ мэдээлэл →</h1>
+    <h1 class="text-2xl text-blue-800 font-bold">
+      {{ "NEWS_INFORMATION" | translate }}
+    </h1>
   </a>
   <div class="lg:flex lg:flex-row">
     <!-- Main content area for the sidebar -->
@@ -14,12 +16,14 @@
       >
         <!-- Text section on the left -->
         <div
-          class="lg:w-1/4 lg:h-full bg-[#4D695A] p-4 flex flex-col justify-between"
+          class="lg:w-1/4 lg:h-full bg-[#1A3675] p-4 flex flex-col justify-between"
         >
           <h1 class="text-lg font-bold text-white line-clamp-7">
-            {{ news.title }}
+            {{ news.title | translate }}
           </h1>
-          <p class="text-white line-clamp-4">{{ news.description }}</p>
+          <p class="text-white line-clamp-4">
+            {{ news.description | translate }}
+          </p>
           <h6 class="flex gap-2 text-xs text-[#D4AF37]">
             <fa-icon class="text-lg text-[#D4AF37]" [icon]="faClock"></fa-icon>
             <p class="text-[#D4AF37] font-bold text-lg">
@@ -50,7 +54,7 @@
             [src]="news.picurl"
             alt="News Image"
           />
-          <div class="bg-[#4D695A] rounded-b-lg h-24">
+          <div class="bg-[#1A3675] rounded-b-lg h-24">
             <h3
               class="text-lg font-bold p-2 text-pretty line-clamp-3 text-white hover:text-blue-900"
             >
@@ -78,7 +82,7 @@
             <!-- News Title -->
             <a [routerLink]="['/news', news.id]">
               <h1
-                class="text-base font-semibold uppercase line-clamp-3 text-[#252525] hover:text-[#D4AF37]"
+                class="text-base font-semibold line-clamp-3 text-[#252525] hover:text-[#D4AF37]"
               >
                 {{ news.title }}
               </h1>

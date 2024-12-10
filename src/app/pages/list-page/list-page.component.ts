@@ -21,7 +21,7 @@ export class ListPageComponent {
     imgUrl:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4m6WeuZ4-B7rXmWyimaFdN3UlPrmSrpQBhA&s',
     title: `Card Title ${i + 1}`,
-    description: `This is the description for card This is the description for cardThis is the description for cardThis is the description for cardThis is the description for cardThis is the description for cardThis is the description for card ${i + 1}.`,
+    description: `This is the description for card  for cardThis is the description for cardThis is the description for cardThis is the description for cardThis is the description for card ${i + 1}.`,
   }));
 
   itemsPerPage = 15;

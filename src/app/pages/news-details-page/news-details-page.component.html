@@ -2,7 +2,7 @@
   <h1
     class="text-lg sm:text-xl md:text-2xl font-medium text-center sm:text-left"
   >
-    {{ newsDetails.title }}
+    {{ newsDetails.title | translate }}
   </h1>
   <div class="flex justify-between border-t border-b py-2">
     <h6>
@@ -37,18 +37,21 @@
     </div>
   </div>
   <div class="flex flex-col lg:flex-row gap-4 my-4 bg-white rounded-lg">
-    <div class="my-6">
+    <div class="w-full lg:w-auto">
       <img
-        class="w-3/5 float-left pr-2 object-cover"
+        class="w-full lg:w-full pr-2 object-cover"
         [src]="newsDetails.picurl"
         alt=""
       />
-      <p class="text-justify" [innerHTML]="newsDetails.info"></p>
+      <p
+        class="text-justify px-2 lg:px-0"
+        [innerHTML]="newsDetails?.info | translate"
+      ></p>
     </div>
     <app-sidebar></app-sidebar>
   </div>
 
-  <div class="w-[100%] h-[40%] mx-auto my-6 clear-both pt-6 relative">
+  <div class="w-[100%] h-[40%] mx-auto my-6 pt-6 relative">
     <!-- Left Navigation Button -->
     <button
       (click)="carousel.prev()"
@@ -83,7 +86,7 @@
     </button>
 
     <owl-carousel-o [options]="customOptions" #carousel>
-      <ng-container *ngFor="let image of slider!">
+      <ng-container *ngFor="let image of images">
         <ng-template carouselSlide>
           <div class="news-card">
             <img [src]="image.picurl" alt="Image" class="news-card__image" />

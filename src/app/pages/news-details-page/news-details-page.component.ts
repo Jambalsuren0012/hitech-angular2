@@ -14,9 +14,10 @@ import { format } from 'date-fns';
 export class NewsDetailsPageComponent implements OnInit {
   newsDetails: any = null;
   imgUrl = environment.imgUrl;
-  slider: any = null;
+  images: any = null;
   faClock = faClock;
   currentPageUrl: string = encodeURIComponent(window.location.href);
+  selectedImage: string | null = null;
 
   constructor(
     private newsService: NewsService,
@@ -31,7 +32,6 @@ export class NewsDetailsPageComponent implements OnInit {
       const newsid = params.get('id'); // Get the `id` from the route
       if (newsid) {
         this.fetchNewsDetails(newsid);
-        this.slider = this.fetchNewsDetails(newsid); // Update the slider with the correct newsid
       }
     });
   }
@@ -40,6 +40,13 @@ export class NewsDetailsPageComponent implements OnInit {
     this.newsService.getAllNews().subscribe(
       (data) => {
         this.newsDetails = data.find((item: any) => item.id === newsid) || null;
+
+        // Extract images from newsDetails
+        if (this.newsDetails && this.newsDetails.images) {
+          this.images = this.newsDetails.images;
+        } else {
+          this.images = []; // Set to an empty array if no images found
+        }
       },
       (error) => {
         console.error('Error fetching news details:', error);
@@ -52,7 +59,7 @@ export class NewsDetailsPageComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
+    dots: true,
     navSpeed: 700,
 
     responsive: {

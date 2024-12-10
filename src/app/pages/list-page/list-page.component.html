@@ -1,39 +1,16 @@
 <div
-  class="flex flex-col md:flex-row relative justify-center gap-4 max-w-screen-xl mx-auto"
+  class="flex flex-col md:flex-row relative pt-10 justify-between gap-4 max-w-screen-xl mx-auto"
 >
-  <!-- Sidebar Component -->
-  <div
-    class="md:max-w-xs w-full md:w-80 rounded-lg mt-14 shadow-lg h-full md:sticky md:top-40 my-4 md:mb-0 z-20"
-  >
-    <!-- Header Section with Icon and Title -->
-    <div class="flex bg-[#4D695A] items-center p-3 rounded-t-md border-b z-20">
-      <h2 class="font-semibold text-white">Хууль, эрхзүйн акт</h2>
-    </div>
-
-    <!-- List of Categories -->
-    <ul class="bg-white rounded-b-md">
-      <li
-        *ngFor="let item of categories"
-        class="hover:bg-gray-100 cursor-pointer"
-      >
-        <a href="#" class="block p-3 border-b border-gray-200 text-gray-800">
-          {{ item.name }}
-        </a>
-      </li>
-    </ul>
-  </div>
-
   <!-- Content Section with Cards and Pagination -->
-  <div class="flex flex-col items-center w-full max-w-screen-xl pt-8">
-    <h1 class="items-start text-2xl font-bold text-[#0A0078]">
+  <div class="flex flex-col w-full md:w-3/4">
+    <h1 class="items-start text-2xl font-bold text-[#0A0078] mb-4">
       Хууль, эрхзүйн акт
     </h1>
-    <!-- Added top padding -->
     <!-- Cards Grid -->
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 w-full">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       <ng-container *ngFor="let item of paginatedItems">
         <div
-          class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full md:w-76 h-auto"
+          class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg"
         >
           <div
             class="relative h-56 m-2.5 overflow-hidden text-white rounded-md group"
@@ -49,12 +26,12 @@
             <h6 class="mb-2 text-slate-800 text-xl font-semibold two-line-text">
               {{ item.title }}
             </h6>
-            <p class="text-slate-600 leading-normal font-light">
-              {{ item.description | slice: 0 : 150 }}
+            <p class="text-slate-600 leading-normal line-clamp-3 font-light">
+              {{ item.description }}
             </p>
             <a
               [routerLink]="['/news', item.id]"
-              class="inline-flex items-center mt-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[#4D695A] dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              class="inline-flex items-center mt-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[#1A3675] dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Дэлгэрэнгүй
               <svg
@@ -78,9 +55,8 @@
       </ng-container>
     </div>
 
-    <!-- Pagination Controls Centered at the Bottom -->
+    <!-- Pagination Controls -->
     <div class="flex justify-center my-4 space-x-2">
-      <!-- Previous Arrow Button -->
       <button
         (click)="previousPage()"
         [disabled]="currentPage === 1"
@@ -89,14 +65,13 @@
         «
       </button>
 
-      <!-- Page Numbers -->
       <ng-container
         *ngFor="let page of [].constructor(totalPages); let i = index"
       >
         <button
           *ngIf="i + 5 > currentPage && i < currentPage + 5"
           (click)="changePage(i + 1)"
-          [class.bg-[#4D695A]]="currentPage === i + 1"
+          [class.bg-[#1A3675]]="currentPage === i + 1"
           [class.text-gray-100]="currentPage === i + 1"
           [class.hover:bg-gray-200]="currentPage !== i + 1"
           class="px-3 py-2 text-blue-600 border border-gray-300 rounded-md focus:outline-none"
@@ -105,7 +80,6 @@
         </button>
       </ng-container>
 
-      <!-- Next Arrow Button -->
       <button
         (click)="nextPage()"
         [disabled]="currentPage === totalPages"
@@ -115,4 +89,7 @@
       </button>
     </div>
   </div>
+
+  <!-- Sidebar Section -->
+  <app-sidebar class="w-full md:w-1/4 md:sticky md:top-0"></app-sidebar>
 </div>

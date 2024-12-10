@@ -78,7 +78,7 @@ export class HomeNewsComponent implements OnInit {
   }
   Videodata = [
     {
-      url: 'https://www.youtube.com/watch?v=TgaqiDtLjVc',
+      url: 'https://youtu.be/asgAqJTvNuQ',
       title: 'My Custom Video Title',
       date: 'Nov 25, 2024',
       thumbnailUrl: '',

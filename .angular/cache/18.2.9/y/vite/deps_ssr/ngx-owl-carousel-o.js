@@ -1,16 +1,16 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router
-} from "./chunk-FANHAGAT.js";
-import {
   animate,
   state,
   style,
   transition,
   trigger
 } from "./chunk-CU5MAGDK.js";
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router
+} from "./chunk-FANHAGAT.js";
 import "./chunk-WAOLF6IJ.js";
 import "./chunk-P5GWU64E.js";
 import {

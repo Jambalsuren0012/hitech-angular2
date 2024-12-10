@@ -8,7 +8,9 @@ export class ResponsiveHtmlPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
 
   transform(value: string): SafeHtml {
-    if (!value) return '';
+    if (!value) {
+      return '';
+    }
     const responsiveHtml = value.replace(
       /<img /g,
       '<img class="w-full max-w-full h-auto" ',

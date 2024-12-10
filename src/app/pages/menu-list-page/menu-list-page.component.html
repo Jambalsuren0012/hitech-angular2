@@ -1,13 +1,13 @@
-<div *ngIf="selectedMenu; else notFound">
-  <h1>{{ selectedMenu.name }}</h1>
-  <ul>
-    <li
-      *ngFor="let subtitle of selectedMenu.subtitle"
-      [innerHTML]="subtitle.info"
-    ></li>
-  </ul>
+<div
+  class="max-w-screen-xl bg-white mx-auto px-4 py-8"
+  *ngIf="selectedItem; else notFound"
+>
+  <app-sidebar></app-sidebar>
+  <div class="text-justify mt-4" [innerHTML]="selectedItem.info"></div>
 </div>
 
 <ng-template #notFound>
-  <p>Menu not found.</p>
+  <div class="text-center text-black font-semibold text-xl max-w-screen-xl">
+    <p>Энэ хуудсанд одоогоор мэдээлэл оруулаагүй байна</p>
+  </div>
 </ng-template>

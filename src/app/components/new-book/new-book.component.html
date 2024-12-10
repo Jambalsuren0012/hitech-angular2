@@ -1,5 +1,7 @@
-<div class="new-book-carousel relative my-2 mx-auto max-w-full overflow-hidden">
-  <h1 class="text-2xl font-bold text-[#0A0078]">Ном, Бүтээл →</h1>
+<div class="new-book-carousel relative my-4 mx-auto max-w-full overflow-hidden">
+  <a routerLink="/books">
+    <h1 class="text-2xl font-bold my-4 text-[#0A0078]">Ном, Бүтээл →</h1></a
+  >
   <!-- Left button -->
   <div
     class="absolute hidden lg:block left-0 top-1/2 transform -translate-y-1/2 z-10"
@@ -59,7 +61,7 @@
             </h3>
 
             <h5 class="text-slate-600 leading-normal font-light">
-              {{ book.describtion | slice: 0 : 80 }}
+              {{ book.description | slice: 0 : 80 }}
             </h5>
             <button
               class="text-sm font-medium text-gray-600 hover:text-gray-900"
@@ -108,14 +110,4 @@
   </div>
 
   <!-- Flexbox button placed at the bottom-left -->
-  <div class="flex justify-end p-4 mt-auto">
-    <a routerLink="/books">
-      <button
-        class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-        type="button"
-      >
-        Бүгдийг харах
-      </button>
-    </a>
-  </div>
 </div>

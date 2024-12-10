@@ -12,20 +12,23 @@ import { MenuListPageComponent } from './pages/menu-list-page/menu-list-page.com
 import { BooksPageComponent } from './pages/books-page/books-page.component';
 import { MapPageComponent } from './pages/map-page/map-page.component';
 import { MenuAboutPageComponent } from './pages/menu-about-page/menu-about-page.component';
-
+import { ResponsiveHtmlPipe } from './responsive-html.pipe';
+import { MembersComponent } from './components/members/members.component';
 const routes: Routes = [
   { path: 'map/:id', component: TargetpageComponent },
   { path: '', component: HomePageComponent },
   { path: 'news/:id', component: NewsDetailsPageComponent },
-  { path: 'type/1/:id', component: MenuListPageComponent },
-  { path: 'type/2/:id', component: DefaultPageComponent },
+  { path: 'list/:type/:id', component: MenuListPageComponent },
+  { path: 'member', component: MembersComponent },
   { path: 'aboutus/:id', component: MenuAboutPageComponent },
+  { path: 'type/2/:id', component: DefaultPageComponent },
   { path: 'map', component: MapPageComponent },
   { path: 'book/category/:bookid', component: BookDetailsPageComponent },
   { path: 'news/category/:newsid', component: BookDetailsPageComponent },
   { path: 'news', component: ListPageComponent },
   { path: 'books', component: BooksPageComponent },
   { path: 'timeline', component: TimelineComponent },
+
   { path: '', redirectTo: '/map2', pathMatch: 'full' },
 ];
 
@@ -33,7 +36,9 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'enabled', // Ensures the page scrolls to the top on navigation
-      anchorScrolling: 'enabled', // Optional: Enables anchor scrolling
+      anchorScrolling: 'enabled',
+
+      // Optional: Enables anchor scrolling
     }),
   ],
   exports: [RouterModule],
