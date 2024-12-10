@@ -1,6 +1,6 @@
 <div *ngIf="newsDetails" class="max-w-screen-xl mx-auto px-4 py-8">
   <h1
-    class="text-lg sm:text-xl md:text-2xl font-medium text-center sm:text-left"
+    class="text-Xl sm:text-2xl md:text-3xl font-medium text-center sm:text-left"
   >
     {{ newsDetails.title | translate }}
   </h1>
@@ -44,7 +44,7 @@
         alt=""
       />
       <p
-        class="text-justify px-2 lg:px-0"
+        class="text-justify px-2 lg:px-0 mt-8 text-lg"
         [innerHTML]="newsDetails?.info | translate"
       ></p>
     </div>

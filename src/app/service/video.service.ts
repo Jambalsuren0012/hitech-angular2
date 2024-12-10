@@ -62,7 +62,10 @@ export class VideoService {
   constructor(private http: HttpClient) {}
 
   getAllVideo(): Observable<any> {
-    // return this.http.get(`${environment.apiUrl}/video`);
-    return of(this.videoData);
+    // You can pass any data if needed in the request body
+    const payload = { lang: 'mn' }; // Modify this if you need to send any specific data
+
+    return this.http.post(`${environment.apiUrl}/video`, payload);
+    // If there's no data to send, you can pass an empty object or other data.
   }
 }

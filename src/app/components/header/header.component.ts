@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import path from 'path';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuService } from '../../service/menu.service';
 import { Router } from '@angular/router';

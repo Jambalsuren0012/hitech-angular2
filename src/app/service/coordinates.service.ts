@@ -61,8 +61,9 @@ export class CoordinatesService {
   constructor(private http: HttpClient) {}
   coordinate = this.coordinates;
   coordinatlist(): Observable<any> {
-    // return this.http.get(`${environment.apiUrl}/coordinates
-    //   `);
-    return of(this.coordinates);
+    const payload = { lang: 'mn' }; // Modify this if you need to send any specific data
+
+    return this.http.post(`${environment.apiUrl}/coordinates`, payload);
+    // return of(this.coordinates);
   }
 }

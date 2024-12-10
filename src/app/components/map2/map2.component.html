@@ -1,8 +1,6 @@
-<div class="mx-auto">
+<div class="mx-auto mt-16">
   <a routerLink="/map">
-    <h1 class="text-2xl font-bold text-[#0A0078] ml-4">
-      Хээрийн судалгаа →
-    </h1></a
+    <h1 class="text-2xl text-[#0A0078] ml-4">Хээрийн судалгаа →</h1></a
   >
   <div class="z-10 w-full mt-4 flex flex-col md:flex-row items-start">
     <!-- Map Section -->
@@ -17,17 +15,20 @@
     <!-- Text Section -->
     <div class="w-full p-4 md:basis-2/5">
       <h1 class="text-xl">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla quia
-        eligendi porro ullam obcaecati sequi ipsam iusto consectetur hic iste.
-        Maxime qui labore magnam amet expedita libero provident hic harum.
+        Ежегодно сотрудниками нашего Института проводятся обширные полевые
+        исследования в различных регионах нашей страны и за её пределами. Все
+        отчёты сотрудников ИИМК РАН проходят предварительную экспертизу
+        <a class="text-blue-700" routerLink="map">Группы ОПИ</a> при нашем
+        Институте.
       </h1>
-      <div *ngFor="let item of coordinates">
+
+      <!-- <div *ngFor="let item of coordinates">
         <a [routerLink]="['/map', item.id]">
           <p class="text-lg text-[#0A0078]">
             &#9679; {{ item.title }}, {{ item.description }}
           </p>
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

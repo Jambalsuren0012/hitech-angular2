@@ -1,6 +1,6 @@
 .router-background {
   position: relative; /* Required for positioning the pseudo-element */
-  background-color: #ffffffa2; /* Background color remains */
+  background-color: #fffffffd; /* Background color remains */
   z-index: 1; /* Keeps content above the pseudo-element */
 }
 
