@@ -1,8 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow, format } from 'date-fns';
 import { mn } from 'date-fns/locale';
-import { format } from 'date-fns';
+import { BooksService } from '../../service/books.service';
+import { environment } from '../../environments/environment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-book',
@@ -10,12 +17,10 @@ import { format } from 'date-fns';
   styleUrls: ['./new-book.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewBookComponent {
-  trackById(index: number, book: any): string {
-    return book.id; // or return book.id as a unique identifier
-  }
-
+export class NewBookComponent implements OnInit {
   bookData: Array<{
+    pdf: string;
+    picurl: string;
     id: string;
     title: string;
     description: string;
@@ -23,74 +28,8 @@ export class NewBookComponent {
     imgUrl: string;
     compressedUrl?: string;
     created_at: string;
-  }> = [
-    {
-      id: '1',
-      imgUrl: '/assets/img/book/1_2.jpeg',
-      title: 'Book 1',
-      description:
-        'Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.',
-
-      created_at: '2024-11-11 12:19:43',
-      pdfUrl:
-        'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
-    },
-    {
-      id: '2',
-      imgUrl: '/assets/img/book/1_13.jpeg',
-      title: 'Book 1',
-      description: 'Lorem ipsum dolor sit amet.',
-      created_at: '2024-11-12 12:19:43',
-      pdfUrl:
-        'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
-    },
-    {
-      id: '3',
-      imgUrl: '/assets/img/book/1.jpeg',
-      title: 'Book 1',
-      created_at: '2024-11-13 12:19:43',
-      description:
-        'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.',
-      pdfUrl:
-        'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
-    },
-    {
-      id: '4',
-      imgUrl: '/assets/img/book/2_1.jpeg',
-      title: 'Book 1',
-      created_at: '2024-11-14 12:19:43',
-      description: 'Lorem ipsum dolor sit amet.',
-      pdfUrl:
-        'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
-    },
-    {
-      id: '5',
-      imgUrl: '/assets/img/book/2_1.jpeg',
-      title: 'Book 1',
-      created_at: '2024-11-15 12:19:43',
-      description: 'Lorem ipsum dolor sit amet.',
-      pdfUrl:
-        'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
-    },
-    {
-      id: '6',
-      imgUrl: '/assets/img/book/2_1.jpeg',
-      title: 'Book 1',
-      created_at: '2024-11-16 12:19:43',
-      description: 'Lorem ipsum dolor sit amet.',
-      pdfUrl:
-        'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
-    },
-    {
-      id: '7',
-      imgUrl: '/assets/img/book/2_1.jpeg',
-      title: 'Book 1',
-      created_at: '2024-11-17 12:19:43',
-      description: 'Lorem ipsum dolor sit amet.',
-      pdfUrl:
-        'https://www.free-ebooks.net/humor-classics/The-Adventures-of-Ferdinand-Count-Fathom/pdf?dl&preview',
-    },
-  ];
+  }> = []; // Start with an empty array
+  imageUrl = environment.imgUrl;
 
   customOptions: OwlOptions = {
     loop: true,
@@ -104,30 +43,67 @@ export class NewBookComponent {
       400: { items: 2 },
       740: { items: 4 },
       940: { items: 4 },
-      1160: { items: 6 }, // This is the main breakpoint to show 6 items
-      1400: { items: 6 }, // Optional: add a larger screen breakpoint
+      1160: { items: 6 },
+      1400: { items: 6 },
     },
   };
+
+  constructor(
+    private booksService: BooksService,
+    private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
+  ) {
+    this.translate.onLangChange.subscribe((event) => {
+      // console.log('Language changed:', event.lang);
+      this.cdr.detectChanges(); // Trigger Angular's change detection
+      this.fetchBooks();
+    });
+  }
+
+  ngOnInit(): void {
+    this.fetchBooks(); // Fetch data on component initialization
+  }
+
+  fetchBooks(): void {
+    this.booksService.getAllBooks(this.translate.currentLang).subscribe(
+      (response) => {
+        // Assuming the API response is an array of book objects
+        this.bookData = response.map((book: any) => ({
+          id: book.id,
+          title: book.title,
+          description: book.description,
+          pdf: book.pdf,
+          picurl: book.picurl,
+          created_at: book.created_at,
+          imgUrl: `${this.imageUrl}/${book.picurl}`, // Construct image URL
+        }));
+        this.compressImages(); // Compress images after fetching data
+        // console.log(this.bookData);
+      },
+      (error) => {
+        console.error('Error fetching books:', error);
+      },
+    );
+  }
+
   getTimeAgo(dateString: string): string {
     return formatDistanceToNow(new Date(dateString), {
       addSuffix: true,
       locale: mn,
     });
   }
+
   getFormattedDate(dateString: string): string {
     return format(new Date(dateString), 'yyyy-MM-dd');
   }
 
-  openPdf(pdfUrl: string) {
-    window.open(pdfUrl, '_blank'); // Open PDF in a new tab
-  }
-  ngOnInit(): void {
-    this.compressImages();
+  openPdf(pdfUrl: string): void {
+    window.open(pdfUrl, '_blank');
   }
 
-  async compressImages() {
-    const maxWidth = 800; // Define your max width
-    const maxHeight = 600; // Define your max height
+  async compressImages(): Promise<void> {
+    const maxWidth = 800;
+    const maxHeight = 600;
 
     for (const image of this.bookData) {
       try {
@@ -139,8 +115,7 @@ export class NewBookComponent {
         image.compressedUrl = compressedUrl;
       } catch (error) {
         console.error(`Error compressing image ${image.imgUrl}:`, error);
-        // Optionally, you can set a fallback or keep the original URL
-        image.compressedUrl = image.imgUrl; // Keep original in case of error
+        image.compressedUrl = image.imgUrl; // Fallback to original URL
       }
     }
   }
@@ -168,7 +143,7 @@ export class NewBookComponent {
         canvas.height = img.height * ratio;
 
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        const compressedUrl = canvas.toDataURL('image/jpeg', 0.8); // JPEG with 80% quality
+        const compressedUrl = canvas.toDataURL('image/jpeg', 0.8);
         resolve(compressedUrl);
       };
 
@@ -176,5 +151,9 @@ export class NewBookComponent {
         reject(new Error('Failed to load image'));
       };
     });
+  }
+
+  trackById(index: number, book: any): string {
+    return book.id;
   }
 }

@@ -1,83 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { PartnersService } from '../../service/partners.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-partners',
   templateUrl: './partners.component.html',
-  styleUrl: './partners.component.css',
+  styleUrls: ['./partners.component.css'], // Fixed 'styleUrl' typo
 })
-export class PartnersComponent {
-  partners = [
-    {
-      titles: 'Боловсролын яам',
-      description: '',
-      imgurl:
-        'https://cdn.greensoft.mn/uploads/site/1040/site_config/logo/fc04b968cd68ab6ad9fba961ca419b75bfe925ff.jpg',
-      url: 'https://moe.gov.mn/',
-    },
-    {
-      titles: 'Засаг Даргын Тамгын газар',
-      description: '',
-      imgurl:
-        'https://zdtg.ulaanbaatar.mn/_next/image?url=%2F_next%2Fstatic%2Fimage%2Fpublic%2Fhome%2FLogoT.24e84c277900474a2278e13060a70705.png&w=96&q=75',
-      url: 'https://zdtg.ulaanbaatar.mn/',
-    },
-    {
-      titles: 'Боловсролын яам',
-      description: '',
-      imgurl:
-        'https://cdn.greensoft.mn/uploads/site/1040/site_config/logo/fc04b968cd68ab6ad9fba961ca419b75bfe925ff.jpg',
-      url: 'https://www.mongolbank.mn/ ',
-    },
-    {
-      titles: 'Боловсролын яам',
-      description: '',
-      imgurl:
-        'https://mas.ac.mn/public/uploads/c1146401-0ade-41e1-abd0-df12a3cd3da5/f91f0142-104e-46be-ade6-64adc52cbedd.jpg',
-      url: 'https://mas.ac.mn/',
-    },
-    {
-      titles: 'Боловсролын яам',
-      description: '',
-      imgurl: 'https://www.unesco.mn/templates/images/logo.png',
-      url: 'https://www.unesco.mn/',
-    },
-    {
-      titles: 'Боловсролын яам',
-      description: '',
-      imgurl:
-        'https://cdn.greensoft.mn/uploads/site/1040/site_config/logo/fc04b968cd68ab6ad9fba961ca419b75bfe925ff.jpg',
-      url: 'https://moe.gov.mn/',
-    },
-    {
-      titles: 'Боловсролын яам',
-      description: '',
-      imgurl:
-        'https://cdn.greensoft.mn/uploads/site/1040/site_config/logo/fc04b968cd68ab6ad9fba961ca419b75bfe925ff.jpg',
-      url: 'https://moe.gov.mn/',
-    },
-    {
-      titles: 'Боловсролын яам',
-      description: '',
-      imgurl:
-        'https://cdn.greensoft.mn/uploads/site/1040/site_config/logo/fc04b968cd68ab6ad9fba961ca419b75bfe925ff.jpg',
-      url: 'https://moe.gov.mn/',
-    },
-    {
-      titles: 'Боловсролын яам',
-      description: '',
-      imgurl:
-        'https://cdn.greensoft.mn/uploads/site/1040/site_config/logo/fc04b968cd68ab6ad9fba961ca419b75bfe925ff.jpg',
-      url: 'https://moe.gov.mn/',
-    },
-    {
-      titles: 'Боловсролын яам',
-      description: '',
-      imgurl:
-        'https://cdn.greensoft.mn/uploads/site/1040/site_config/logo/fc04b968cd68ab6ad9fba961ca419b75bfe925ff.jpg',
-      url: 'https://moe.gov.mn/',
-    },
-  ];
+export class PartnersComponent implements OnInit {
+  partners: Array<{
+    picurl: any;
+    url: string;
+  }> = [];
+  imageUrl = environment.imgUrl;
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -98,4 +35,23 @@ export class PartnersComponent {
     autoplayHoverPause: true,
     autoplaySpeed: 1000,
   };
+
+  constructor(private partnerService: PartnersService) {}
+
+  ngOnInit() {
+    // Call the method to fetch data when the component is initialized
+    this.fetchPartnerData();
+  }
+
+  fetchPartnerData() {
+    this.partnerService.partnerlist().subscribe({
+      next: (data: any) => {
+        console.log('Fetched Slider Data:', data); // Check data in the console
+        this.partners = data;
+      },
+      error: (err: any) => {
+        console.error('Error fetching slider data:', err);
+      },
+    });
+  }
 }

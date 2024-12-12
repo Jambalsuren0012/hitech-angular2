@@ -22,6 +22,7 @@ interface NewsItem {
   styleUrls: ['./home-news.component.css'],
 })
 export class HomeNewsComponent implements OnInit {
+  imageUrl = environment.imgUrl;
   newsid: string | null = null;
   newsDetails: any = null;
   newsCards: NewsItem[] = []; // Specify the type of the array

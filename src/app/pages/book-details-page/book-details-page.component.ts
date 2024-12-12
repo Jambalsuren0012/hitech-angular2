@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { format } from 'date-fns';
 import { MenuService } from '../../service/menu.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-book-details-page',
@@ -11,16 +12,7 @@ import { MenuService } from '../../service/menu.service';
   styleUrls: ['./book-details-page.component.css'],
 })
 export class BookDetailsPageComponent implements OnInit {
-  categories = [
-    { id: '1', name: 'Fiction' },
-    { id: '2', name: 'Non-Fiction' },
-    { id: '3', name: 'Science' },
-    { id: '4', name: 'History' },
-    { id: '5', name: 'Biography' },
-    { id: '6', name: 'Children' },
-    { id: '7', name: 'Fantasy' },
-    { id: '8', name: 'Mystery' },
-  ];
+  imgurl = environment.imgUrl;
   selectedMenu: number | null = null;
 
   // Method to toggle the visibility of subtitles
@@ -38,7 +30,6 @@ export class BookDetailsPageComponent implements OnInit {
     this.menuService.menulist().subscribe({
       next: (data) => {
         this.menuItems = data;
-        console.log(this.menuItems);
       },
       error: (err) => console.log(err),
     });
@@ -61,7 +52,7 @@ export class BookDetailsPageComponent implements OnInit {
       if (bookid) {
         // Fetch book details by id
         const details = this.bookdetailsService.getBookDetails(bookid);
-        this.bookdetailslist = details.length > 0 ? details[0] : null;
+        this.bookdetailslist;
       }
       this.loadmenu();
     });

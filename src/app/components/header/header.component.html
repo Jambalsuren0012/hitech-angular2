@@ -55,7 +55,7 @@
     <!-- Second Row: Navigation, Search Input, and Mobile Menu Icon -->
     <div class="bg-[#1A3675] w-full">
       <nav
-        class="max-w-screen-2xl mx-auto flex gap-8 px-5 bg-[#1A3675] py-4 items-center"
+        class="max-w-screen-2xl flex xl:block mx-auto gap-8 px-5 bg-[#1A3675] py-4 items-center"
       >
         <!-- Desktop Menu -->
         <ul class="hidden xl:flex justify-between space-x-8">
@@ -64,7 +64,7 @@
             class="dropdown relative px-4 cursor-pointer capitalize tracking-wide group"
           >
             <a class="flex items-center text-[#FFFFF0] text-lg font-light">
-              {{ item.menuname | translate }}
+              {{ item.menuname }}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -96,7 +96,7 @@
                     "
                     class="block uppercase text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
                   >
-                    {{ sub.menuname | translate }}</a
+                    {{ sub.menuname }}</a
                   >
                 </li>
               </ul>

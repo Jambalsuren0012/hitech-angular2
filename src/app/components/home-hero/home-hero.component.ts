@@ -1,4 +1,6 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SilderService } from '../../service/silder.service'; // Import the service
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home-hero',
@@ -6,12 +8,12 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
   styleUrls: ['./home-hero.component.css'],
 })
 export class HomeHeroComponent implements OnInit {
-  img: Array<{ url: string; compressedUrl?: string }> = [
-    { url: '/assets/img/home-slid/2.jpg' },
-    { url: '/assets/img/home-slid/3.jpg' },
-    { url: '/assets/img/home-slid/3.png' },
-  ];
-  isLoading: boolean = true;
+  img: Array<{
+    picurl: any;
+    url: string;
+    compressedUrl?: string;
+  }> = [];
+  imageUrl = environment.imgUrl;
 
   customOptions = {
     loop: true,
@@ -34,24 +36,20 @@ export class HomeHeroComponent implements OnInit {
     },
   };
 
-  ngOnInit(): void {
-    this.checkImagesLoaded();
-  }
+  constructor(private sliderService: SilderService) {}
 
-  checkImagesLoaded() {
-    // Check if the window object is available (indicating that the code is running in the browser)
-    if (typeof window !== 'undefined') {
-      let loadedImages = 0;
-      this.img.forEach((image) => {
-        const img = new Image();
-        img.src = image.url;
-        img.onload = () => {
-          loadedImages++;
-          if (loadedImages === this.img.length) {
-            this.isLoading = false;
-          }
-        };
-      });
-    }
+  ngOnInit(): void {
+    this.fetchSliderData();
+  }
+  fetchSliderData() {
+    this.sliderService.sliderlist().subscribe({
+      next: (data) => {
+        console.log('Fetched Slider Data:', data); // Debugging point
+        this.img = data; // Assign the data to `img`
+      },
+      error: (err) => {
+        console.error('Error fetching slider data:', err);
+      },
+    });
   }
 }

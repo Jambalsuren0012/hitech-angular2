@@ -611,11 +611,11 @@ export class MenuService {
   apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
-  menulist(): Observable<any> {
+  menulist(lang: any = 'mn'): Observable<any> {
     // If using local data:
-    return of(this.menuItem);
+    // return of(this.menuItem);
 
     // OR if fetching from API:
-    // return this.http.get(this.apiUrl + 'news');
+    return this.http.get(`${this.apiUrl}/menu/${lang}`);
   }
 }

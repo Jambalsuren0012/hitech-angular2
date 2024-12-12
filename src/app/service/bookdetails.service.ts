@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-
+import { environment } from '../environments/environment.development';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -73,10 +75,12 @@ export class BookdetailsService {
     },
   ];
 
-  constructor() {}
+  apiUrl = environment.apiUrl;
+  constructor(private http: HttpClient) {}
 
   // Returns a filtered array of books matching the given id
   getBookDetails(id: string) {
-    return this.bookData.filter((book) => book.id === id);
+    const payload = { lang: 'mn' };
+    return this.http.post(`${environment.apiUrl}/content/books`, payload);
   }
 }

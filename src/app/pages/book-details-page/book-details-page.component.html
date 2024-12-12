@@ -45,7 +45,7 @@
       <div *ngIf="bookdetailslist" class="flex flex-col md:flex-row gap-4">
         <div class="md:w-1/3">
           <img
-            [src]="bookdetailslist.imgUrl"
+            [src]="imgurl + bookdetailslist.picurl"
             alt="{{ bookdetailslist.title }}"
             class="rounded-lg shadow-md w-full object-cover"
           />
