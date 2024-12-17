@@ -3,12 +3,12 @@
 >
   <!-- Content Section with Cards and Pagination -->
   <div class="flex flex-col w-full md:w-3/4">
-    <h1 class="items-start text-2xl font-bold text-[#0A0078] mb-4">
-      Ном бүтээл
+    <h1 class="items-start text-2xl font-bold text-gray-800 mb-4">
+      Ном, Нийтлэл
     </h1>
     <!-- Cards Grid -->
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      <ng-container *ngFor="let item of paginatedItems">
+      <ng-container *ngFor="let item of items">
         <div
           class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg"
         >
@@ -16,7 +16,7 @@
             class="relative h-56 m-2.5 overflow-hidden text-white rounded-md group"
           >
             <img
-              [src]="item.imgUrl"
+              [src]="imageUrl + item.picurl"
               alt="card-image"
               class="object-cover w-full h-full transition-transform duration-300 ease-in-out transform group-hover:scale-110"
             />

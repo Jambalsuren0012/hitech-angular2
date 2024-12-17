@@ -1,35 +1,39 @@
-<div class="w-full bg-white lg:w-72 px-4 lg:px-0 order-first lg:order-last">
-  <h2 class="text-xl font-bold uppercase text-blue-800">их уншигдсан мэдээ</h2>
-  <ul>
-    <li *ngFor="let news of topReadNews; let i = index">
-      <div class="flex gap-4 mb-4 items-start">
-        <!-- Number with border bottom -->
-        <h1 class="text-2xl font-bold border-b-2 border-blue-700 pb-1">
-          {{ i + 1 }}
-        </h1>
-        <!-- News title -->
-        <a [routerLink]="['/news', news.id]" class="flex-1">
-          <h1
-            class="text-base font-medium line-clamp-2 text-[#252525] hover:text-[#D4AF37]"
-          >
-            {{ news.title }}
-          </h1>
-        </a>
-      </div>
-    </li>
-  </ul>
-  <div class="" *ngFor="let video of Videodata">
-    <h2 class="text-xl text-blue-800 font-bold uppercase mb-2">
-      Их үзэлттэй бичлэг
+<div class="w-full lg:w-96 px-4 lg:px-0 order-first lg:order-last bg-white">
+  <div class="p4 md:p-6">
+    <h2 class="text-xl font-bold mb-4 font-lora text-blue-800">
+      Их уншигдсан мэдээ
     </h2>
-    <div class="relative overflow-hidden" style="width: 100%; height: auto">
-      <youtube-player
-        [videoId]="getVideoId(video.url)"
-        [width]="300"
-        [height]="180"
-        class="w-full h-auto"
-      >
-      </youtube-player>
+    <ul>
+      <li *ngFor="let news of topReadNews; let i = index">
+        <div class="flex gap-4 mb-4 items-start">
+          <!-- Number with border bottom -->
+
+          <img class="w-20" [src]="imageUrl + news.picurl" alt="News Image" />
+          <!-- News title -->
+          <a [routerLink]="['/news', news.id]" class="flex-1">
+            <h1
+              class="text-base text-justify font-medium line-clamp-2 font-ptsans text-[#252525] hover:text-[#D4AF37]"
+            >
+              {{ news.title }}
+            </h1>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="" *ngIf="activeVideo">
+      <h2 class="text-xl text-blue-800 font-lora font-bold mb-2">
+        Сүүлд оруулсан видео
+      </h2>
+      <div class="relative overflow-hidden" style="width: 100%; height: auto">
+        <youtube-player
+          [videoId]="getVideoId(activeVideo.url)"
+          [width]="400"
+          [height]="200"
+          class="w-full h-auto"
+        >
+        </youtube-player>
+      </div>
     </div>
   </div>
 </div>

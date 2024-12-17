@@ -1,17 +1,17 @@
 <div class="max-w-screen-2xl mt-16 mx-auto px-4">
   <a [routerLink]="">
-    <h1 class="text-[#0A0078] text-2xl font-medium mb-4 hover:text-[#D4AF37]">
+    <h1 class="text-gray-800 text-2xl font-medium mb-4 hover:text-[#D4AF37]">
       Нэвтрүүлэг
     </h1>
   </a>
   <!-- Main video section -->
   <div class="grid grid-cols-1 mt-4 lg:grid-cols-3 gap-8">
     <!-- Large video on the left -->
-    <div class="col-span-1 lg:col-span-2 flex flex-col items-center">
+    <div class="col-span-1 lg:col-span-2 flex flex-col">
       <!-- Active Video Player -->
       <div
         #youTubePlayer
-        class="w-full bg-black rounded-lg overflow-hidden transition-all duration-300 ease-in-out"
+        class="w-full bg-black rounded-lg mt-6 overflow-hidden transition-all duration-300 ease-in-out"
         [style.width.px]="screenWidth"
         [style.height.px]="screenHeight"
       >
@@ -42,12 +42,12 @@
         <img
           [src]="imgUrl + video.thumbnailUrl"
           alt="{{ video.title }}"
-          class="w-60 h-32 object-cover rounded-lg transition-transform transform hover:scale-105"
+          class="w-40 h-24 object-cover rounded-lg transition-transform transform hover:scale-105"
         />
 
         <!-- Video title and created date on the right of the thumbnail -->
         <div class="flex flex-col">
-          <h2 class="text-base font-medium w-48">{{ video.title }}</h2>
+          <h2 class="text-base font-light w-48">{{ video.title }}</h2>
           <p class="text-gray-400 text-xs">{{ video.created_at }}</p>
         </div>
       </div>

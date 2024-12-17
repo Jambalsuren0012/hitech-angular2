@@ -1,134 +1,79 @@
-<div *ngIf="newsDetails" class="max-w-screen-xl mx-auto px-4 py-8">
-  <h1
-    class="text-Xl sm:text-2xl md:text-3xl font-medium text-center sm:text-left"
-  >
-    {{ newsDetails.title | translate }}
-  </h1>
-  <div class="flex justify-between border-t border-b py-2">
-    <h6>
-      <fa-icon [icon]="faClock"></fa-icon>
-      {{ getFormattedDate(newsDetails.created_at) }}
-    </h6>
-    <div class="flex gap-4">
-      <a
-        [href]="
-          'https://www.facebook.com/sharer/sharer.php?u=' + currentPageUrl
-        "
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          class="h-8 w-8"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1024px-2021_Facebook_icon.svg.png"
-          alt="Share on Facebook"
-        />
-      </a>
-      <a
-        [href]="'https://x.com/intent/tweet?url=' + +currentPageUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          class="h-8 w-8"
-          src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-black-icon.png"
-          alt="Share on X"
-        />
-      </a>
-    </div>
-  </div>
-  <div class="flex flex-col lg:flex-row gap-4 my-4 bg-white rounded-lg">
-    <div class="w-full lg:w-auto">
-      <img
-        class="w-full lg:w-full pr-2 object-cover"
-        [src]="newsDetails.picurl"
-        alt=""
-      />
-      <p
-        class="text-justify px-2 lg:px-0 mt-8 text-lg"
-        [innerHTML]="newsDetails?.info | translate"
-      ></p>
-    </div>
-    <app-sidebar></app-sidebar>
-  </div>
-
-  <div class="w-[100%] h-[40%] mx-auto my-6 pt-6 relative">
-    <!-- Left Navigation Button -->
-    <button
-      (click)="carousel.prev()"
-      class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-l"
+<div class="bg-gray-100">
+  <div *ngIf="newsDetails" class="max-w-screen-xl mx-auto px-4 py-8">
+    <div
+      class="flex justify-between border-t border-b border-gray-600 py-2 mb-4"
     >
-      <svg
-        fill="#ffffff"
-        height="200px"
-        width="200px"
-        version="1.1"
-        id="Layer_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 330.002 330.002"
-        xml:space="preserve"
-        transform="rotate(270)"
-        stroke="#ffffff"
-      >
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g
-          id="SVGRepo_tracerCarrier"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        ></g>
-        <g id="SVGRepo_iconCarrier">
-          <path
-            id="XMLID_105_"
-            d="M324.001,209.25L173.997,96.75c-5.334-4-12.667-4-18,0L6.001,209.25c-6.627,4.971-7.971,14.373-3,21 c2.947,3.93,7.451,6.001,12.012,6.001c3.131,0,6.29-0.978,8.988-3.001L164.998,127.5l141.003,105.75c6.629,4.972,16.03,3.627,21-3 C331.972,223.623,330.628,214.221,324.001,209.25z"
-          ></path>
-        </g>
-      </svg>
-    </button>
+      <h6>
+        <fa-icon [icon]="faClock"></fa-icon>
+        {{ getFormattedDate(newsDetails.created_at) }}
+      </h6>
+      <div class="flex gap-4">
+        <a
+          [href]="
+            'https://www.facebook.com/sharer/sharer.php?u=' + currentPageUrl
+          "
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            class="h-8 w-8"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1024px-2021_Facebook_icon.svg.png"
+            alt="Share on Facebook"
+          />
+        </a>
+        <a
+          [href]="'https://x.com/intent/tweet?url=' + currentPageUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            class="h-8 w-8"
+            src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-black-icon.png"
+            alt="Share on X"
+          />
+        </a>
+      </div>
+    </div>
+    <div class="bg-white rounded shadow-md">
+      <div class="p-4 md:p-6">
+        <h1
+          class="text-xl sm:text-2xl md:text-3xl text-justify font-medium font-lora sm:text-left mb-4"
+        >
+          {{ newsDetails.title | translate }}
+        </h1>
+      </div>
+    </div>
+    <!-- Title Section -->
 
-    <owl-carousel-o [options]="customOptions" #carousel>
-      <ng-container *ngFor="let image of images">
-        <ng-template carouselSlide>
-          <div class="news-card">
-            <img [src]="image.picurl" alt="Image" class="news-card__image" />
-            <p *ngIf="!image.picurl">Image URL not found!</p>
-            <!-- Fixed the condition to check image.picurl -->
+    <!-- Date and Share Section -->
+
+    <!-- News Content and Sidebar Section -->
+    <div class="flex flex-col lg:flex-row gap-4 my-4">
+      <div>
+        <!-- Image Section Above News Content -->
+        <div class="bg-white rounded shadow-md w-full mb-4">
+          <div class="p-4 md:p-6">
+            <img
+              class="w-full object-cover"
+              [src]="imageUrl + newsDetails.picurl"
+              alt="News Image"
+            />
           </div>
-        </ng-template>
-      </ng-container>
-    </owl-carousel-o>
-
-    <!-- Right Navigation Button -->
-    <button
-      (click)="carousel.next()"
-      class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-r"
-    >
-      <svg
-        fill="#ffffff"
-        height="200px"
-        width="200px"
-        version="1.1"
-        id="Layer_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 330.002 330.002"
-        xml:space="preserve"
-        transform="rotate(90)"
-        stroke="#ffffff"
-      >
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g
-          id="SVGRepo_tracerCarrier"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        ></g>
-        <g id="SVGRepo_iconCarrier">
-          <path
-            id="XMLID_105_"
-            d="M324.001,209.25L173.997,96.75c-5.334-4-12.667-4-18,0L6.001,209.25c-6.627,4.971-7.971,14.373-3,21 c2.947,3.93,7.451,6.001,12.012,6.001c3.131,0,6.29-0.978,8.988-3.001L164.998,127.5l141.003,105.75c6.629,4.972,16.03,3.627,21-3 C331.972,223.623,330.628,214.221,324.001,209.25z"
-          ></path>
-        </g>
-      </svg>
-      <!-- Right arrow -->
-    </button>
+        </div>
+        <!-- News Content -->
+        <div class="w-full mb-4 lg:mb-0">
+          <div class="bg-white rounded shadow-md">
+            <div class="p-4 md:p-6">
+              <p
+                class="text-justify px-2 font-ptsans lg:px-0 md:p-4 text-lg news-content"
+                [innerHTML]="newsDetails?.info | translate"
+              ></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sidebar Section -->
+      <app-sidebar></app-sidebar>
+    </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="new-book-carousel relative my-4 mx-auto max-w-full overflow-hidden">
   <a routerLink="/books">
-    <h1 class="text-2xl font-bold my-4 text-[#0A0078]">Ном, Бүтээл →</h1></a
+    <h1 class="text-2xl font-bold my-4 text-gray-800">Ном, Бүтээл →</h1></a
   >
   <!-- Left button -->
   <div
@@ -37,30 +37,31 @@
   <owl-carousel-o #carousel [options]="customOptions" class="w-full">
     <ng-container *ngFor="let book of bookData; trackBy: trackById">
       <ng-template carouselSlide>
-        <div class="book-item px-4 relative group">
+        <div class="book-item px-4 flex relative group">
           <a [routerLink]="['book/category', book.id]" class="relative block">
             <div
-              class="w-full h-64 overflow-hidden relative flex items-center justify-center"
+              class="w-48 h-64 overflow-hidden relative flex items-center justify-center"
             >
               <img
-                class="w-full h-full object-cover group-hover:blur-sm transition duration-300"
+                class="w-full h-full object-cover"
                 [src]="book.compressedUrl || imageUrl + book.picurl"
                 alt="{{ book.title }}"
                 loading="lazy"
               />
             </div>
+
             <button
               class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition duration-300"
             >
               Дэлгэрэнгүй
             </button>
           </a>
-          <div class="mt-4">
-            <h3 class="text-blue-800 text-xl">
+          <div class="text-left px-4">
+            <h3 class="text-blue-800 text-base">
               {{ book.title }}
             </h3>
 
-            <h5 class="text-slate-600 leading-normal font-light">
+            <h5 class="text-slate-600 font-light">
               {{ book.description | slice: 0 : 80 }}
             </h5>
             <button

@@ -1,86 +1,58 @@
 import { Component } from '@angular/core';
-
+import { environment } from '../../environments/environment';
+import { NewsService } from '../../service/news.service';
 @Component({
   selector: 'app-news-page',
   templateUrl: './news-page.component.html',
   styleUrl: './news-page.component.css',
 })
 export class NewsPageComponent {
-  newsCardsData: Array<{
-    id: string; // Change to string (or number if preferred)
-    title: string;
-    postDate: string;
-    description: string;
-    link: string; // Change from any to string
-    bookcategoryid: string;
-    imgUrl: string; // Make sure this has a type (string or another type if needed)
-    compressedUrl?: string; // Optional
-  }> = [
-    {
-      id: '1',
-      title: 'Amazing First Title',
-      postDate: 'Jan 29, 2018',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia iure architecto deserunt distinctio, pariatur…',
-      imgUrl:
-        'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
-    },
-    {
-      id: '2',
-      title: 'Amazing Second Title that is Quite Long',
-      postDate: 'Jan 29, 2018',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam obcaecati ex natus nulla rem sequi laborum quod fugit…',
-      imgUrl:
-        'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
-    },
-    {
-      id: '3',
-      title: 'Amazing Title',
-      postDate: 'Jan 29, 2018',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
-      imgUrl:
-        'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
-    },
-    {
-      id: '4',
-      title: 'Amazing Forth Title that is Quite Long',
-      postDate: 'Jan 29, 2018',
-      description:
-        'Lorem ipsum dolor sit amet! orem ipsum dolor sit amet consectetur adipisicing elit. Officiis beatae…',
-      imgUrl:
-        'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
-    },
-    {
-      id: '5',
-      title: 'Amazing Fifth Title',
-      postDate: 'Jan 29, 2018',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia iure architecto deserunt distinctio…',
-      imgUrl:
-        'https://images.pexels.com/photos/206660/pexels-photo-206660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
-    },
-    {
-      id: '6',
-      title: 'Amazing 6th Title',
-      postDate: 'Jan 29, 2018',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur nemo tempore repellat? Ullam sed officia.',
-      imgUrl:
-        'https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      link: '#',
-      bookcategoryid: '',
-    },
-  ];
+  bookItems: Array<any> = [];
+  itemsPerPage = 15;
+  currentPage = 1;
+  imageUrl = environment.imgUrl;
+
+  constructor(private newsService: NewsService) {}
+
+  get paginatedItems() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.bookItems.slice(startIndex, endIndex);
+  }
+
+  get totalPages() {
+    return Math.ceil(this.bookItems.length / this.itemsPerPage);
+  }
+
+  changePage(page: number) {
+    this.currentPage = page;
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  fetchAllNews() {
+    this.newsService.getAllNews().subscribe(
+      (data: any) => {
+        this.bookItems = data;
+        console.log(this.bookItems);
+      },
+      (error) => {
+        console.error('Error fetching books:', error);
+      },
+    );
+  }
+
+  ngOnInit() {
+    this.fetchAllNews();
+  }
 }

@@ -9,11 +9,12 @@ import { ListPageComponent } from './pages/list-page/list-page.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { DefaultPageComponent } from './pages/default-page/default-page.component';
 import { MenuListPageComponent } from './pages/menu-list-page/menu-list-page.component';
-import { BooksPageComponent } from './pages/books-page/books-page.component';
 import { MapPageComponent } from './pages/map-page/map-page.component';
 import { MenuAboutPageComponent } from './pages/menu-about-page/menu-about-page.component';
 import { ResponsiveHtmlPipe } from './responsive-html.pipe';
 import { MembersComponent } from './components/members/members.component';
+import { AllBooksComponent } from './all-books/all-books.component';
+import { NewsPageComponent } from './pages/news-page/news-page.component';
 const routes: Routes = [
   { path: 'map/:id', component: TargetpageComponent },
   { path: '', component: HomePageComponent },
@@ -25,10 +26,9 @@ const routes: Routes = [
   { path: 'map', component: MapPageComponent },
   { path: 'book/category/:bookid', component: BookDetailsPageComponent },
   { path: 'news/category/:newsid', component: BookDetailsPageComponent },
-  { path: 'news', component: ListPageComponent },
-  { path: 'books', component: BooksPageComponent },
+  { path: 'news', component: NewsPageComponent },
   { path: 'timeline', component: TimelineComponent },
-
+  { path: 'books', component: AllBooksComponent },
   { path: '', redirectTo: '/map2', pathMatch: 'full' },
 ];
 

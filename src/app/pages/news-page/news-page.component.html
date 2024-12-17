@@ -1,32 +1,95 @@
-<div>
-  <div>
-    <div
-      class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96"
-    >
-      <div class="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-        <img
-          src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
-          alt="card-image"
-        />
-      </div>
-      <div class="p-4">
-        <h6 class="mb-2 text-slate-800 text-xl font-semibold">
-          Website Review Check
-        </h6>
-        <p class="text-slate-600 leading-normal font-light">
-          The place is close to Barceloneta Beach and bus stop just 2 min by
-          walk and near to &quot;Naviglio&quot; where you can enjoy the main
-          night life in Barcelona.
-        </p>
-      </div>
-      <div class="px-4 pb-4 pt-0 mt-2">
-        <button
-          class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-          type="button"
+<div
+  class="flex flex-col md:flex-row relative pt-10 justify-between gap-4 max-w-screen-xl mx-auto"
+>
+  <!-- Content Section with Cards and Pagination -->
+  <div class="flex flex-col w-full md:w-3/4">
+    <h1 class="items-start text-2xl font-bold text-gray-800 mb-4">
+      Мэдээ Мэдээлэл
+    </h1>
+    <!-- Cards Grid -->
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <ng-container *ngFor="let item of bookItems">
+        <div
+          class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg"
         >
-          Read more
+          <div
+            class="relative h-56 m-2.5 overflow-hidden text-white rounded-md group"
+          >
+            <img
+              [src]="imageUrl + item.picurl"
+              alt="card-image"
+              class="object-cover w-full h-full transition-transform duration-300 ease-in-out transform group-hover:scale-110"
+            />
+          </div>
+
+          <div class="p-4">
+            <h6 class="mb-2 text-slate-800 text-xl font-semibold line-clamp-3">
+              {{ item.title }}
+            </h6>
+            <p class="text-slate-600 leading-normal line-clamp-3 font-light">
+              {{ item.description }}
+            </p>
+            <a
+              [routerLink]="['/news', item.id]"
+              class="inline-flex items-center mt-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[#1A3675] dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Дэлгэрэнгүй
+              <svg
+                class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 5h12m0 0L9 1m4 4L9 9"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="flex justify-center my-4 space-x-2">
+      <button
+        (click)="previousPage()"
+        [disabled]="currentPage === 1"
+        class="px-3 py-2 text-blue-600 border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none"
+      >
+        «
+      </button>
+
+      <ng-container
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+      >
+        <button
+          *ngIf="i + 5 > currentPage && i < currentPage + 5"
+          (click)="changePage(i + 1)"
+          [class.bg-[#1A3675]]="currentPage === i + 1"
+          [class.text-gray-100]="currentPage === i + 1"
+          [class.hover:bg-gray-200]="currentPage !== i + 1"
+          class="px-3 py-2 text-blue-600 border border-gray-300 rounded-md focus:outline-none"
+        >
+          {{ i + 1 }}
         </button>
-      </div>
+      </ng-container>
+
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+        class="px-3 py-2 text-blue-600 border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none"
+      >
+        »
+      </button>
     </div>
   </div>
+
+  <!-- Sidebar Section -->
+  <app-sidebar class="w-full md:w-1/4 md:sticky md:top-0"></app-sidebar>
 </div>

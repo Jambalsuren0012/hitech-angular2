@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { NewsService } from '../../service/news.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -11,21 +17,19 @@ import { format } from 'date-fns';
   templateUrl: './news-details-page.component.html',
   styleUrls: ['./news-details-page.component.css'],
 })
-export class NewsDetailsPageComponent implements OnInit {
+export class NewsDetailsPageComponent implements OnInit, AfterViewInit {
   newsDetails: any = null;
-  imgUrl = environment.imgUrl;
+  imageUrl = environment.imgUrl;
   images: any = null;
   faClock = faClock;
   currentPageUrl: string = encodeURIComponent(window.location.href);
-  selectedImage: string | null = null;
 
   constructor(
     private newsService: NewsService,
     private route: ActivatedRoute,
+    private el: ElementRef,
+    private renderer: Renderer2,
   ) {}
-  getFormattedDate(dateString: string): string {
-    return format(new Date(dateString), 'yyyy-MM-dd');
-  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -36,22 +40,31 @@ export class NewsDetailsPageComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    this.styleInnerImages();
+  }
+
   fetchNewsDetails(newsid: string): void {
     this.newsService.getAllNews().subscribe(
       (data) => {
         this.newsDetails = data.find((item: any) => item.id === newsid) || null;
-
-        // Extract images from newsDetails
-        if (this.newsDetails && this.newsDetails.images) {
-          this.images = this.newsDetails.images;
-        } else {
-          this.images = []; // Set to an empty array if no images found
-        }
       },
       (error) => {
         console.error('Error fetching news details:', error);
       },
     );
+  }
+
+  styleInnerImages(): void {
+    const images = this.el.nativeElement.querySelectorAll('.news-content img');
+    images.forEach((img: HTMLElement) => {
+      this.renderer.setStyle(img, 'margin-top', '20px');
+      this.renderer.setStyle(img, 'display', 'block');
+    });
+  }
+
+  getFormattedDate(dateString: string): string {
+    return format(new Date(dateString), 'yyyy-MM-dd');
   }
 
   customOptions: OwlOptions = {
@@ -61,12 +74,11 @@ export class NewsDetailsPageComponent implements OnInit {
     pullDrag: true,
     dots: true,
     navSpeed: 700,
-
     responsive: {
-      0: { items: 1 }, // 1 item for mobile devices
-      600: { items: 1 }, // 2 items for screens wider than 600px
-      1000: { items: 1 }, // 3 items for screens wider than 1000px
-      1200: { items: 1 }, // 4 items for screens wider than 1200px
+      0: { items: 1 },
+      600: { items: 1 },
+      1000: { items: 1 },
+      1200: { items: 1 },
     },
   };
 }

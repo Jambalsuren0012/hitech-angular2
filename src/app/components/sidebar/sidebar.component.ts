@@ -5,14 +5,14 @@ import { ActivatedRoute } from '@angular/router';
 import { formatDistanceToNow } from 'date-fns';
 import { mn } from 'date-fns/locale';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { VideoService } from '../../service/video.service';
 interface NewsItem {
   id: string;
   created_at: string | number | Date;
   readcount: number;
-  picurl: string;
+  picurl: string; // Ensure this is the correct type
   title: string;
   description: string;
-  // Add any other fields your news data may contain
 }
 @Component({
   selector: 'app-sidebar',
@@ -23,14 +23,15 @@ export class SidebarComponent implements OnInit {
   newsid: string | null = null;
   newsDetails: any = null;
   newsCards: NewsItem[] = []; // Specify the type of the array
-  imgUrl = environment.imgUrl;
+  imageUrl = environment.imgUrl;
   faClock = faClock;
   recentNews: NewsItem[] = [];
   topReadNews: NewsItem[] = [];
   lastNews: NewsItem[] = [];
   isModalOpen = false;
   selectedVideoUrl: string | null = null;
-
+  videoData: any[] = [];
+  activeVideo: any;
   openModal(videoUrl: string | null): void {
     if (videoUrl) {
       this.selectedVideoUrl = videoUrl;
@@ -45,6 +46,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.fetchNews();
+    this.fetchVideoData();
   }
 
   fetchNews(): void {
@@ -74,6 +76,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     private newsDetailsService: NewsService,
     private route: ActivatedRoute,
+    private videoService: VideoService,
   ) {}
   trackById(index: number, news: NewsItem): string {
     // Specify type for 'news'
@@ -86,14 +89,6 @@ export class SidebarComponent implements OnInit {
       locale: mn,
     });
   }
-  Videodata = [
-    {
-      url: 'https://youtu.be/asgAqJTvNuQ',
-      title: 'My Custom Video Title',
-      date: 'Nov 25, 2024',
-      thumbnailUrl: '',
-    },
-  ];
 
   // Method to extract video ID from URL
   getVideoId(url: string | null): string {
@@ -102,5 +97,25 @@ export class SidebarComponent implements OnInit {
     }
     const videoIdMatch = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
     return videoIdMatch ? videoIdMatch[1] : '';
+  }
+  fetchVideoData() {
+    this.videoService.getAllVideo().subscribe(
+      (data: any[]) => {
+        // Sort by created_at (most recent first)
+        this.videoData = data.sort((a: any, b: any) => {
+          return (
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          );
+        });
+
+        // Set the most recent video as the active video (first in the sorted array)
+        this.activeVideo = this.videoData[0]; // Only the most recent video
+
+        console.log(this.videoData); // Log to verify the sorting
+      },
+      (error) => {
+        console.error('Error fetching video data:', error);
+      },
+    );
   }
 }

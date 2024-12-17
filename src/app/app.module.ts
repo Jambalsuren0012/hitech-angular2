@@ -21,7 +21,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TargetpageComponent } from './pages/targetpage/targetpage.component';
 import { BookDetailsPageComponent } from './pages/book-details-page/book-details-page.component';
 import { NewsDetailsPageComponent } from './pages/news-details-page/news-details-page.component';
-import { BooksPageComponent } from './pages/books-page/books-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { PrimaryPageComponent } from './pages/primary-page/primary-page.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -43,6 +42,8 @@ import { MapPageComponent } from './pages/map-page/map-page.component';
 import { MenuAboutPageComponent } from './pages/menu-about-page/menu-about-page.component';
 import { MembersComponent } from './components/members/members.component';
 import { ResponsiveHtmlPipe } from './responsive-html.pipe';
+import { AllBooksComponent } from './all-books/all-books.component';
+import { NewsPageComponent } from './pages/news-page/news-page.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -65,7 +66,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomePageComponent,
     BookDetailsPageComponent,
     NewsDetailsPageComponent,
-    BooksPageComponent,
     ListPageComponent,
     PrimaryPageComponent,
     SpinnerComponent,
@@ -80,6 +80,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MenuAboutPageComponent,
     MembersComponent,
     ResponsiveHtmlPipe,
+    AllBooksComponent,
+    NewsPageComponent,
   ],
   imports: [
     BrowserModule,

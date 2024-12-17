@@ -1,7 +1,7 @@
 <div class="w-full mx-auto mt-16">
   <!-- Sidebar Section -->
   <a routerLink="/news">
-    <h1 class="text-2xl text-blue-800 hover:text-[#D4AF37]">
+    <h1 class="text-2xl text-gray-800 hover:text-[#D4AF37]">
       {{ "NEWS_INFORMATION" | translate }} >
     </h1>
   </a>
@@ -66,47 +66,6 @@
     </div>
 
     <!-- Sidebar content on the right for large screens (Top 5 readcount news) -->
-    <div class="lg:w-1/4 p-4 order-first lg:order-last">
-      <h2 class="text-xl text-blue-800 uppercase mb-2 font-semibold">
-        Их уншилттай мэдээ
-      </h2>
-      <ul class="mb-8">
-        <li *ngFor="let news of topReadNews; let i = index">
-          <div class="flex gap-4 mb-4">
-            <!-- Number with border -->
-            <div class="relative">
-              <span class="text-2xl border-b-2 border-blue-700">{{
-                i + 1
-              }}</span>
-            </div>
-            <!-- News Title -->
-            <a [routerLink]="['/news', news.id]">
-              <h1
-                class="text-base font-medium line-clamp-2 text-[#252525] hover:text-[#D4AF37]"
-              >
-                {{ news.title }}
-              </h1>
-            </a>
-          </div>
-          <!-- <p class="text-[#D4AF37] text-lg pl-7">
-            {{ news.created_at | date: "yyyy-MM-dd" }}
-          </p> -->
-        </li>
-      </ul>
-
-      <div class="rounded-lg" *ngFor="let video of Videodata">
-        <h2 class="text-xl text-blue-800 uppercase mb-2 font-semibold">
-          Их үзэлттэй бичлэг
-        </h2>
-
-        <youtube-player
-          class=""
-          [videoId]="getVideoId(video.url)"
-          width="380"
-          height="190"
-        >
-        </youtube-player>
-      </div>
-    </div>
+    <app-sidebar></app-sidebar>
   </div>
 </div>

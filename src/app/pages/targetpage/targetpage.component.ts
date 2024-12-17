@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsService } from '../../service/news.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { format } from 'date-fns';
 import { CoordinatesService } from '../../service/coordinates.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-targetpage',
@@ -12,7 +15,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class TargetpageComponent implements OnInit {
   mapid: string | null = null;
   coordinatDetails: any = null;
-  imgUrl = environment.imgUrl;
+  imageUrl = environment.imgUrl;
+  faClock = faClock;
+  currentPageUrl: string = encodeURIComponent(window.location.href);
   constructor(
     private coordinatesService: CoordinatesService,
     private route: ActivatedRoute,
@@ -28,7 +33,9 @@ export class TargetpageComponent implements OnInit {
       },
     );
   }
-
+  getFormattedDate(dateString: string): string {
+    return format(new Date(dateString), 'yyyy-MM-dd');
+  }
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.mapid = params.get('id'); // Match the route parameter key

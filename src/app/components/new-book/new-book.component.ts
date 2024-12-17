@@ -41,10 +41,10 @@ export class NewBookComponent implements OnInit {
     responsive: {
       0: { items: 2 },
       400: { items: 2 },
-      740: { items: 4 },
-      940: { items: 4 },
-      1160: { items: 6 },
-      1400: { items: 6 },
+      740: { items: 3 },
+      940: { items: 3 },
+      1160: { items: 4 },
+      1400: { items: 4 },
     },
   };
 

@@ -2,7 +2,16 @@
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Inter", "Arial", "sans-serif"],
+        lora: ["Lora", "serif"],
+        montserrat: ["Montserrat", "sans-serif"],
+        ptsans: ["PT Sans", "sans-serif"],
+        playfair: ["Playfair Display", "serif"],
+        titillium: ["Titillium Web", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };

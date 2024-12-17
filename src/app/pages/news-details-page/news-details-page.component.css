@@ -34,3 +34,8 @@ fa-icon {
   margin-right: 5px;
   color: gray;
 }
+
+.news-content img {
+  margin-top: 1rem; /* Adjust this value as needed */
+  display: block; /* Ensures images respect margin settings */
+}
