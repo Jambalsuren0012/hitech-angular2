@@ -1,44 +1,28 @@
 <div class="bg-gray-100">
   <div *ngIf="newsDetails" class="max-w-screen-xl mx-auto px-4 py-8">
-    <div
-      class="flex justify-between border-t border-b border-gray-600 py-2 mb-4"
-    >
+    <div class="flex justify-between border-t border-b border-gray-600 py-2 mb-4">
       <h6>
         <fa-icon [icon]="faClock"></fa-icon>
         {{ getFormattedDate(newsDetails.created_at) }}
       </h6>
       <div class="flex gap-4">
-        <a
-          [href]="
+        <a [href]="
             'https://www.facebook.com/sharer/sharer.php?u=' + currentPageUrl
-          "
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            class="h-8 w-8"
+          " target="_blank" rel="noopener noreferrer">
+          <img class="h-8 w-8"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1024px-2021_Facebook_icon.svg.png"
-            alt="Share on Facebook"
-          />
+            alt="Share on Facebook" />
         </a>
-        <a
-          [href]="'https://x.com/intent/tweet?url=' + currentPageUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            class="h-8 w-8"
+        <a [href]="'https://x.com/intent/tweet?url=' + currentPageUrl" target="_blank" rel="noopener noreferrer">
+          <img class="h-8 w-8"
             src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-black-icon.png"
-            alt="Share on X"
-          />
+            alt="Share on X" />
         </a>
       </div>
     </div>
     <div class="bg-white rounded shadow-md">
       <div class="p-4 md:p-6">
-        <h1
-          class="text-xl sm:text-2xl md:text-3xl text-justify font-medium font-lora sm:text-left mb-4"
-        >
+        <h1 class="text-xl sm:text-2xl md:text-3xl text-justify font-medium font-lora sm:text-left mb-4">
           {{ newsDetails.title | translate }}
         </h1>
       </div>
@@ -53,21 +37,15 @@
         <!-- Image Section Above News Content -->
         <div class="bg-white rounded shadow-md w-full mb-4">
           <div class="p-4 md:p-6">
-            <img
-              class="w-full object-cover"
-              [src]="imageUrl + newsDetails.picurl"
-              alt="News Image"
-            />
+            <img class="w-full object-cover" [src]="imageUrl + newsDetails.picurl" alt="News Image" />
           </div>
         </div>
         <!-- News Content -->
         <div class="w-full mb-4 lg:mb-0">
           <div class="bg-white rounded shadow-md">
             <div class="p-4 md:p-6">
-              <p
-                class="text-justify px-2 font-ptsans lg:px-0 md:p-4 text-lg news-content"
-                [innerHTML]="newsDetails?.info | translate"
-              ></p>
+              <p class="text-justify px-2 font-ptsans lg:px-0 md:p-4 text-lg news-content"
+                [innerHTML]="newsDetails?.info | translate"></p>
             </div>
           </div>
         </div>

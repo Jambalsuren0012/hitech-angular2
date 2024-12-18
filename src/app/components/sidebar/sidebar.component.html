@@ -10,10 +10,8 @@
 
           <img class="w-20" [src]="imageUrl + news.picurl" alt="News Image" />
           <!-- News title -->
-          <a [routerLink]="['/news', news.id]" class="flex-1">
-            <h1
-              class="text-base text-justify font-medium line-clamp-2 font-ptsans text-[#252525] hover:text-[#D4AF37]"
-            >
+          <a [routerLink]="['/news-details', news.id]" class="flex-1">
+            <h1 class="text-base text-justify font-medium line-clamp-2 font-ptsans text-[#252525] hover:text-[#D4AF37]">
               {{ news.title }}
             </h1>
           </a>
@@ -26,12 +24,7 @@
         Сүүлд оруулсан видео
       </h2>
       <div class="relative overflow-hidden" style="width: 100%; height: auto">
-        <youtube-player
-          [videoId]="getVideoId(activeVideo.url)"
-          [width]="320"
-          [height]="200"
-          class="w-full h-auto"
-        >
+        <youtube-player [videoId]="getVideoId(activeVideo.url)" [width]="320" [height]="200" class="w-full h-auto">
         </youtube-player>
       </div>
     </div>

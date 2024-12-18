@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../../service/books.service';
 import { environment } from '../../environments/environment';
 import { TranslateServiceService } from '../../service/translate-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
  selector: 'app-all-books',
@@ -14,10 +15,12 @@ export class AllBooksComponent implements OnInit {
  currentPage = 1;
  imageUrl = environment.imgUrl;
  lang = 'mn';
+ menuid: any;
 
  constructor(
   private booksService: BooksService,
-  private language: TranslateServiceService
+  private language: TranslateServiceService,
+  private route: ActivatedRoute
  ) {}
 
  get paginatedItems() {
@@ -47,7 +50,13 @@ export class AllBooksComponent implements OnInit {
  }
 
  fetchAllBook() {
-  this.booksService.getAllBook(this.lang).subscribe(
+  var data = null;
+  if (this.menuid) {
+   data = { lang: this.lang, menuid: this.menuid ?? null };
+  } else {
+   data = { lang: this.lang };
+  }
+  this.booksService.getAllBook(data).subscribe(
    (data: any) => {
     this.bookData = data;
    },
@@ -60,6 +69,13 @@ export class AllBooksComponent implements OnInit {
  ngOnInit() {
   this.language.loadLang.subscribe((lang: any) => {
    this.lang = lang;
+  });
+
+  this.route.paramMap.subscribe((params) => {
+   this.menuid = params.get('id'); // Get the `id` from the route
+   this.language.loadLang.subscribe((lang: any) => {
+    this.lang = lang;
+   });
    this.fetchAllBook();
   });
  }

@@ -63,7 +63,7 @@ export class NewBookComponent implements OnInit {
  }
 
  fetchBooks(): void {
-  this.booksService.getAllBook(this.lang).subscribe(
+  this.booksService.getAllBook({ lang: this.lang }).subscribe(
    (response) => {
     this.bookData = response.map((book: any) => ({
      id: book.id,

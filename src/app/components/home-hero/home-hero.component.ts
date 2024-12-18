@@ -44,7 +44,6 @@ export class HomeHeroComponent implements OnInit {
 
  ngOnInit(): void {
   this.fetchSliderData();
-  console.log(this.language.setLanguage());
  }
  fetchSliderData() {
   this.sliderService.sliderlist().subscribe({

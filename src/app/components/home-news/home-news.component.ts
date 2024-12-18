@@ -49,7 +49,7 @@ export class HomeNewsComponent implements OnInit {
  }
 
  fetchNews(): void {
-  this.newsDetailsService.getAllNews(this.lang).subscribe(
+  this.newsDetailsService.getAllNews({ lang: this.lang }).subscribe(
    (data: NewsItem[]) => {
     // Sort by created_at (latest first) and pick the most recent one
     this.newsCards = data.sort((a: NewsItem, b: NewsItem) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());

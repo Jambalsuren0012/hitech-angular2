@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { NewsService } from '../../service/news.service';
 import { TranslateServiceService } from '../../service/translate-service.service';
+import { Router } from 'express';
+import { ActivatedRoute } from '@angular/router';
 @Component({
  selector: 'app-news-page',
  templateUrl: './news-page.component.html',
@@ -13,15 +15,19 @@ export class NewsPageComponent implements OnInit {
  currentPage = 1;
  imageUrl = environment.imgUrl;
  lang = 'mn';
-
+ menuid: any;
  constructor(
   private newsService: NewsService,
-  private language: TranslateServiceService
+  private language: TranslateServiceService,
+  private route: ActivatedRoute
  ) {}
 
  ngOnInit() {
-  this.language.loadLang.subscribe((lang: any) => {
-   this.lang = lang;
+  this.route.paramMap.subscribe((params) => {
+   this.menuid = params.get('id'); // Get the `id` from the route
+   this.language.loadLang.subscribe((lang: any) => {
+    this.lang = lang;
+   });
    this.fetchAllNews();
   });
  }
@@ -53,10 +59,15 @@ export class NewsPageComponent implements OnInit {
  }
 
  fetchAllNews() {
-  this.newsService.getAllNews(this.lang).subscribe(
+  var data = null;
+  if (this.menuid) {
+   data = { lang: this.lang, menuid: this.menuid ?? null };
+  } else {
+   data = { lang: this.lang };
+  }
+  this.newsService.getAllNews(data).subscribe(
    (data: any) => {
     this.bookItems = data;
-    console.log(this.bookItems);
    },
    (error) => {
     console.error('Error fetching books:', error);

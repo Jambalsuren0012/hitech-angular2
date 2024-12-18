@@ -15,21 +15,26 @@ import { ResponsiveHtmlPipe } from './responsive-html.pipe';
 import { MembersComponent } from './components/members/members.component';
 import { AllBooksComponent } from './pages/all-books/all-books.component';
 import { NewsPageComponent } from './pages/news-page/news-page.component';
+import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
 const routes: Routes = [
  { path: 'map/:id', component: TargetpageComponent },
  { path: '', component: HomePageComponent },
  { path: 'home', component: HomePageComponent },
  { path: 'home:/:lang', component: HomePageComponent },
- { path: 'news/:id', component: NewsDetailsPageComponent },
+ { path: 'news-details/:id', component: NewsDetailsPageComponent },
  { path: 'list/:type/:id', component: MenuListPageComponent },
  { path: 'member', component: MembersComponent },
  { path: 'aboutus/:id', component: MenuAboutPageComponent },
  { path: 'type/2/:id', component: DefaultPageComponent },
  { path: 'map', component: MapPageComponent },
- { path: 'book/:id', component: BookDetailsPageComponent },
+ { path: 'book-details/:id', component: BookDetailsPageComponent },
+ { path: 'news/:id', component: NewsPageComponent },
+ { path: 'content/:id', component: NewsPageComponent },
  { path: 'news', component: NewsPageComponent },
  { path: 'timeline', component: TimelineComponent },
- { path: 'books', component: AllBooksComponent },
+ { path: 'book/:id', component: AllBooksComponent },
+ { path: 'book', component: AllBooksComponent },
+ { path: 'gallery', component: GalleryPageComponent },
  { path: '', redirectTo: '/map2', pathMatch: 'full' },
 ];
 @NgModule({

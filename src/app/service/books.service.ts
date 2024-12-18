@@ -14,9 +14,8 @@ export class BooksService {
 
  // Get all books with optional language filter
 
- getAllBook(lang = 'mn'): Observable<any> {
+ getAllBook(payload: any): Observable<any> {
   // If using local data:
-  const payload = { lang: lang };
   return this.http.post<any>(`${environment.apiUrl}/content`, payload).pipe(
    map((response) => {
     // Filter the response to only include books

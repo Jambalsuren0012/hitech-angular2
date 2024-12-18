@@ -13,9 +13,9 @@ export class NewsService {
  constructor(private http: HttpClient) {}
 
  // Get all news: either fetch from local data or from API
- getAllNews(lang = 'mn'): Observable<any> {
+ getAllNews(payload: any): Observable<any> {
   // If using local data:
-  const payload = { lang: lang };
+  //   const payload = { lang: lang };
   return this.http.post<any>(`${environment.apiUrl}/content`, payload).pipe(
    map((response) => {
     // Filter the response to only include books

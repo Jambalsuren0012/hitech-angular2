@@ -1,33 +1,15 @@
 <div class="carousel-background mx-auto flex flex-col justify-end relative">
   <h1 class="text-2xl font-bold text-gray-800 pt-2">Мэдээ мэдээлэл</h1>
   <!-- Left button -->
-  <div
-    class="absolute hidden lg:block left-0 top-1/2 transform -translate-y-1/2 z-10"
-  >
-    <button
-      (click)="carousel.prev()"
-      class="py-2 px-2 text-blue-600 hover:text-blue-800"
-      type="button"
-    >
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-8 h-8"
-      >
+  <div class="absolute hidden lg:block left-0 top-1/2 transform -translate-y-1/2 z-10">
+    <button (click)="carousel.prev()" class="py-2 px-2 text-blue-600 hover:text-blue-800" type="button">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g
-          id="SVGRepo_tracerCarrier"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        ></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
         <g id="SVGRepo_iconCarrier">
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+          <path fill-rule="evenodd" clip-rule="evenodd"
             d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z"
-            fill="currentColor"
-          ></path>
+            fill="currentColor"></path>
         </g>
       </svg>
     </button>
@@ -38,19 +20,11 @@
       <ng-template class="items-center" carouselSlide>
         <div class="flex justify-center px-4">
           <div
-            class="relative flex flex-col my-6 transform hover:scale-105 ease-out duration-300 bg-white shadow-sm border border-slate-200 rounded-lg w-96 h-auto"
-          >
-            <div
-              class="relative h-56 m-2.5 overflow-hidden text-white rounded-md"
-            >
-              <img
-                src="{{ item.picurl }}"
-                alt="card-image"
-                class="object-cover w-full h-full transition-transform duration-300 ease-in-out transform group-hover:scale-110"
-              />
-              <h6
-                class="absolute bottom-0 left-0 pl-1 text-lg font-semibold bg-black bg-opacity-60 text-white rounded"
-              >
+            class="relative flex flex-col my-6 transform hover:scale-105 ease-out duration-300 bg-white shadow-sm border border-slate-200 rounded-lg w-96 h-auto">
+            <div class="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
+              <img src="{{ item.picurl }}" alt="card-image"
+                class="object-cover w-full h-full transition-transform duration-300 ease-in-out transform group-hover:scale-110" />
+              <h6 class="absolute bottom-0 left-0 pl-1 text-lg font-semibold bg-black bg-opacity-60 text-white rounded">
                 {{ item.title }}
               </h6>
             </div>
@@ -62,25 +36,13 @@
               <p class="text-slate-700 leading-normal font-light">
                 {{ item.description | slice: 0 : 150 }}
               </p>
-              <a
-                [routerLink]="['/news', item.id]"
-                class="inline-flex items-center mt-2 py-2 text-sm font-medium text-center text-gray-600 hover:text-gray-900"
-              >
+              <a [routerLink]="['/news-details', item.id]"
+                class="inline-flex items-center mt-2 py-2 text-sm font-medium text-center text-gray-600 hover:text-gray-900">
                 Дэлгэрэнгүй
-                <svg
-                  class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 10"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M1 5h12m0 0L9 1m4 4L9 9"
-                  />
+                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                  fill="none" viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
                 </svg>
               </a>
             </div>
@@ -91,35 +53,16 @@
   </owl-carousel-o>
 
   <!-- Right button -->
-  <div
-    class="absolute hidden lg:block right-0 top-1/2 transform -translate-y-1/2 z-10"
-  >
-    <button
-      (click)="carousel.next()"
-      class="rounded-full py-2 px-4 text-gray-600 hover:text-gray-300"
-      type="button"
-    >
+  <div class="absolute hidden lg:block right-0 top-1/2 transform -translate-y-1/2 z-10">
+    <button (click)="carousel.next()" class="rounded-full py-2 px-4 text-gray-600 hover:text-gray-300" type="button">
       <!-- Right arrow SVG icon -->
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-8 h-8"
-        transform="rotate(180)"
-      >
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" transform="rotate(180)">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g
-          id="SVGRepo_tracerCarrier"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        ></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
         <g id="SVGRepo_iconCarrier">
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+          <path fill-rule="evenodd" clip-rule="evenodd"
             d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z"
-            fill="currentColor"
-          ></path>
+            fill="currentColor"></path>
         </g>
       </svg>
     </button>
@@ -130,8 +73,7 @@
     <a routerLink="news">
       <button
         class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-        type="button"
-      >
+        type="button">
         Бүгдийг харах
       </button>
     </a>
