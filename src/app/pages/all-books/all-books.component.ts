@@ -42,7 +42,7 @@ export class AllBooksComponent implements OnInit {
   }
 
   fetchAllBook() {
-    this.booksService.getAllBooks().subscribe(
+    this.booksService.getAllBook().subscribe(
       (data: any) => {
         this.bookData = data;
       },

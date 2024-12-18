@@ -71,19 +71,4 @@ export class NewsDetailsPageComponent implements OnInit, AfterViewInit {
   getFormattedDate(dateString: string): string {
     return format(new Date(dateString), 'yyyy-MM-dd');
   }
-
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: true,
-    navSpeed: 700,
-    responsive: {
-      0: { items: 1 },
-      600: { items: 1 },
-      1000: { items: 1 },
-      1200: { items: 1 },
-    },
-  };
 }
