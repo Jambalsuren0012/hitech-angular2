@@ -11,10 +11,6 @@ export class BooksService {
   apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
-  boookslist(): Observable<any> {
-    return this.http.get(this.apiUrl + 'test');
-  }
-
   bookscategorylist(id: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -36,5 +32,8 @@ export class BooksService {
 
   searchProducts(query: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/books/search?q=${query}`);
+  }
+  getBookById(bookid: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${bookid}`);
   }
 }

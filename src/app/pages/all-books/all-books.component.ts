@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BooksService } from '../service/books.service';
-import { environment } from '../environments/environment';
+import { BooksService } from '../../service/books.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-all-books',
@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
   styleUrls: ['./all-books.component.css'],
 })
 export class AllBooksComponent implements OnInit {
-  items: Array<any> = [];
+  bookData: Array<any> = [];
   itemsPerPage = 15;
   currentPage = 1;
   imageUrl = environment.imgUrl;
@@ -18,11 +18,11 @@ export class AllBooksComponent implements OnInit {
   get paginatedItems() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    return this.items.slice(startIndex, endIndex);
+    return this.bookData.slice(startIndex, endIndex);
   }
 
   get totalPages() {
-    return Math.ceil(this.items.length / this.itemsPerPage);
+    return Math.ceil(this.bookData.length / this.itemsPerPage);
   }
 
   changePage(page: number) {
@@ -44,7 +44,7 @@ export class AllBooksComponent implements OnInit {
   fetchAllBook() {
     this.booksService.getAllBooks().subscribe(
       (data: any) => {
-        this.items = data;
+        this.bookData = data;
       },
       (error) => {
         console.error('Error fetching books:', error);
@@ -54,5 +54,8 @@ export class AllBooksComponent implements OnInit {
 
   ngOnInit() {
     this.fetchAllBook();
+  }
+  trackById(index: number, data: any): string {
+    return data.id;
   }
 }

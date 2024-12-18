@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { BookdetailsService } from '../../service/bookdetails.service';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { format } from 'date-fns';
-import { MenuService } from '../../service/menu.service';
 import { environment } from '../../environments/environment';
+import { BooksService } from '../../service/books.service'; // Import BooksService
+import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
 
 @Component({
   selector: 'app-book-details-page',
@@ -13,48 +13,55 @@ import { environment } from '../../environments/environment';
 })
 export class BookDetailsPageComponent implements OnInit {
   imgurl = environment.imgUrl;
-  selectedMenu: number | null = null;
-
-  // Method to toggle the visibility of subtitles
-  toggleMenu(menuId: number) {
-    if (this.selectedMenu === menuId) {
-      this.selectedMenu = null; // Hide the subtitles if the same menu is clicked again
-    } else {
-      this.selectedMenu = menuId; // Show subtitles for the clicked menu
-    }
-  }
-
-  menuItems: any = [];
-
-  loadmenu() {
-    this.menuService.menulist().subscribe({
-      next: (data) => {
-        this.menuItems = data;
-      },
-      error: (err) => console.log(err),
-    });
-  }
-  bookdetailslist: any = null;
+  bookDetails: any = null;
   faClock = faClock;
   currentPageUrl: string = encodeURIComponent(window.location.href);
+
   constructor(
-    private bookdetailsService: BookdetailsService,
-    private menuService: MenuService,
     private route: ActivatedRoute,
+    private bookService: BooksService, // Inject BooksService
+    private renderer: Renderer2,
+    private el: ElementRef, // Inject ElementRef
+    private cdr: ChangeDetectorRef, // Inject ChangeDetectorRef
   ) {}
+
+  // Format the date string
   getFormattedDate(dateString: string): string {
     return format(new Date(dateString), 'yyyy-MM-dd');
   }
+
+  styleInnerImages(): void {
+    const images = this.el.nativeElement.querySelectorAll('.news-content img');
+    images.forEach((img: HTMLElement) => {
+      this.renderer.setStyle(img, 'margin-top', '25px');
+      this.renderer.setStyle(img, 'display', 'block');
+    });
+  }
+
+  fetchBookDetails(bookid: string): void {
+    // Fetch the specific book by id from the service
+    this.bookService.getAllBooks(bookid).subscribe(
+      (data) => {
+        this.bookDetails = data.find((item: any) => item.id === bookid) || null;
+
+        // After the content is rendered, apply styles to images
+        this.cdr.detectChanges(); // Ensure that Angular detects the changes
+        setTimeout(() => {
+          this.styleInnerImages();
+        }, 0);
+      },
+      (error) => {
+        console.error('Error fetching book details:', error);
+      },
+    );
+  }
+
   ngOnInit(): void {
-    // Get the bookid from route parameters
     this.route.paramMap.subscribe((params) => {
-      const bookid = params.get('bookid');
+      const bookid = params.get('id'); // Get the `id` from the route
       if (bookid) {
-        // Fetch book details by id
-        const details = this.bookdetailsService.getBookDetails(bookid);
-        this.bookdetailslist;
+        this.fetchBookDetails(bookid); // Fetch book details using the `id`
       }
-      this.loadmenu();
     });
   }
 }

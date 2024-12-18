@@ -38,13 +38,13 @@
     <ng-container *ngFor="let book of bookData; trackBy: trackById">
       <ng-template carouselSlide>
         <div class="book-item px-4 flex relative group">
-          <a [routerLink]="['book/category', book.id]" class="relative block">
+          <a [routerLink]="['book', book.id]" class="relative block">
             <div
               class="w-48 h-64 overflow-hidden relative flex items-center justify-center"
             >
               <img
                 class="w-full h-full object-cover"
-                [src]="book.compressedUrl || imageUrl + book.picurl"
+                [src]="imageUrl + book.picurl"
                 alt="{{ book.title }}"
                 loading="lazy"
               />
@@ -68,7 +68,7 @@
               class="text-sm font-medium text-gray-600 hover:text-gray-900"
               (click)="openPdf(book.pdf)"
             >
-              View PDF
+              PDF Үзэх
             </button>
           </div>
         </div>

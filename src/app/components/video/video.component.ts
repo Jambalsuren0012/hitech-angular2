@@ -32,8 +32,8 @@ export class VideoComponent implements OnInit {
         this.videoData = data.map((video) => ({
           id: video.id,
           title: video.title,
-          url: video.url,
-          thumbnailUrl: video.picurl, // Use `picurl` for the thumbnail
+          url: video.url || '', // Default to an empty string if `url` is missing
+          thumbnailUrl: video.picurl,
           createdAt: video.created_at,
         }));
 
@@ -51,6 +51,11 @@ export class VideoComponent implements OnInit {
   }
 
   getVideoId(url: string): string {
+    if (!url || typeof url !== 'string') {
+      console.warn('Invalid video URL:', url);
+      return ''; // Return an empty string if the URL is invalid
+    }
+
     const regex =
       /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(regex);

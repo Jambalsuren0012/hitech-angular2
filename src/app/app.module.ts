@@ -42,7 +42,7 @@ import { MapPageComponent } from './pages/map-page/map-page.component';
 import { MenuAboutPageComponent } from './pages/menu-about-page/menu-about-page.component';
 import { MembersComponent } from './components/members/members.component';
 import { ResponsiveHtmlPipe } from './responsive-html.pipe';
-import { AllBooksComponent } from './all-books/all-books.component';
+import { AllBooksComponent } from './pages/all-books/all-books.component';
 import { NewsPageComponent } from './pages/news-page/news-page.component';
 
 // Function to create the translation loader

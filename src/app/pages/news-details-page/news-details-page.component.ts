@@ -41,13 +41,18 @@ export class NewsDetailsPageComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.styleInnerImages();
+    // Do nothing here, it's handled after content loading
   }
 
   fetchNewsDetails(newsid: string): void {
     this.newsService.getAllNews().subscribe(
       (data) => {
         this.newsDetails = data.find((item: any) => item.id === newsid) || null;
+
+        // Wait a bit for the content to be rendered and then apply styles
+        setTimeout(() => {
+          this.styleInnerImages();
+        }, 0); // Trigger the style adjustment immediately after the content is rendered
       },
       (error) => {
         console.error('Error fetching news details:', error);
@@ -58,7 +63,7 @@ export class NewsDetailsPageComponent implements OnInit, AfterViewInit {
   styleInnerImages(): void {
     const images = this.el.nativeElement.querySelectorAll('.news-content img');
     images.forEach((img: HTMLElement) => {
-      this.renderer.setStyle(img, 'margin-top', '20px');
+      this.renderer.setStyle(img, 'margin-top', '25px');
       this.renderer.setStyle(img, 'display', 'block');
     });
   }

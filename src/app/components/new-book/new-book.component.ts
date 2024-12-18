@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { formatDistanceToNow, format } from 'date-fns';
@@ -26,10 +27,12 @@ export class NewBookComponent implements OnInit {
     description: string;
     pdfUrl: string;
     imgUrl: string;
-    compressedUrl?: string;
     created_at: string;
-  }> = []; // Start with an empty array
+  }> = [];
+
   imageUrl = environment.imgUrl;
+
+  @ViewChild('carousel', { static: false }) carousel: any;
 
   customOptions: OwlOptions = {
     loop: true,
@@ -53,21 +56,16 @@ export class NewBookComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
-    this.translate.onLangChange.subscribe((event) => {
-      // console.log('Language changed:', event.lang);
-      this.cdr.detectChanges(); // Trigger Angular's change detection
-      this.fetchBooks();
-    });
+    this.translate.onLangChange.subscribe(() => this.fetchBooks());
   }
 
   ngOnInit(): void {
-    this.fetchBooks(); // Fetch data on component initialization
+    this.fetchBooks();
   }
 
   fetchBooks(): void {
     this.booksService.getAllBooks(this.translate.currentLang).subscribe(
       (response) => {
-        // Assuming the API response is an array of book objects
         this.bookData = response.map((book: any) => ({
           id: book.id,
           title: book.title,
@@ -75,14 +73,15 @@ export class NewBookComponent implements OnInit {
           pdf: book.pdf,
           picurl: book.picurl,
           created_at: book.created_at,
-          imgUrl: `${this.imageUrl}/${book.picurl}`, // Construct image URL
+          imgUrl: `${this.imageUrl}/${book.picurl}`,
         }));
-        this.compressImages(); // Compress images after fetching data
-        // console.log(this.bookData);
+
+        if (this.carousel) {
+        }
+
+        this.cdr.markForCheck(); // Mark changes for OnPush strategy
       },
-      (error) => {
-        console.error('Error fetching books:', error);
-      },
+      (error) => console.error('Error fetching books:', error),
     );
   }
 
@@ -99,58 +98,6 @@ export class NewBookComponent implements OnInit {
 
   openPdf(pdfUrl: string): void {
     window.open(pdfUrl, '_blank');
-  }
-
-  async compressImages(): Promise<void> {
-    const maxWidth = 800;
-    const maxHeight = 600;
-
-    for (const image of this.bookData) {
-      try {
-        const compressedUrl = await this.resizeImage(
-          image.imgUrl,
-          maxWidth,
-          maxHeight,
-        );
-        image.compressedUrl = compressedUrl;
-      } catch (error) {
-        console.error(`Error compressing image ${image.imgUrl}:`, error);
-        image.compressedUrl = image.imgUrl; // Fallback to original URL
-      }
-    }
-  }
-
-  resizeImage(
-    url: string,
-    maxWidth: number,
-    maxHeight: number,
-  ): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.src = url;
-
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-
-        if (!ctx) {
-          reject(new Error('Failed to get canvas context'));
-          return;
-        }
-
-        const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
-        canvas.width = img.width * ratio;
-        canvas.height = img.height * ratio;
-
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        const compressedUrl = canvas.toDataURL('image/jpeg', 0.8);
-        resolve(compressedUrl);
-      };
-
-      img.onerror = () => {
-        reject(new Error('Failed to load image'));
-      };
-    });
   }
 
   trackById(index: number, book: any): string {

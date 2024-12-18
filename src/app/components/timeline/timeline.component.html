@@ -1,20 +1,24 @@
-<div class="con222">
-  <div class="timeline-container" id="timeline-1">
-    <div class="timeline-header">
-      <h2 class="timeline-header__title">Архелогийн хүрээлэн</h2>
-      <h3 class="timeline-header__subtitle">Эрдэм шинжилгээний хурал</h3>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item" *ngFor="let item of timelineItems">
-        <div class="timeline__content">
-          <img class="timeline__img" [src]="item.img" alt="Timeline image" />
-          <h2 class="timeline__content-title">{{ item.date }}</h2>
-          <!-- Iterate over the titles array -->
-          <div *ngFor="let subtitle of item.titles">
-            <p class="timeline__content-desc">- {{ subtitle.title }}</p>
-          </div>
-        </div>
+<div class="mt-10">
+  <ol
+    class="border-s border-neutral-300 dark:border-neutral-500 md:flex md:justify-center md:gap-6 md:border-s-0 md:border-t"
+  >
+    <li *ngFor="let item of timelineData">
+      <div class="flex-start flex items-center pt-2 md:block md:pt-0">
+        <div
+          class="-ms-[5px] me-3 h-[9px] w-[9px] rounded-full bg-neutral-300 dark:bg-neutral-500 md:-mt-[5px] md:me-0 md:ms-0"
+        ></div>
+        <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-300">
+          {{ item.date }}
+        </p>
       </div>
-    </div>
-  </div>
+      <div class="ms-4 mt-2 pb-5 md:ms-0">
+        <h4 class="mb-1.5 text-xl font-semibold">
+          {{ item.title }}
+        </h4>
+        <p class="mb-3 text-neutral-500 dark:text-neutral-300">
+          {{ item.description }}
+        </p>
+      </div>
+    </li>
+  </ol>
 </div>
