@@ -5,25 +5,23 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root',
+ providedIn: 'root',
 })
 export class BooksService {
-  apiUrl = environment.apiUrl;
+ apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+ constructor(private http: HttpClient) {}
 
-  // Get all books with optional language filter
+ // Get all books with optional language filter
 
-  getAllBook(): Observable<any> {
-    // If using local data:
-    const payload = { lang: 'mn' };
-    return this.http.post<any>(`${environment.apiUrl}/content`, payload).pipe(
-      map((response) => {
-        // Filter the response to only include books
-        return response.filter(
-          (item: { type: string }) => item.type === 'book',
-        );
-      }),
-    );
-  }
+ getAllBook(lang = 'mn'): Observable<any> {
+  // If using local data:
+  const payload = { lang: lang };
+  return this.http.post<any>(`${environment.apiUrl}/content`, payload).pipe(
+   map((response) => {
+    // Filter the response to only include books
+    return response.filter((item: { type: string }) => item.type === 'book');
+   })
+  );
+ }
 }

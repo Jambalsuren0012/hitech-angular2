@@ -1,84 +1,91 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { VideoService } from '../../service/video.service';
 import { environment } from '../../environments/environment';
+import { TranslateServiceService } from '../../service/translate-service.service';
 
 @Component({
-  selector: 'app-video',
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.css'],
+ selector: 'app-video',
+ templateUrl: './video.component.html',
+ styleUrls: ['./video.component.css'],
 })
 export class VideoComponent implements OnInit {
-  videoHeight: number | undefined;
-  videoWidth: number | undefined;
-  videoData: any[] = []; // Data fetched from service
-  screenWidth: number | undefined;
-  screenHeight: number | undefined;
-  activeVideo: any = {}; // Currently active video
-  isMobile: boolean;
-  imgUrl = environment.imgUrl;
+ videoHeight: number | undefined;
+ videoWidth: number | undefined;
+ videoData: any[] = []; // Data fetched from service
+ screenWidth: number | undefined;
+ screenHeight: number | undefined;
+ activeVideo: any = {}; // Currently active video
+ isMobile: boolean;
+ imgUrl = environment.imgUrl;
+ lang = 'mn';
 
-  constructor(private videoService: VideoService) {
-    this.isMobile = window.innerWidth < 768; // Check if the device is mobile
+ constructor(
+  private videoService: VideoService,
+  private language: TranslateServiceService
+ ) {
+  this.isMobile = window.innerWidth < 768; // Check if the device is mobile
+ }
+
+ ngOnInit() {
+  this.language.loadLang.subscribe((lang: any) => {
+   this.lang = lang;
+   this.updateVideoDimensions(); // Set initial dimensions
+   this.fetchVideoData();
+  });
+ }
+
+ fetchVideoData() {
+  this.videoService.getAllVideo(this.lang).subscribe(
+   (data: any[]) => {
+    this.videoData = data.map((video) => ({
+     id: video.id,
+     title: video.title,
+     url: video.url || '', // Default to an empty string if `url` is missing
+     thumbnailUrl: video.picurl,
+     createdAt: video.created_at,
+    }));
+
+    // Set the last video as the default active video
+    this.activeVideo = this.videoData[this.videoData.length - 1];
+   },
+   (error) => {
+    console.error('Error fetching video data:', error);
+   }
+  );
+ }
+
+ setActiveVideo(video: any) {
+  this.activeVideo = video; // Update the active video
+ }
+
+ getVideoId(url: string): string {
+  if (!url || typeof url !== 'string') {
+   console.warn('Invalid video URL:', url);
+   return ''; // Return an empty string if the URL is invalid
   }
 
-  ngOnInit() {
-    this.updateVideoDimensions(); // Set initial dimensions
-    this.fetchVideoData();
+  const regex = /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+  const match = url.match(regex);
+  return match ? match[1] : '';
+ }
+
+ @HostListener('window:resize', ['$event'])
+ onResize(event: { target: { innerWidth: number } }) {
+  this.isMobile = event.target.innerWidth < 768;
+  this.updateVideoDimensions(); // Recalculate dimensions
+ }
+
+ updateVideoDimensions() {
+  const screenWidth = window.innerWidth;
+
+  if (this.isMobile) {
+   this.videoWidth = screenWidth * 0.9; // Use 90% of the screen width on mobile
+  } else {
+   this.videoWidth = screenWidth > 1024 ? 900 : screenWidth * 0.7; // Use 70% of width for larger screens
   }
 
-  fetchVideoData() {
-    this.videoService.getAllVideo().subscribe(
-      (data: any[]) => {
-        this.videoData = data.map((video) => ({
-          id: video.id,
-          title: video.title,
-          url: video.url || '', // Default to an empty string if `url` is missing
-          thumbnailUrl: video.picurl,
-          createdAt: video.created_at,
-        }));
-
-        // Set the last video as the default active video
-        this.activeVideo = this.videoData[this.videoData.length - 1];
-      },
-      (error) => {
-        console.error('Error fetching video data:', error);
-      },
-    );
-  }
-
-  setActiveVideo(video: any) {
-    this.activeVideo = video; // Update the active video
-  }
-
-  getVideoId(url: string): string {
-    if (!url || typeof url !== 'string') {
-      console.warn('Invalid video URL:', url);
-      return ''; // Return an empty string if the URL is invalid
-    }
-
-    const regex =
-      /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regex);
-    return match ? match[1] : '';
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: { target: { innerWidth: number } }) {
-    this.isMobile = event.target.innerWidth < 768;
-    this.updateVideoDimensions(); // Recalculate dimensions
-  }
-
-  updateVideoDimensions() {
-    const screenWidth = window.innerWidth;
-
-    if (this.isMobile) {
-      this.videoWidth = screenWidth * 0.9; // Use 90% of the screen width on mobile
-    } else {
-      this.videoWidth = screenWidth > 1024 ? 900 : screenWidth * 0.7; // Use 70% of width for larger screens
-    }
-
-    this.videoHeight = (this.videoWidth * 9) / 16; // Maintain the 16:9 aspect ratio
-    this.screenWidth = this.videoWidth;
-    this.screenHeight = this.videoHeight;
-  }
+  this.videoHeight = (this.videoWidth * 9) / 16; // Maintain the 16:9 aspect ratio
+  this.screenWidth = this.videoWidth;
+  this.screenHeight = this.videoHeight;
+ }
 }

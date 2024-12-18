@@ -1,58 +1,66 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { NewsService } from '../../service/news.service';
+import { TranslateServiceService } from '../../service/translate-service.service';
 @Component({
-  selector: 'app-news-page',
-  templateUrl: './news-page.component.html',
-  styleUrl: './news-page.component.css',
+ selector: 'app-news-page',
+ templateUrl: './news-page.component.html',
+ styleUrl: './news-page.component.css',
 })
-export class NewsPageComponent {
-  bookItems: Array<any> = [];
-  itemsPerPage = 15;
-  currentPage = 1;
-  imageUrl = environment.imgUrl;
+export class NewsPageComponent implements OnInit {
+ bookItems: Array<any> = [];
+ itemsPerPage = 15;
+ currentPage = 1;
+ imageUrl = environment.imgUrl;
+ lang = 'mn';
 
-  constructor(private newsService: NewsService) {}
+ constructor(
+  private newsService: NewsService,
+  private language: TranslateServiceService
+ ) {}
 
-  get paginatedItems() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return this.bookItems.slice(startIndex, endIndex);
+ ngOnInit() {
+  this.language.loadLang.subscribe((lang: any) => {
+   this.lang = lang;
+   this.fetchAllNews();
+  });
+ }
+
+ get paginatedItems() {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  const endIndex = startIndex + this.itemsPerPage;
+  return this.bookItems.slice(startIndex, endIndex);
+ }
+
+ get totalPages() {
+  return Math.ceil(this.bookItems.length / this.itemsPerPage);
+ }
+
+ changePage(page: number) {
+  this.currentPage = page;
+ }
+
+ nextPage() {
+  if (this.currentPage < this.totalPages) {
+   this.currentPage++;
   }
+ }
 
-  get totalPages() {
-    return Math.ceil(this.bookItems.length / this.itemsPerPage);
+ previousPage() {
+  if (this.currentPage > 1) {
+   this.currentPage--;
   }
+ }
 
-  changePage(page: number) {
-    this.currentPage = page;
-  }
-
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-    }
-  }
-
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-    }
-  }
-
-  fetchAllNews() {
-    this.newsService.getAllNews().subscribe(
-      (data: any) => {
-        this.bookItems = data;
-        console.log(this.bookItems);
-      },
-      (error) => {
-        console.error('Error fetching books:', error);
-      },
-    );
-  }
-
-  ngOnInit() {
-    this.fetchAllNews();
-  }
+ fetchAllNews() {
+  this.newsService.getAllNews(this.lang).subscribe(
+   (data: any) => {
+    this.bookItems = data;
+    console.log(this.bookItems);
+   },
+   (error) => {
+    console.error('Error fetching books:', error);
+   }
+  );
+ }
 }

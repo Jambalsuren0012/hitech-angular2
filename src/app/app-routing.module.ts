@@ -16,29 +16,31 @@ import { MembersComponent } from './components/members/members.component';
 import { AllBooksComponent } from './pages/all-books/all-books.component';
 import { NewsPageComponent } from './pages/news-page/news-page.component';
 const routes: Routes = [
-  { path: 'map/:id', component: TargetpageComponent },
-  { path: '', component: HomePageComponent },
-  { path: 'news/:id', component: NewsDetailsPageComponent },
-  { path: 'list/:type/:id', component: MenuListPageComponent },
-  { path: 'member', component: MembersComponent },
-  { path: 'aboutus/:id', component: MenuAboutPageComponent },
-  { path: 'type/2/:id', component: DefaultPageComponent },
-  { path: 'map', component: MapPageComponent },
-  { path: 'book/:id', component: BookDetailsPageComponent },
-  { path: 'news', component: NewsPageComponent },
-  { path: 'timeline', component: TimelineComponent },
-  { path: 'books', component: AllBooksComponent },
-  { path: '', redirectTo: '/map2', pathMatch: 'full' },
+ { path: 'map/:id', component: TargetpageComponent },
+ { path: '', component: HomePageComponent },
+ { path: 'home', component: HomePageComponent },
+ { path: 'home:/:lang', component: HomePageComponent },
+ { path: 'news/:id', component: NewsDetailsPageComponent },
+ { path: 'list/:type/:id', component: MenuListPageComponent },
+ { path: 'member', component: MembersComponent },
+ { path: 'aboutus/:id', component: MenuAboutPageComponent },
+ { path: 'type/2/:id', component: DefaultPageComponent },
+ { path: 'map', component: MapPageComponent },
+ { path: 'book/:id', component: BookDetailsPageComponent },
+ { path: 'news', component: NewsPageComponent },
+ { path: 'timeline', component: TimelineComponent },
+ { path: 'books', component: AllBooksComponent },
+ { path: '', redirectTo: '/map2', pathMatch: 'full' },
 ];
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'enabled', // Ensures the page scrolls to the top on navigation
-      anchorScrolling: 'enabled',
+ imports: [
+  RouterModule.forRoot(routes, {
+   scrollPositionRestoration: 'enabled', // Ensures the page scrolls to the top on navigation
+   anchorScrolling: 'enabled',
 
-      // Optional: Enables anchor scrolling
-    }),
-  ],
-  exports: [RouterModule],
+   // Optional: Enables anchor scrolling
+  }),
+ ],
+ exports: [RouterModule],
 })
 export class AppRoutingModule {}
