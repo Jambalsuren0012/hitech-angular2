@@ -52,7 +52,7 @@ export class BookDetailsPageComponent implements OnInit {
         // Wait a bit for the content to be rendered and then apply styles
         setTimeout(() => {
           this.styleInnerImages();
-        }, 0); // Trigger the style adjustment immediately after the content is rendered
+        }, 100); // Trigger the style adjustment immediately after the content is rendered
       },
       (error) => {
         console.error('Error fetching book details:', error);
@@ -61,7 +61,7 @@ export class BookDetailsPageComponent implements OnInit {
   }
 
   styleInnerImages(): void {
-    const images = this.el.nativeElement.querySelectorAll('.news-content img');
+    const images = this.el.nativeElement.querySelectorAll('.books-content img');
     images.forEach((img: HTMLElement) => {
       this.renderer.setStyle(img, 'margin-top', '25px');
       this.renderer.setStyle(img, 'display', 'block');

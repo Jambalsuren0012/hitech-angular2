@@ -58,7 +58,7 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    // this.loadmenu();
+    this.loadmenu();
   }
 
   loadmenu() {}

@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { NewsService } from '../../service/news.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -21,17 +27,31 @@ export class TargetpageComponent implements OnInit {
   constructor(
     private coordinatesService: CoordinatesService,
     private route: ActivatedRoute,
+    private el: ElementRef,
+    private renderer: Renderer2,
   ) {}
   fetchcoordinatDetails(coordinateid: string): void {
     this.coordinatesService.coordinatlist().subscribe(
       (data) => {
         this.coordinatDetails =
           data.find((item: any) => item.id === coordinateid) || null;
+        setTimeout(() => {
+          this.styleInnerImages();
+        }, 100);
       },
       (error) => {
         console.error('Error fetching news details:', error);
       },
     );
+  }
+  styleInnerImages(): void {
+    const images = this.el.nativeElement.querySelectorAll(
+      '.coordinates-content img',
+    );
+    images.forEach((img: HTMLElement) => {
+      this.renderer.setStyle(img, 'margin-top', '25px');
+      this.renderer.setStyle(img, 'display', 'block');
+    });
   }
   getFormattedDate(dateString: string): string {
     return format(new Date(dateString), 'yyyy-MM-dd');

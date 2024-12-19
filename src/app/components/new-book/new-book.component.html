@@ -1,6 +1,8 @@
 <div class="new-book-carousel relative my-4 mx-auto max-w-full overflow-hidden">
   <a routerLink="/books">
-    <h1 class="text-2xl font-bold my-4 text-gray-800">Ном, Бүтээл →</h1></a
+    <h1 class="text-2xl font-lora font-medium my-4 text-gray-800">
+      Ном, Бүтээл →
+    </h1></a
   >
   <!-- Left button -->
   <div
@@ -56,7 +58,7 @@
               Дэлгэрэнгүй
             </button>
           </a>
-          <div class="text-left px-4">
+          <div class="text-left px-4 hidden sm:block">
             <h3 class="text-blue-800 text-base">
               {{ book.title }}
             </h3>
