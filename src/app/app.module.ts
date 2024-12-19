@@ -44,6 +44,7 @@ import { MembersComponent } from './components/members/members.component';
 import { ResponsiveHtmlPipe } from './responsive-html.pipe';
 import { AllBooksComponent } from './pages/all-books/all-books.component';
 import { NewsPageComponent } from './pages/news-page/news-page.component';
+import { AllvideoPageComponent } from './allvideo-page/allvideo-page.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -82,6 +83,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ResponsiveHtmlPipe,
     AllBooksComponent,
     NewsPageComponent,
+    AllvideoPageComponent,
   ],
   imports: [
     BrowserModule,
