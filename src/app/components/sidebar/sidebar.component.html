@@ -1,7 +1,7 @@
 <div class="w-full lg:w-96 px-4 lg:px-0 order-first lg:order-last bg-white">
   <div class="p4 md:p-6">
     <h2 class="text-xl font-bold mb-4 font-lora text-blue-800">
-      Их уншигдсан мэдээ
+      {{ "Их уншигдсан мэдээ" | translate }}
     </h2>
     <ul>
       <li *ngFor="let news of topReadNews; let i = index">
@@ -11,7 +11,9 @@
           <img class="w-20" [src]="imageUrl + news.picurl" alt="News Image" />
           <!-- News title -->
           <a [routerLink]="['/news-details', news.id]" class="flex-1">
-            <h1 class="text-base text-justify font-medium line-clamp-2 font-ptsans text-[#252525] hover:text-[#D4AF37]">
+            <h1
+              class="text-base text-justify font-medium line-clamp-2 font-ptsans text-[#252525] hover:text-[#D4AF37]"
+            >
               {{ news.title }}
             </h1>
           </a>
@@ -21,10 +23,15 @@
 
     <div class="" *ngIf="activeVideo">
       <h2 class="text-xl text-blue-800 font-lora font-bold mb-2">
-        Сүүлд оруулсан видео
+        {{ "Сүүлд оруулсан бичлэг" | translate }}
       </h2>
       <div class="relative overflow-hidden" style="width: 100%; height: auto">
-        <youtube-player [videoId]="getVideoId(activeVideo.url)" [width]="320" [height]="200" class="w-full h-auto">
+        <youtube-player
+          [videoId]="getVideoId(activeVideo.url)"
+          [width]="320"
+          [height]="200"
+          class="w-full h-auto"
+        >
         </youtube-player>
       </div>
     </div>

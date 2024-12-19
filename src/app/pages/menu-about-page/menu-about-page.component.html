@@ -1,14 +1,47 @@
-<div
-  class="max-w-screen-xl bg-white mx-auto px-4 py-8"
-  *ngIf="selectedItem; else notFound"
->
-  <img [src]="selectedItem.picurl" alt="{{ selectedItem.title }}" />
-  <h1>{{ selectedItem.title }}</h1>
-  <div class="text-justify" [innerHTML]="selectedItem.info"></div>
-</div>
+<div class="bg-gray-100">
+  <div
+    *ngIf="aboutUsData && aboutUsData.length"
+    class="max-w-screen-xl mx-auto px-4 py-8"
+  >
+    <!-- Title Section -->
+    <div class="bg-white rounded shadow-md">
+      <div class="p-4 md:p-6">
+        <h1
+          class="text-xl sm:text-2xl md:text-3xl text-justify font-medium font-lora sm:text-left mb-4"
+        >
+          {{ aboutUsData[0].title | translate }}
+        </h1>
+      </div>
+    </div>
 
-<ng-template #notFound>
-  <div class="text-center text-black font-semibold text-xl max-w-screen-xl">
-    <p>Энэ хуудсанд одоогоор мэдээлэл оруулаагүй байна</p>
+    <!-- Image Section -->
+    <div
+      *ngIf="aboutUsData[0].picurl"
+      class="bg-white rounded shadow-md w-full mb-4"
+    >
+      <div class="p-4 md:p-6">
+        <img
+          class="w-full object-cover"
+          [src]="imageUrl + aboutUsData[0].picurl"
+          alt="News Image"
+        />
+      </div>
+    </div>
+    <div
+      *ngIf="!aboutUsData[0].picurl"
+      class="bg-white rounded shadow-md w-full mb-4"
+    ></div>
+
+    <!-- Content Section -->
+    <div class="w-full mb-4 lg:mb-0">
+      <div class="bg-white rounded shadow-md">
+        <div class="p-4 md:p-6">
+          <p
+            class="text-justify px-2 font-ptsans lg:px-0 md:p-4 text-lg news-content"
+            [innerHTML]="aboutUsData[0]?.info | translate"
+          ></p>
+        </div>
+      </div>
+    </div>
   </div>
-</ng-template>
+</div>

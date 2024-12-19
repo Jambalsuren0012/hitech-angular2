@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { NewsService } from '../../service/news.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -7,62 +13,62 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { format } from 'date-fns';
 
 @Component({
- selector: 'app-news-details-page',
- templateUrl: './news-details-page.component.html',
- styleUrls: ['./news-details-page.component.css'],
+  selector: 'app-news-details-page',
+  templateUrl: './news-details-page.component.html',
+  styleUrls: ['./news-details-page.component.css'],
 })
 export class NewsDetailsPageComponent implements OnInit, AfterViewInit {
- newsDetails: any = null;
- imageUrl = environment.imgUrl;
- images: any = null;
- faClock = faClock;
- currentPageUrl: string = encodeURIComponent(window.location.href);
+  newsDetails: any = null;
+  imageUrl = environment.imgUrl;
+  images: any = null;
+  faClock = faClock;
+  currentPageUrl: string = encodeURIComponent(window.location.href);
 
- constructor(
-  private newsService: NewsService,
-  private route: ActivatedRoute,
-  private el: ElementRef,
-  private renderer: Renderer2
- ) {}
+  constructor(
+    private newsService: NewsService,
+    private route: ActivatedRoute,
+    private el: ElementRef,
+    private renderer: Renderer2,
+  ) {}
 
- ngOnInit(): void {
-  this.route.paramMap.subscribe((params) => {
-   const newsid = params.get('id'); // Get the `id` from the route
-   if (newsid) {
-    this.fetchNewsDetails(newsid);
-   }
-  });
- }
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const newsid = params.get('id'); // Get the `id` from the route
+      if (newsid) {
+        this.fetchNewsDetails(newsid);
+      }
+    });
+  }
 
- ngAfterViewInit(): void {
-  // Do nothing here, it's handled after content loading
- }
+  ngAfterViewInit(): void {
+    // Do nothing here, it's handled after content loading
+  }
 
- fetchNewsDetails(newsid: string): void {
-  this.newsService.getAllNews({ id: newsid }).subscribe(
-   (data) => {
-    this.newsDetails = data.find((item: any) => item.id === newsid) || null;
+  fetchNewsDetails(newsid: string): void {
+    this.newsService.getAllNews({ id: newsid }).subscribe(
+      (data) => {
+        this.newsDetails = data.find((item: any) => item.id === newsid) || null;
 
-    // Wait a bit for the content to be rendered and then apply styles
-    setTimeout(() => {
-     this.styleInnerImages();
-    }, 0); // Trigger the style adjustment immediately after the content is rendered
-   },
-   (error) => {
-    console.error('Error fetching news details:', error);
-   }
-  );
- }
+        // Wait a bit for the content to be rendered and then apply styles
+        setTimeout(() => {
+          this.styleInnerImages();
+        }, 100); // Trigger the style adjustment immediately after the content is rendered
+      },
+      (error) => {
+        console.error('Error fetching news details:', error);
+      },
+    );
+  }
 
- styleInnerImages(): void {
-  const images = this.el.nativeElement.querySelectorAll('.news-content img');
-  images.forEach((img: HTMLElement) => {
-   this.renderer.setStyle(img, 'margin-top', '25px');
-   this.renderer.setStyle(img, 'display', 'block');
-  });
- }
+  styleInnerImages(): void {
+    const images = this.el.nativeElement.querySelectorAll('.news-content img');
+    images.forEach((img: HTMLElement) => {
+      this.renderer.setStyle(img, 'margin-top', '25px');
+      this.renderer.setStyle(img, 'display', 'block');
+    });
+  }
 
- getFormattedDate(dateString: string): string {
-  return format(new Date(dateString), 'yyyy-MM-dd');
- }
+  getFormattedDate(dateString: string): string {
+    return format(new Date(dateString), 'yyyy-MM-dd');
+  }
 }
