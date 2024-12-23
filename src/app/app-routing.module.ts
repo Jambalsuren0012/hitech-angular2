@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'timeline', component: TimelineComponent },
   { path: 'book/:id', component: AllBooksComponent },
   { path: 'book', component: AllBooksComponent },
-  { path: 'gallery', component: GalleryPageComponent },
+  { path: 'gallery/:id', component: GalleryPageComponent },
   { path: '', redirectTo: '/map2', pathMatch: 'full' },
 ];
 @NgModule({
