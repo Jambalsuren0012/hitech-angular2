@@ -4,15 +4,14 @@ import { AboutusService } from '../../service/aboutus.service';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateServiceService } from '../../service/translate-service.service';
 import { environment } from '../../environments/environment';
-
 @Component({
-  selector: 'app-menu-about-page',
-  templateUrl: './menu-about-page.component.html',
-  styleUrls: ['./menu-about-page.component.css'],
+  selector: 'app-content-page',
+  templateUrl: './content-page.component.html',
+  styleUrl: './content-page.component.css',
 })
-export class MenuAboutPageComponent implements OnInit {
+export class ContentPageComponent {
   selectedItem: any;
-  aboutUsData: any = {}; // Initialize with an empty object
+  aboutMenuContent: any = {}; // Initialize with an empty object
   selectedContent: any; // Newly added property
   lang = 'mn';
   menuid: any;
@@ -57,7 +56,7 @@ export class MenuAboutPageComponent implements OnInit {
 
             // Fetch and assign the about us content
             if (this.menuid) {
-              this.fetchAllAbout();
+              this.fetchAllMenuContent();
             }
           }
         }
@@ -65,16 +64,16 @@ export class MenuAboutPageComponent implements OnInit {
     });
   }
 
-  fetchAllAbout(): void {
+  fetchAllMenuContent(): void {
     const data = { lang: this.lang, menuid: this.menuid ?? null };
-    this.aboutusService.getAllAboutus(data).subscribe(
+    this.aboutusService.getAllMenuContent(data).subscribe(
       (response: any) => {
-        this.aboutUsData = response;
+        this.aboutMenuContent = response;
         this.selectedContent = response; // Assign the fetched data to `selectedContent`
-        console.log('Fetched About Us Data:', this.aboutUsData);
+        console.log('AboutMenuContent', this.aboutMenuContent);
       },
       (error) => {
-        console.error('Error fetching About Us data:', error);
+        console.error('Error fetching  data content:', error);
       },
     );
   }

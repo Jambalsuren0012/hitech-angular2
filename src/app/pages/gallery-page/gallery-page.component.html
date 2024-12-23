@@ -1,1 +1,182 @@
-<p>gallery-page works!</p>
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold text-center mb-8">Gallery</h1>
+  <div
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4"
+  >
+    <div *ngFor="let image of paginatedItems; let i = index" class="relative">
+      <img
+        [src]="imageUrl + image.src"
+        [alt]="image.alt"
+        class="w-full h-64 object-cover rounded-lg shadow-md hover:opacity-75 transition-opacity duration-300 cursor-pointer"
+        (click)="showImage(image)"
+      />
+      <div
+        class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-center py-2 text-sm font-medium"
+      >
+        {{ image.alt }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pagination Controls -->
+<div class="flex justify-center my-4 space-x-2">
+  <button
+    (click)="previousPage()"
+    [disabled]="currentPage === 1"
+    class="px-3 py-2 text-blue-600 border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none"
+  >
+    «
+  </button>
+
+  <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+    <button
+      *ngIf="i + 1 >= currentPage - 2 && i + 1 <= currentPage + 2"
+      (click)="changePage(i + 1)"
+      [class.bg-[#1A3675]]="currentPage === i + 1"
+      [class.text-gray-100]="currentPage === i + 1"
+      [class.hover:bg-gray-200]="currentPage !== i + 1"
+      class="px-3 py-2 text-blue-600 border border-gray-300 rounded-md focus:outline-none"
+    >
+      {{ i + 1 }}
+    </button>
+  </ng-container>
+
+  <button
+    (click)="nextPage()"
+    [disabled]="currentPage === totalPages"
+    class="px-3 py-2 text-blue-600 border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none"
+  >
+    »
+  </button>
+</div>
+
+<!-- Fullscreen Modal -->
+<div
+  *ngIf="isModalOpen"
+  class="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50"
+>
+  <div class="relative bg-white p-0 rounded-lg">
+    <!-- Close Button -->
+    <button
+      (click)="closeModal()"
+      class="absolute top-2 right-2 text-gray-100 text-3xl rounded-full"
+      style="z-index: 60"
+    >
+      <svg
+        fill="currentColor"
+        height="30px"
+        width="30px"
+        version="1.1"
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 460.775 460.775"
+        xml:space="preserve"
+        class="transition-all duration-300 hover:fill-blue-500"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55 c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55 c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505 c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55 l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719 c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"
+          ></path>
+        </g>
+      </svg>
+    </button>
+
+    <!-- Image and navigation buttons -->
+    <div class="relative w-full h-2/3">
+      <img
+        [src]="imageUrl + selectedImage.src"
+        [alt]="selectedImage.alt"
+        class="w-full h-full rounded object-contain"
+      />
+      <div
+        class="absolute bottom-10 bg-black bg-opacity-60 left-1/2 transform -translate-x-1/2 text-gray-100 text-lg font-medium"
+      >
+        {{ selectedImage.alt }}
+      </div>
+    </div>
+
+    <!-- Prev and Next buttons -->
+    <div
+      class="absolute top-1/2 left-0 p-4 cursor-pointer"
+      (click)="previousImage()"
+    >
+      <button
+        class="text-gray-100 rounded-full px-2 py-2 F hover:scale-110 transition-all duration-300"
+        (keydown)="onArrowPress($event)"
+        tabindex="0"
+      >
+        <svg
+          fill="currentColor"
+          height="40px"
+          width="40px"
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 330 330"
+          xml:space="preserve"
+          stroke="currentColor"
+          transform="rotate(180)"
+          class="transition-all duration-300 hover:fill-blue-500"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              id="XMLID_222_"
+              d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001 c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213 C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606 C255,161.018,253.42,157.202,250.606,154.389z"
+            ></path>
+          </g>
+        </svg>
+      </button>
+    </div>
+    <div
+      class="absolute top-1/2 right-0 p-4 cursor-pointer"
+      (click)="nextImage()"
+    >
+      <button
+        class="text-gray-100 rounded-full px-2 py-2 F hover:scale-110 transition-all duration-300"
+        (keydown)="onArrowPress($event)"
+      >
+        <svg
+          fill="currentColor"
+          height="40px"
+          width="40px"
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 330 330"
+          xml:space="preserve"
+          stroke="currentColor"
+          class="transition-all duration-300 hover:fill-blue-500"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              id="XMLID_222_"
+              d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001 c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213 C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606 C255,161.018,253.42,157.202,250.606,154.389z"
+            ></path>
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

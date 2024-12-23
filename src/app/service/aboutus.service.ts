@@ -26,6 +26,19 @@ export class AboutusService {
       }),
     );
   }
+  getAllMenuContent(payload: any): Observable<any> {
+    // If using local data:
+    //   const payload = { lang: lang };
+
+    return this.http.post<any>(`${environment.apiUrl}/content`, payload).pipe(
+      map((response) => {
+        // Filter the response to only include books
+        return response.filter(
+          (item: { type: string }) => item.type === 'content',
+        );
+      }),
+    );
+  }
   getContent(params: any): Observable<any> {
     return this.http.post<any[]>(`${this.apiUrl}/content`, params);
   }

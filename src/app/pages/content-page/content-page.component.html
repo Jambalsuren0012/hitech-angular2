@@ -1,0 +1,66 @@
+<div class="bg-gray-100">
+  <div
+    *ngIf="aboutMenuContent && aboutMenuContent.length"
+    class="max-w-screen-2xl mx-auto px-4 py-8"
+  >
+    <!-- Title Section -->
+    <div class="flex flex-col md:flex-row gap-4">
+      <!-- Sidebar -->
+      <div
+        class="max-w-full md:max-w-80 min-w-72 custom-height bg-white border border-gray-200 rounded-lg shadow-md flex-shrink-0"
+      >
+        <!-- Header -->
+        <div class="flex items-center gap-3 p-4 border-b border-gray-200">
+          <img
+            src="/assets/img/logomob.png"
+            alt="Logo"
+            class="w-10 h-10 object-contain"
+          />
+          <span class="text-lg font-bold text-gray-800">
+            {{ selectedItem?.parent?.menuname }}
+          </span>
+        </div>
+
+        <ul class="divide-y divide-gray-200">
+          <li
+            *ngFor="let subtitle of selectedItem?.subtitle"
+            class="px-4 py-3 text-gray-700 hover:bg-gray-100"
+          >
+            <a [routerLink]="['/aboutus', subtitle.id]" class="block">
+              {{ subtitle.menuname }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex-1 bg-white border border-gray-200 rounded-lg shadow-md">
+        <!-- Main Content -->
+        <div class="p-4 md:p-6">
+          <div class="mb-4">
+            <h1 class="text-xl font-lora sm:text-2xl md:text-3xl font-medium">
+              {{ aboutMenuContent[0]?.title }}
+            </h1>
+          </div>
+
+          <!-- Image Section -->
+          <div *ngIf="aboutMenuContent[0]?.picurl" class="mb-4 w-full">
+            <img
+              class="w-full object-cover rounded"
+              [src]="imageUrl + aboutMenuContent[0]?.picurl"
+              alt="News Image"
+            />
+          </div>
+
+          <div>
+            <p
+              class="text-justify font-ptsans text-lg"
+              [innerHTML]="
+                aboutMenuContent[0]?.info || 'Content details go here.'
+              "
+            ></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

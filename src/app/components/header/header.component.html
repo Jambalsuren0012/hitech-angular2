@@ -2,7 +2,9 @@
   <div class="mx-auto">
     <!-- First Row: Logo and Flag -->
     <div class="bg-white w-full">
-      <div class="flex justify-between max-w-screen-2xl mx-auto bg-white mt-1 items-center px-5">
+      <div
+        class="flex justify-between max-w-screen-2xl mx-auto bg-white mt-1 items-center px-5"
+      >
         <!-- Desktop Logo -->
         <a routerLink="/">
           <img src="/assets/img/logo.png" class="w-72 h-26 my-2" alt="Logo" />
@@ -10,50 +12,83 @@
         <!-- Desktop Search Input, hidden on smaller screens -->
         <div class="xl:flex gap-4">
           <div class="flex hidden xl:flex w-full xl:w-auto">
-            <input type="text" placeholder="Таны хайх түлхүүр үг"
-              class="w-full xl:w-80 outline-none border-b-2 bg-white text-gray-600 text-sm px-4 py-2" />
+            <input
+              type="text"
+              placeholder="Таны хайх түлхүүр үг"
+              class="w-full xl:w-80 outline-none border-b-2 bg-white text-gray-600 text-sm px-4 py-2"
+            />
             <button type="button" class="px-3">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px" class="fill-black">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 192.904 192.904"
+                width="16px"
+                class="fill-black"
+              >
                 <path
-                  d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
-                </path>
+                  d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"
+                ></path>
               </svg>
             </button>
           </div>
 
           <!-- Flag for language toggle -->
-          <img class="my-3" [src]="
-              isEnglish
-                ? '/assets/img/en.png'
-                : '/assets/img/mn.png'
-            " alt="Flag" width="40px" height="40px" (click)="toggleFlag()" style="cursor: pointer" />
+          <img
+            class="my-3"
+            [src]="isEnglish ? '/assets/img/en.png' : '/assets/img/mn.png'"
+            alt="Flag"
+            width="40px"
+            height="40px"
+            (click)="toggleFlag()"
+            style="cursor: pointer"
+          />
         </div>
       </div>
     </div>
     <!-- Second Row: Navigation, Search Input, and Mobile Menu Icon -->
     <div class="bg-[#1A3675] w-full">
-      <nav class="max-w-screen-2xl flex xl:block mx-auto gap-8 px-5 bg-[#1A3675] py-4 items-center">
+      <nav
+        class="max-w-screen-2xl flex xl:block mx-auto gap-8 px-5 bg-[#1A3675] py-4 items-center"
+      >
         <!-- Desktop Menu -->
         <ul class="hidden xl:flex justify-between space-x-8">
-          <li *ngFor="let item of menuItems"
-            class="dropdown relative px-4 cursor-pointer capitalize tracking-wide group">
-            <a class="flex items-center text-[#FFFFF0] text-lg font-light" [routerLink]="[item.type, item.id]">
+          <li
+            *ngFor="let item of menuItems"
+            class="dropdown relative px-4 cursor-pointer capitalize tracking-wide group"
+          >
+            <a
+              class="flex items-center text-[#FFFFF0] text-lg font-light"
+              [routerLink]="[item.type, item.id]"
+            >
               {{ item.menuname }}
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 15 15" *ngIf="item.subtitle.length>0"
-                class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180">
-                <path fill="currentColor"
-                  d="m13.959 5.18-6.46 6.375L1.04 5.18a.614.614 0 0 0-.862 0 .596.596 0 0 0-.131.656c.03.073.075.14.13.195l6.872 6.784a.642.642 0 0 0 .902 0l6.872-6.783A.595.595 0 0 0 15 5.605a.6.6 0 0 0-.178-.427.614.614 0 0 0-.863 0v.001Z">
-                </path>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 15 15"
+                *ngIf="item.subtitle.length > 0"
+                class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180"
+              >
+                <path
+                  fill="currentColor"
+                  d="m13.959 5.18-6.46 6.375L1.04 5.18a.614.614 0 0 0-.862 0 .596.596 0 0 0-.131.656c.03.073.075.14.13.195l6.872 6.784a.642.642 0 0 0 .902 0l6.872-6.783A.595.595 0 0 0 15 5.605a.6.6 0 0 0-.178-.427.614.614 0 0 0-.863 0v.001Z"
+                ></path>
               </svg>
             </a>
-            <div class="dropdown-menu absolute hidden group-hover:block bg-[#1A3675] shadow-lg pt-4"
-              *ngIf="item.subtitle.length>0">
+            <div
+              class="dropdown-menu absolute hidden group-hover:block bg-[#1A3675] shadow-lg pt-4"
+              *ngIf="item.subtitle.length > 0"
+            >
               <ul class="p-2 w-80">
-                <li class="py-1 animate-fade-in" *ngFor="let sub of item.subtitle; let i = index"
-                  [ngStyle]="{ animationDelay: i * 0.2 + 's' }">
-                  <a [routerLink]="[sub.type, sub.id]"
-                    class="block uppercase text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer">
-                    {{ sub.menuname }}</a>
+                <li
+                  class="py-1 animate-fade-in"
+                  *ngFor="let sub of item.subtitle; let i = index"
+                  [ngStyle]="{ animationDelay: i * 0.2 + 's' }"
+                >
+                  <a
+                    [routerLink]="[sub.type, sub.id]"
+                    class="block uppercase text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
+                  >
+                    {{ sub.menuname }}</a
+                  >
                 </li>
               </ul>
             </div>
@@ -61,42 +96,76 @@
         </ul>
         <!-- Mobile Search Input -->
         <div class="flex items-center w-full xl:w-auto xl:hidden">
-          <input type="text" placeholder="Таны хайх түлхүүр үг"
-            class="w-full xl:w-80 outline-none border-b-2 bg-white text-gray-600 text-sm px-4 py-2" />
+          <input
+            type="text"
+            placeholder="Таны хайх түлхүүр үг"
+            class="w-full xl:w-80 outline-none border-b-2 bg-white text-gray-600 text-sm px-4 py-2"
+          />
           <button type="button" class="px-3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px" class="fill-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192.904 192.904"
+              width="16px"
+              class="fill-white"
+            >
               <path
-                d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
-              </path>
+                d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"
+              ></path>
             </svg>
           </button>
         </div>
         <!-- Mobile Menu Icon -->
         <button class="xl:hidden" (click)="toggleMobileMenu()">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" class="w-8 h-8 text-white">
-            <path fill="white" d="M3 6h18M3 12h18m-18 6h18" stroke="white" stroke-width="2" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="white"
+            viewBox="0 0 24 24"
+            class="w-8 h-8 text-white"
+          >
+            <path
+              fill="white"
+              d="M3 6h18M3 12h18m-18 6h18"
+              stroke="white"
+              stroke-width="2"
+            />
           </svg>
         </button>
         <!-- mobile menu  -->
-        <div [ngClass]="{ 'mobile-menu': true, open: isMobileMenuOpen }"
+        <div
+          [ngClass]="{ 'mobile-menu': true, open: isMobileMenuOpen }"
           class="fixed top-36 right-0 flex flex-col bg-[#1A3675] shadow-lg transition-transform duration-300 ease-in-out xl:hidden"
-          style="max-height: calc(100vh - 4rem); overflow-y: auto; width: 60vw">
+          style="max-height: calc(100vh - 4rem); overflow-y: auto; width: 60vw"
+        >
           <ul class="p-4">
-            <li *ngFor="let item of menuItems" class="dropdown px-4 py-2 cursor-pointer uppercase tracking-wide">
-              <a class="flex justify-between text-white items-center font-medium" (click)="toggleMobileCat(item.id)">
+            <li
+              *ngFor="let item of menuItems"
+              class="dropdown px-4 py-2 cursor-pointer uppercase tracking-wide"
+            >
+              <a
+                class="flex justify-between text-white items-center font-medium"
+                (click)="toggleMobileCat(item.id)"
+              >
                 {{ item.menuname | translate }}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 15 15"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 15 15"
                   class="w-4 h-4 ml-1 transition-transform duration-300"
-                  [ngClass]="{ 'rotate-180': activeItemId === item.id }">
-                  <path fill="currentColor"
-                    d="m13.959 5.18-6.46 6.375L1.04 5.18a.614.614 0 0 0-.862 0 .596.596 0 0 0-.131.656c.03.073.075.14.13.195l6.872 6.784a.642.642 0 0 0 .902 0l6.872-6.783A.595.595 0 0 0 15 5.605a.6.6 0 0 0-.178-.427.614.614 0 0 0-.863 0v.001Z">
-                  </path>
+                  [ngClass]="{ 'rotate-180': activeItemId === item.id }"
+                >
+                  <path
+                    fill="currentColor"
+                    d="m13.959 5.18-6.46 6.375L1.04 5.18a.614.614 0 0 0-.862 0 .596.596 0 0 0-.131.656c.03.073.075.14.13.195l6.872 6.784a.642.642 0 0 0 .902 0l6.872-6.783A.595.595 0 0 0 15 5.605a.6.6 0 0 0-.178-.427.614.614 0 0 0-.863 0v.001Z"
+                  ></path>
                 </svg>
               </a>
               <ul class="mt-2" *ngIf="activeItemId === item.id">
                 <li class="py-2 text-white" *ngFor="let sub of item.subtitle">
-                  <a [routerLink]="['/type', sub.type, sub.id]"
-                    class="block uppercase text-white pl-1 text-xs cursor-pointer">-{{ sub.menuname | translate }}</a>
+                  <a
+                    [routerLink]="[sub.type, sub.id]"
+                    class="block uppercase text-white pl-1 text-xs cursor-pointer"
+                    >-{{ sub.menuname | translate }}</a
+                  >
                 </li>
               </ul>
             </li>
