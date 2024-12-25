@@ -14,6 +14,8 @@
           <div class="flex hidden xl:flex w-full xl:w-auto">
             <input
               type="text"
+              [(ngModel)]="term"
+              (ngModelChange)="onSearchChange()"
               placeholder="Таны хайх түлхүүр үг"
               class="w-full xl:w-80 outline-none border-b-2 bg-white text-gray-600 text-sm px-4 py-2"
             />
@@ -84,7 +86,16 @@
                   [ngStyle]="{ animationDelay: i * 0.2 + 's' }"
                 >
                   <a
+                    *ngIf="sub.link == ''"
                     [routerLink]="[sub.type, sub.id]"
+                    class="block uppercase text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
+                  >
+                    {{ sub.menuname }}</a
+                  >
+                  <a
+                    *ngIf="sub.link != ''"
+                    [href]="sub.link"
+                    target="_blank"
                     class="block uppercase text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
                   >
                     {{ sub.menuname }}</a
