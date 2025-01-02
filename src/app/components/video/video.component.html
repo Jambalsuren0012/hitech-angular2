@@ -1,9 +1,13 @@
 <div class="max-w-screen-2xl mt-16 mx-auto px-4">
   <a [routerLink]="">
     <h1
-      class="text-gray-800 font-lora text-2xl font-medium mb-4 hover:text-[#D4AF37]"
+      class="relative mb-4 inline-block text-2xl font-lora font-medium text-gray-800 hover:text-[#D4AF37] group"
     >
       {{ "Нэвтрүүлэг" | translate }}
+      <!-- Underline -->
+      <span
+        class="absolute inset-x-0 bottom-0 h-[2px] bg-[#D4AF37] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"
+      ></span>
     </h1>
   </a>
   <!-- Main video section -->

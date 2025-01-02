@@ -2,9 +2,14 @@
   <!-- Sidebar Section -->
   <a routerLink="/news">
     <h1
-      class="text-2xl font-lora font-medium text-gray-800 hover:text-[#D4AF37]"
+      class="relative mb-4 inline-block text-2xl font-lora font-medium text-gray-800 hover:text-[#D4AF37] group"
     >
       {{ "Мэдээ, Мэдээлэл" | translate }}
+
+      <!-- Underline -->
+      <span
+        class="absolute inset-x-0 bottom-0 h-[2px] bg-[#D4AF37] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"
+      ></span>
     </h1>
   </a>
   <div class="lg:flex lg:flex-row">
