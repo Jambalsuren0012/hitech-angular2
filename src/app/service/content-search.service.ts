@@ -10,8 +10,13 @@ import { environment } from '../environments/environment';
 export class ContentSearchService {
   constructor(private http: HttpClient) {}
 
-  getAllContentSearch(lang = 'mn', title = ''): Observable<any> {
-    const payload = { lang, title }; // Include title in the payload
+  getAllContentSearch(
+    lang = 'mn',
+    title = '',
+    info = '',
+    description = '',
+  ): Observable<any> {
+    const payload = { lang, title, description, info };
     return this.http.post(`${environment.apiUrl}content/search`, payload).pipe(
       catchError((error) => {
         console.error('Error fetching content:', error);

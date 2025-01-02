@@ -1,0 +1,72 @@
+<div class="w-full lg:w-3/4 mx-auto p-4 border-gray-300">
+  <h1 class="text-2xl text-center font-lora my-4 font-medium text-black-second">
+    Хайлтын үр дүн
+  </h1>
+
+  <!-- If there are products, display the list -->
+  <div *ngIf="filteredContents && filteredContents.length > 0">
+    <div
+      *ngFor="let item of filteredContents"
+      class="flex items-center gap-4 mb-6"
+    >
+      <!-- Product Link (Clickable) -->
+      <a
+        [routerLink]="
+          item.contentType === 'news'
+            ? ['/news-details', item.id]
+            : item.contentType === 'book'
+              ? ['/book-details', item.id]
+              : []
+        "
+        target="_blank"
+        class="flex items-center gap-4"
+      >
+        <!-- Product Image -->
+        <div class="w-32 h-32">
+          <img
+            class="h-full w-full object-cover object-center duration-500 ease-out hover:scale-105"
+            [src]="imgUrl + item.picurl"
+            alt="Product Image"
+          />
+        </div>
+
+        <!-- Product Text -->
+        <div class="flex flex-col items-start text-left">
+          <h1
+            class="text-gray-900 font-medium font-lora text-sm sm:text-base md:text-lg"
+          >
+            {{ item.title }}
+          </h1>
+          <p class="text-dark-gray font-ptsans text-xs sm:text-sm md:text-base">
+            {{ item.description || "No description available" }}
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- If no products are found, show the "No results found" message -->
+  <div
+    *ngIf="filteredContents && filteredContents.length === 0"
+    class="flex flex-col items-center justify-center my-8"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-20 h-20"
+    >
+      <path
+        d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+        stroke="#969696"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></path>
+    </svg>
+    <p class="text-lg font-semibold text-black-second">
+      Хайлтын үр дүн олдсонгүй
+    </p>
+    <p class="text-lg font-semibold text-gray">Дахин шалгана уу</p>
+  </div>
+</div>

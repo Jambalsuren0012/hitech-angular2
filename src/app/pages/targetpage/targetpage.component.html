@@ -1,5 +1,5 @@
 <div class="bg-gray-100">
-  <div *ngIf="coordinatDetails" class="max-w-screen-xl mx-auto px-4 py-8">
+  <div *ngIf="coordinatDetails" class="max-w-screen-2xl mx-auto px-4 py-8">
     <div
       class="flex justify-between border-t border-b border-gray-600 py-2 mb-4"
     >
@@ -40,15 +40,15 @@
     <!-- Date and Share Section -->
 
     <!-- News Content and Sidebar Section -->
-    <div class="flex flex-col lg:flex-row gap-4 my-4">
+    <div class="flex max-w-screen-2xl flex-col lg:flex-row gap-4 my-4">
       <div>
         <!-- Image Section Above News Content -->
-        <div class="bg-white rounded shadow-md w-full mb-4">
+        <div *ngIf="" class="bg-white rounded shadow-md w-full mb-4">
           <div class="p-4 md:p-6">
             <img
               class="w-full object-cover"
               [src]="imageUrl + coordinatDetails.picurl"
-              alt="{{ coordinatDetails.title | translate }}"
+              alt=""
             />
           </div>
         </div>

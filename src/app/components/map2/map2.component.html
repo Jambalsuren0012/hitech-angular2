@@ -1,4 +1,4 @@
-<div class="mx-auto mt-4 px-4">
+<div class="mx-auto mt-4 px-4 f">
   <a routerLink="/map">
     <h1
       class="text-2xl font-lora font-medium text-gray-800 hover:text-[#D4AF37]"
@@ -6,22 +6,24 @@
       {{ "Хээрийн судалгаа" | translate }}
     </h1>
   </a>
-  <!-- Map Section -->
-  <div
-    style="z-index: 1"
-    id="map"
-    class="w-full h-[50px] sm:h-[300px] bg-gray-200 mt-4 rounded-lg"
-  >
-    <!-- Placeholder for map content -->
-  </div>
-  <!-- Text Section -->
-  <div class="mt-4 text-sm">
-    <p>
-      Ежегодно сотрудниками нашего Института проводятся обширные полевые
-      исследования в различных регионах нашей страны и за её пределами. Все
-      отчёты сотрудников ИИМК РАН проходят предварительную экспертизу
-      <a class="text-blue-700" routerLink="map">Группы ОПИ</a> при нашем
-      Институте.
-    </p>
+  <div class="flex-wrap">
+    <!-- Map Section -->
+    <div
+      style="z-index: 1"
+      id="map"
+      class="w-3/5 h-[50px] sm:h-[300px] bg-gray-200 mt-4 rounded-lg"
+    >
+      <!-- Placeholder for map content -->
+    </div>
+    <!-- Text Section -->
+    <div class="mt-4 text-sm p-4 w-2/5">
+      <p>
+        Ежегодно сотрудниками нашего Института проводятся обширные полевые
+        исследования в различных регионах нашей страны и за её пределами. Все
+        отчёты сотрудников ИИМК РАН проходят предварительную экспертизу
+        <a class="text-blue-700" routerLink="map">Группы ОПИ</a> при нашем
+        Институте.
+      </p>
+    </div>
   </div>
 </div>

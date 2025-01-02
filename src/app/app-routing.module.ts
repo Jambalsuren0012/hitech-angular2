@@ -16,6 +16,7 @@ import { AllBooksComponent } from './pages/all-books/all-books.component';
 import { NewsPageComponent } from './pages/news-page/news-page.component';
 import { ContentPageComponent } from './pages/content-page/content-page.component';
 import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
+import { SearchresultComponent } from './pages/searchresult/searchresult.component';
 const routes: Routes = [
   { path: 'map/:id', component: TargetpageComponent },
   { path: '', component: HomePageComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'book/:id', component: AllBooksComponent },
   { path: 'book', component: AllBooksComponent },
   { path: 'gallery/:id', component: GalleryPageComponent },
+  { path: 'search/:term', component: SearchresultComponent },
   { path: '', redirectTo: '/map2', pathMatch: 'full' },
 ];
 @NgModule({

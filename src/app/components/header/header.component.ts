@@ -4,6 +4,7 @@ import {
   effect,
   OnInit,
   Signal,
+  HostListener,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuService } from '../../service/menu.service';
@@ -24,11 +25,12 @@ export class HeaderComponent {
   lang: any = 'mn';
   searchText: string = '';
   content: any = [];
-
   filteredContent: any[] = [];
   term: string = '';
   filteredItems: { id: any; title: string }[] = [];
   contentItems: any = [];
+  logoUrl: string = '/assets/img/logo.png';
+  clickedItemId: any = null;
 
   constructor(
     private translate: TranslateService,
@@ -37,6 +39,7 @@ export class HeaderComponent {
     private langService: TranslateServiceService,
     private contentSearchService: ContentSearchService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -44,15 +47,19 @@ export class HeaderComponent {
       this.lang = lang;
       this.isEnglish = lang === 'mn';
       this.loadmenu();
+
+      // Set the initial logo based on language
+      this.logoUrl =
+        lang === 'mn' ? '/assets/img/logo.png' : '/assets/img/logo-en.png';
     });
     this.contentSearchService.getAllContentSearch().subscribe(
       (data) => {
         this.contentItems = data;
         this.filteredItems = data;
-        console.log('lalriin contents ', this.contentItems);
+        console.log('Content search fetched', this.contentItems);
       },
       (error) => {
-        console.error('Error fetching content', error);
+        console.error('Error fetching content search', error);
       },
     );
   }
@@ -77,6 +84,10 @@ export class HeaderComponent {
     this.lang = lang;
     this.router.navigate(['home', { lang: lang }]);
     this.loadmenu();
+
+    // Change the logo based on language
+    this.logoUrl =
+      lang === 'mn' ? '/assets/img/logo.png' : '/assets/img/logo-en.png';
   }
 
   toggleMobileCat(itemId: number) {
@@ -93,12 +104,25 @@ export class HeaderComponent {
   }
 
   onSearchChange(): void {
-    if (this.term) {
-      this.filteredItems = this.contentItems.filter((item: { title: string }) =>
-        item.title.toLowerCase().includes(this.term.toLowerCase()),
-      );
-    } else {
-      this.filteredItems = this.contentItems;
+    console.log('Search term changed:', this.term); // Debugging log
+    const searchTerm = this.term.toLowerCase();
+    this.filteredItems = this.contentItems.filter((item: any) =>
+      `${item.title} ${item.info} ${item.description} `
+        .toLowerCase()
+        .includes(searchTerm),
+    );
+  }
+
+  onSelectItem(item: any): void {
+    this.term = `${item.title} ${item.info} ${item.description}`;
+    this.filteredItems = []; // Clear dropdown
+    console.log('Selected item:', item);
+  }
+  onSearchEnter(): void {
+    this.cdr.detectChanges(); // Manually trigger change detection
+    console.log('Enter key pressed. Term:', this.term);
+    if (this.term && this.term.trim()) {
+      this.router.navigate(['/search', this.term.trim()]);
     }
   }
 }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {
   BrowserModule,
   provideClientHydration,
@@ -48,6 +49,7 @@ import { AllvideoPageComponent } from './pages/allvideo-page/allvideo-page.compo
 import { ContentPageComponent } from './pages/content-page/content-page.component';
 import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.component';
 import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
+import { SearchresultComponent } from './pages/searchresult/searchresult.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -90,6 +92,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ContentPageComponent,
     MenuSidebarComponent,
     GalleryPageComponent,
+    SearchresultComponent,
   ],
   imports: [
     BrowserModule,
