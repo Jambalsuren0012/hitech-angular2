@@ -38,6 +38,7 @@ export class TargetpageComponent implements OnInit {
         setTimeout(() => {
           this.styleInnerImages();
         }, 100);
+        console.log('coordinatDetails', this.coordinatDetails);
       },
       (error) => {
         console.error('Error fetching news details:', error);

@@ -13,10 +13,10 @@
         <!-- Desktop Search Input, hidden on smaller screens -->
         <div class="relative flex hidden xl:flex w-full xl:w-auto">
           <input
-            (keyup.enter)="onSearchEnter()"
-            type="text"
             [(ngModel)]="term"
             (ngModelChange)="onSearchChange()"
+            (keydown.enter)="onSearchEnter()"
+            type="text"
             [placeholder]="'Хайлт хийх үг' | translate"
             class="w-full xl:w-80 outline-none border-b-2 bg-white text-gray-600 text-sm px-4 py-2"
           />
@@ -191,7 +191,7 @@
       <!-- Conditionally hide the border and title if the item was clicked -->
       <ng-container *ngIf="clickedItemId !== item.id">
         <hr class="border-b-0 border-gray" />
-        <a [routerLink]="['/product/item', item.id]">
+        <a [routerLink]="['/book', item.id]">
           <p>{{ item.title }}</p>
         </a>
       </ng-container>

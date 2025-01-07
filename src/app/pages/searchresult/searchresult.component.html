@@ -13,9 +13,9 @@
       <a
         [routerLink]="
           item.contentType === 'news'
-            ? ['/news-details', item.id]
+            ? ['/news-details', { id: item.id }]
             : item.contentType === 'book'
-              ? ['/book-details', item.id]
+              ? ['/book-details', { id: item.id }]
               : []
         "
         target="_blank"

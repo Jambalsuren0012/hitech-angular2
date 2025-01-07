@@ -11,6 +11,7 @@ import { MenuService } from '../../service/menu.service';
 import { Router } from '@angular/router';
 import { TranslateServiceService } from '../../service/translate-service.service';
 import { ContentSearchService } from '../../service/content-search.service';
+import { NgZone } from '@angular/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -34,12 +35,12 @@ export class HeaderComponent {
 
   constructor(
     private translate: TranslateService,
-
     private menuService: MenuService,
     private langService: TranslateServiceService,
     private contentSearchService: ContentSearchService,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private ngZone: NgZone,
   ) {}
 
   ngOnInit() {
@@ -55,7 +56,7 @@ export class HeaderComponent {
     this.contentSearchService.getAllContentSearch().subscribe(
       (data) => {
         this.contentItems = data;
-        this.filteredItems = data;
+
         console.log('Content search fetched', this.contentItems);
       },
       (error) => {
@@ -104,25 +105,33 @@ export class HeaderComponent {
   }
 
   onSearchChange(): void {
-    console.log('Search term changed:', this.term); // Debugging log
+    console.log('Search term changed:', this.term); // Log search term as it changes
+
+    if (this.term) {
+      this.filteredItems = [];
+      return;
+    }
+
     const searchTerm = this.term.toLowerCase();
     this.filteredItems = this.contentItems.filter((item: any) =>
-      `${item.title} ${item.info} ${item.description} `
+      `${item.title || ''} ${item.info || ''} ${item.description || ''}`
         .toLowerCase()
         .includes(searchTerm),
     );
   }
-
   onSelectItem(item: any): void {
     this.term = `${item.title} ${item.info} ${item.description}`;
     this.filteredItems = []; // Clear dropdown
     console.log('Selected item:', item);
   }
   onSearchEnter(): void {
-    this.cdr.detectChanges(); // Manually trigger change detection
-    console.log('Enter key pressed. Term:', this.term);
-    if (this.term && this.term.trim()) {
-      this.router.navigate(['/search', this.term.trim()]);
-    }
+    this.ngZone.run(() => {
+      console.log('Enter key pressed. Term:', this.term);
+      if (this.term && this.term.trim()) {
+        this.router.navigate(['/search', this.term.trim()]);
+      } else {
+        console.log('Search term is empty or invalid.');
+      }
+    });
   }
 }
