@@ -27,7 +27,7 @@ export class HeaderComponent {
   searchText: string = '';
   content: any = [];
   filteredContent: any[] = [];
-  term: string = '';
+  term: any;
   filteredItems: { id: any; title: string }[] = [];
   contentItems: any = [];
   logoUrl: string = '/assets/img/logo.png';
@@ -104,34 +104,12 @@ export class HeaderComponent {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
-  onSearchChange(): void {
-    console.log('Search term changed:', this.term); // Log search term as it changes
-
-    if (this.term) {
-      this.filteredItems = [];
-      return;
-    }
-
-    const searchTerm = this.term.toLowerCase();
-    this.filteredItems = this.contentItems.filter((item: any) =>
-      `${item.title || ''} ${item.info || ''} ${item.description || ''}`
-        .toLowerCase()
-        .includes(searchTerm),
-    );
+  onSearchChange() {
+    this.router.navigate(['/search', this.searchText]);
   }
   onSelectItem(item: any): void {
     this.term = `${item.title} ${item.info} ${item.description}`;
     this.filteredItems = []; // Clear dropdown
     console.log('Selected item:', item);
-  }
-  onSearchEnter(): void {
-    this.ngZone.run(() => {
-      console.log('Enter key pressed. Term:', this.term);
-      if (this.term && this.term.trim()) {
-        this.router.navigate(['/search', this.term.trim()]);
-      } else {
-        console.log('Search term is empty or invalid.');
-      }
-    });
   }
 }

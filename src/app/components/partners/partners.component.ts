@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 export class PartnersComponent implements OnInit {
   partners: Array<{
     picurl: any;
-    url: string;
+    link: string;
   }> = [];
   imageUrl = environment.imgUrl;
 

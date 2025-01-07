@@ -103,6 +103,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     FontAwesomeModule,
     YouTubePlayerModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

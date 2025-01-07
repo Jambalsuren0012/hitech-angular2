@@ -13,15 +13,14 @@
         <!-- Desktop Search Input, hidden on smaller screens -->
         <div class="relative flex hidden xl:flex w-full xl:w-auto">
           <input
-            [(ngModel)]="term"
-            (ngModelChange)="onSearchChange()"
-            (keydown.enter)="onSearchEnter()"
+            [(ngModel)]="searchText"
+            (change)="onSearchChange()"
             type="text"
             [placeholder]="'Хайлт хийх үг' | translate"
             class="w-full xl:w-80 outline-none border-b-2 bg-white text-gray-600 text-sm px-4 py-2"
           />
 
-          <button (click)="onSearchEnter()" type="button" class="px-3">
+          <button (click)="onSearchChange()" type="button" class="px-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 192.904 192.904"

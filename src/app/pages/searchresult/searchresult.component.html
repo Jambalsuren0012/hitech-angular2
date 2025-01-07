@@ -12,10 +12,10 @@
       <!-- Product Link (Clickable) -->
       <a
         [routerLink]="
-          item.contentType === 'news'
-            ? ['/news-details', { id: item.id }]
-            : item.contentType === 'book'
-              ? ['/book-details', { id: item.id }]
+          item.type === 'news'
+            ? ['/news-details', item.id]
+            : item.type === 'book'
+              ? ['/book-details', item.id]
               : []
         "
         target="_blank"

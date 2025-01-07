@@ -22,7 +22,12 @@
               <div
                 class="flex justify-center items-center w-full h-full overflow-hidden p-5"
               >
-                <a target="_blank" href="{{ item.url }}">
+                <a
+                  *ngIf="item.link"
+                  [href]="item.link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     src="{{ imageUrl + item.picurl }}"
                     alt="card-image"
