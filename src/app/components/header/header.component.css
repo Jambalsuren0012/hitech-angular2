@@ -34,3 +34,20 @@
 .animate-fade-in {
   animation: fade-in 1s ease forwards;
 }
+.line1 ::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/assets/img/line1.png") repeat center;
+  opacity: 100; /* Adjust opacity of the image */
+  z-index: -1; /* Places the image behind content */
+  pointer-events: none; /* Prevent interaction with the pseudo-element */
+}
+.line1 {
+  position: relative; /* Required for positioning the pseudo-element */
+  /* background-color: #ffffff !important ;  */
+  z-index: 1; /* Keeps content above the pseudo-element */
+}

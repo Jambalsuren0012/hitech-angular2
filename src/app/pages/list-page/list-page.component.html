@@ -31,7 +31,7 @@
             </p>
             <a
               [routerLink]="['/news', item.id]"
-              class="inline-flex items-center mt-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[#1A3675] dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              class="inline-flex items-center mt-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[#266ca9] dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Дэлгэрэнгүй
               <svg
@@ -71,7 +71,7 @@
         <button
           *ngIf="i + 5 > currentPage && i < currentPage + 5"
           (click)="changePage(i + 1)"
-          [class.bg-[#1A3675]]="currentPage === i + 1"
+          [class.bg-[#266ca9]]="currentPage === i + 1"
           [class.text-gray-100]="currentPage === i + 1"
           [class.hover:bg-gray-200]="currentPage !== i + 1"
           class="px-3 py-2 text-blue-600 border border-gray-300 rounded-md focus:outline-none"

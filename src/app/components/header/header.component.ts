@@ -51,7 +51,9 @@ export class HeaderComponent {
 
       // Set the initial logo based on language
       this.logoUrl =
-        lang === 'mn' ? '/assets/img/logo.png' : '/assets/img/logo-en.png';
+        lang === 'mn'
+          ? '/assets/img/mas_logo_mng.png'
+          : '/assets/img/mas_logo_eng.png';
     });
     this.contentSearchService.getAllContentSearch().subscribe(
       (data) => {
@@ -88,7 +90,9 @@ export class HeaderComponent {
 
     // Change the logo based on language
     this.logoUrl =
-      lang === 'mn' ? '/assets/img/logo.png' : '/assets/img/logo-en.png';
+      lang === 'mn'
+        ? '/assets/img/mas_logo_mng.png'
+        : '/assets/img/mas_logo_eng.png';
   }
 
   toggleMobileCat(itemId: number) {

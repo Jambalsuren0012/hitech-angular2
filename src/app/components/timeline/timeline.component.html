@@ -1,40 +1,15 @@
-<div class="max-w-4xl mx-auto py-16 px-4">
-  <div class="relative">
-    <!-- Timeline Line -->
-    <div
-      class="absolute top-0 left-1/2 w-0.5 h-full bg-gray-200 transform -translate-x-1/2"
-    ></div>
-
-    <!-- Render Timeline Items -->
-    <div
-      *ngFor="let timeline of timelines; let i = index"
-      class="flex items-center mb-16 timeline-item"
-      [ngClass]="{
-        'flex-row': i % 2 === 0,
-        'flex-row-reverse': i % 2 !== 0,
-      }"
-    >
-      <!-- Left/Right Content -->
-      <div class="w-1/2 text-right pr-6" *ngIf="i % 2 === 0">
-        <h3 class="text-orange-500 text-xl font-bold">{{ timeline.year }}</h3>
-        <div class="bg-white shadow-md rounded-lg p-6 mt-4">
-          <h4 class="font-semibold text-lg mb-2">{{ timeline.title }}</h4>
-          <p class="text-gray-800">{{ timeline.description }}</p>
-        </div>
-      </div>
-
-      <!-- Orange Dot -->
-      <div class="w-10 flex-shrink-0 relative flex justify-center">
-        <div
-          class="w-4 h-4 bg-orange-500 rounded-full absolute top-1/2 transform -translate-y-1/2"
-        ></div>
-      </div>
-
-      <div class="w-1/2 text-left pl-6" *ngIf="i % 2 !== 0">
-        <h3 class="text-orange-500 text-xl font-bold">{{ timeline.year }}</h3>
-        <div class="bg-white shadow-md rounded-lg p-6 mt-4">
-          <h4 class="font-semibold text-lg mb-2">{{ timeline.title }}</h4>
-          <p class="text-gray-800">{{ timeline.description }}</p>
+<div class="con222">
+  <div class="timeline-container" id="timeline-1">
+    <div class="timeline-header">
+      <h2 class="timeline-header__title">Археологийн хүрээлэн</h2>
+      <h3 class="timeline-header__subtitle">Бидний түүхэн замнал</h3>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item" *ngFor="let item of timelineData">
+        <div class="timeline__content">
+          <img class="timeline__img" [src]="imageUrl + item.picurl" />
+          <h2 class="timeline__content-title">{{ item.title }}</h2>
+          <p class="timeline__content-desc">{{ item.description }}</p>
         </div>
       </div>
     </div>

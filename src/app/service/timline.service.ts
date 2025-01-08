@@ -10,7 +10,15 @@ import { map } from 'rxjs/operators';
 export class TimlineService {
   apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
-  menulist(lang: any = 'mn'): Observable<any> {
-    return this.http.get(`${this.apiUrl}/menu/${lang}`);
+  getAllTimelineData(payload: any): Observable<any> {
+    // If using local data:
+    return this.http.post<any>(`${environment.apiUrl}/content`, payload).pipe(
+      map((response) => {
+        // Filter the response to only include books
+        return response.filter(
+          (item: { type: string }) => item.type === 'timeline',
+        );
+      }),
+    );
   }
 }

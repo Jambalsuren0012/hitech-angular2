@@ -4,6 +4,7 @@ import { AboutusService } from '../../service/aboutus.service';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateServiceService } from '../../service/translate-service.service';
 import { environment } from '../../environments/environment';
+import { MembersService } from '../../service/members.service';
 @Component({
   selector: 'app-content-page',
   templateUrl: './content-page.component.html',
@@ -20,6 +21,7 @@ export class ContentPageComponent {
 
   constructor(
     private menuService: MenuService,
+    private membersService: MembersService,
     private aboutusService: AboutusService,
     private language: TranslateServiceService,
     private route: ActivatedRoute,
@@ -63,7 +65,6 @@ export class ContentPageComponent {
       });
     });
   }
-
   fetchAllMenuContent(): void {
     const data = { lang: this.lang, menuid: this.menuid ?? null };
     this.aboutusService.getAllMenuContent(data).subscribe(
@@ -74,6 +75,17 @@ export class ContentPageComponent {
       },
       (error) => {
         console.error('Error fetching  data content:', error);
+      },
+    );
+  }
+  fetchAllMembers(): void {
+    const data = { lang: this.lang, menuid: this.menuid ?? null };
+    this.membersService.getAllMembers(data).subscribe(
+      (response: any) => {
+        console.log('AboutMembers', this.aboutMenuContent);
+      },
+      (error) => {
+        console.error('Error fetching  AboutMembers:', error);
       },
     );
   }

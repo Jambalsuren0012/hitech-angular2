@@ -35,20 +35,19 @@
       </div>
     </div>
 
-    <!-- Title Section -->
-
-    <!-- Date and Share Section -->
-
     <!-- News Content and Sidebar Section -->
     <div class="flex max-w-screen-2xl mx-auto flex-col lg:flex-row gap-4 my-4">
       <div>
         <!-- Image Section Above News Content -->
-        <div *ngIf="" class="bg-white rounded shadow-md w-full mb-4">
+        <div
+          *ngIf="coordinatDetails"
+          class="bg-white rounded shadow-md w-full mb-4"
+        >
           <div class="p-4 md:p-6">
             <img
               class="w-full object-cover"
               [src]="imageUrl + coordinatDetails.picurl"
-              alt=""
+              alt="coordinatDetails.picurl"
             />
           </div>
         </div>

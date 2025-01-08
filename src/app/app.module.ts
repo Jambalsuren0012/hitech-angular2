@@ -51,6 +51,7 @@ import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.com
 import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
 import { SearchresultComponent } from './pages/searchresult/searchresult.component';
 import { FilterPipe } from './filter.pipe';
+import { MembersdetailsComponent } from './pages/membersdetails/membersdetails.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -95,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     GalleryPageComponent,
     SearchresultComponent,
     FilterPipe,
+    MembersdetailsComponent,
   ],
   imports: [
     BrowserModule,

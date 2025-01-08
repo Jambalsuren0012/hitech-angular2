@@ -17,6 +17,8 @@ import { NewsPageComponent } from './pages/news-page/news-page.component';
 import { ContentPageComponent } from './pages/content-page/content-page.component';
 import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
 import { SearchresultComponent } from './pages/searchresult/searchresult.component';
+import { MembersdetailsComponent } from './pages/membersdetails/membersdetails.component';
+
 const routes: Routes = [
   { path: 'map/:id', component: TargetpageComponent },
   { path: '', component: HomePageComponent },
@@ -24,14 +26,15 @@ const routes: Routes = [
   { path: 'home:/:lang', component: HomePageComponent },
   { path: 'news-details/:id', component: NewsDetailsPageComponent },
   { path: 'list/:type/:id', component: MenuListPageComponent },
-  { path: 'member', component: MembersComponent },
   { path: 'aboutus/:id', component: MenuAboutPageComponent },
   { path: 'content/:id', component: MenuAboutPageComponent },
   { path: 'map', component: MapPageComponent },
   { path: 'book-details/:id', component: BookDetailsPageComponent },
+  { path: 'member-details/:id', component: MembersdetailsComponent },
   { path: 'news/:id', component: NewsPageComponent },
   { path: 'news', component: NewsPageComponent },
   { path: 'timeline', component: TimelineComponent },
+  { path: 'timeline/:id', component: TimelineComponent },
   { path: 'book/:id', component: AllBooksComponent },
   { path: 'book', component: AllBooksComponent },
   { path: 'gallery/:id', component: GalleryPageComponent },

@@ -1,11 +1,20 @@
-import { Component, AfterViewInit, ElementRef } from '@angular/core';
+import { TimlineService } from '../../service/timline.service';
+import {
+  Component,
+  AfterViewInit,
+  HostListener,
+  OnInit,
+  ElementRef,
+} from '@angular/core';
 import { gsap } from 'gsap';
+import { environment } from '../../environments/environment';
 
 // Define the TimelineItem interface
 export interface TimelineItem {
   id: number;
   year: number;
   title: string;
+  picurl: string;
   description: string;
 }
 
@@ -14,47 +23,88 @@ export interface TimelineItem {
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.css'],
 })
-export class TimelineComponent implements AfterViewInit {
-  // Example timeline data
-  timelines: TimelineItem[] = [
-    {
-      id: 1,
-      year: 2022,
-      title: 'Lorem Ipsum',
-      description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-    {
-      id: 2,
-      year: 2023,
-      title: 'Dolor Sit Amet',
-      description:
-        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    },
-    {
-      id: 3,
-      year: 2022,
-      title: 'Consectetur Adipiscing',
-      description:
-        'It is a long established fact that a reader will be distracted by the readable content.',
-    },
-    {
-      id: 4,
-      year: 2024,
-      title: 'Vitae Elementum',
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text.',
-    },
-  ];
+export class TimelineComponent implements OnInit, AfterViewInit {
+  timelineData: TimelineItem[] = []; // Store fetched timeline data
+  imageUrl = environment.imgUrl; // Define the image URL
 
-  constructor(private elRef: ElementRef) {}
+  constructor(
+    private timelineService: TimlineService,
+    private elRef: ElementRef,
+  ) {}
 
+  ngOnInit(): void {
+    this.fetchTimelineData(); // Fetch data on component initialization
+  }
+
+  fetchTimelineData(): void {
+    const payload = {
+      /* Provide necessary data here */
+    };
+
+    this.timelineService.getAllTimelineData(payload).subscribe({
+      next: (data: TimelineItem[]) => {
+        console.log('Fetched Timeline Data:', data); // Check data in the console
+        this.timelineData = data.reverse(); // Reverse the array to show the last year first
+      },
+      error: (err: any) => {
+        console.error('Error fetching timeline data:', err);
+      },
+    });
+  }
   ngAfterViewInit(): void {
-    // GSAP animation for timeline items (optional)
-    gsap.fromTo(
-      '.timeline-item',
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1, stagger: 0.3 },
-    );
+    this.setInitialBackgroundImage();
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(): void {
+    const items = this.elRef.nativeElement.querySelectorAll('.timeline-item');
+    const timeline = this.elRef.nativeElement.querySelector('#timeline-1');
+    const viewportHeight = window.innerHeight;
+
+    // Increase the scroll distance by changing the activation threshold.
+    // Higher percentage means more scroll distance required.
+    const activationThreshold = viewportHeight * 0.8; // Activate when 90% down the viewport
+
+    items.forEach((item: HTMLElement, index: number) => {
+      const rect = item.getBoundingClientRect();
+      const itemMiddle = rect.top + rect.height / 2;
+      const isLastItem = index === items.length - 1;
+
+      if (isLastItem && itemMiddle <= activationThreshold) {
+        this.setActiveItem(timeline, item, items, true);
+      } else if (itemMiddle >= 0 && itemMiddle <= viewportHeight) {
+        if (itemMiddle <= activationThreshold) {
+          this.setActiveItem(timeline, item, items);
+        }
+      }
+    });
+  }
+
+  setInitialBackgroundImage(): void {
+    const timeline = this.elRef.nativeElement.querySelector('#timeline-1');
+    const firstItem = this.elRef.nativeElement.querySelector('.timeline-item');
+    if (firstItem) {
+      const imgUrl = firstItem
+        .querySelector('.timeline__img')
+        .getAttribute('src');
+      timeline.style.backgroundImage = `url(${imgUrl})`;
+      firstItem.classList.add('timeline-item--active');
+    }
+  }
+
+  setActiveItem(
+    timeline: HTMLElement,
+    item: HTMLElement,
+    items: NodeListOf<HTMLElement>,
+    isLast: boolean = false,
+  ): void {
+    items.forEach((i) => i.classList.remove('timeline-item--active'));
+    item.classList.add('timeline-item--active');
+    const imgUrl = item.querySelector('.timeline__img')?.getAttribute('src');
+    timeline.style.backgroundImage = `url(${imgUrl})`;
+
+    if (isLast) {
+      items[items.length - 1].classList.add('timeline-item--active');
+    }
   }
 }

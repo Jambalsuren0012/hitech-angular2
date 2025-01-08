@@ -1,9 +1,9 @@
 <header class="w-full mx-auto sticky z-50 top-0">
   <div class="mx-auto">
     <!-- First Row: Logo and Flag -->
-    <div class="bg-white w-full">
+    <div class="w-full line1">
       <div
-        class="flex justify-between max-w-screen-2xl mx-auto bg-white mt-1 items-center px-5"
+        class="flex justify-between max-w-screen-2xl mx-auto mt-1 items-center px-5"
       >
         <!-- Desktop Logo -->
         <a routerLink="/">
@@ -46,9 +46,9 @@
       </div>
     </div>
     <!-- Second Row: Navigation, Search Input, and Mobile Menu Icon -->
-    <div class="bg-[#1A3675] w-full">
+    <div class="bg-[#266ca9] w-full">
       <nav
-        class="max-w-screen-2xl flex xl:block mx-auto gap-8 px-5 bg-[#1A3675] py-4 items-center"
+        class="max-w-screen-2xl flex xl:block mx-auto gap-8 px-5 bg-[#266ca9] py-8 items-center"
       >
         <!-- Desktop Menu -->
         <ul class="hidden xl:flex justify-between space-x-8">
@@ -75,7 +75,7 @@
               </svg>
             </a>
             <div
-              class="dropdown-menu absolute hidden group-hover:block bg-[#1A3675] shadow-lg pt-4"
+              class="dropdown-menu absolute hidden group-hover:block bg-[#266ca9] shadow-lg pt-4"
               *ngIf="item.subtitle.length > 0"
             >
               <ul class="p-2 w-80">
@@ -87,7 +87,7 @@
                   <a
                     *ngIf="sub.link == ''"
                     [routerLink]="[sub.type, sub.id]"
-                    class="block uppercase text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
+                    class="block capitalize text-xs font-light border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
                   >
                     {{ sub.menuname }}</a
                   >
@@ -95,7 +95,7 @@
                     *ngIf="sub.link != ''"
                     [href]="sub.link"
                     target="_blank"
-                    class="block uppercase text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
+                    class="block text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
                   >
                     {{ sub.menuname }}</a
                   >
@@ -143,7 +143,7 @@
         <!-- mobile menu  -->
         <div
           [ngClass]="{ 'mobile-menu': true, open: isMobileMenuOpen }"
-          class="fixed top-36 right-0 flex flex-col bg-[#1A3675] shadow-lg transition-transform duration-300 ease-in-out xl:hidden"
+          class="fixed top-48 right-0 flex flex-col bg-[#266ca9] shadow-lg transition-transform duration-300 ease-in-out xl:hidden"
           style="max-height: calc(100vh - 4rem); overflow-y: auto; width: 60vw"
         >
           <ul class="p-4">
@@ -172,6 +172,7 @@
               <ul class="mt-2" *ngIf="activeItemId === item.id">
                 <li class="py-2 text-white" *ngFor="let sub of item.subtitle">
                   <a
+                    (click)="toggleMobileMenu()"
                     [routerLink]="[sub.type, sub.id]"
                     class="block uppercase text-white pl-1 text-xs cursor-pointer"
                     >-{{ sub.menuname | translate }}</a
