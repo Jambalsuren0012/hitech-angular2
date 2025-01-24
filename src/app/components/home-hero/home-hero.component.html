@@ -1,30 +1,16 @@
-<div class="w-full h-[70vh] md:h-screen bg-cover bg-center relative">
-  <!-- Carousel Container -->
-  <div class="w-full h-full relative">
-    <owl-carousel-o [options]="customOptions" class="h-full">
-      <ng-template carouselSlide *ngFor="let item of img2">
-        <!-- Slide Container -->
-        <div class="relative h-full slide-animation">
-          <!-- Fullscreen Image -->
-          <img
-            [src]="item.img"
-            alt="Background Image"
-            class="w-full h-[70vh] md:h-screen object-cover object-center"
-          />
-          <!-- Overlay Content -->
-          <div
-            class="absolute inset-0 flex flex-col justify-center items-center text-white bg-black bg-opacity-30 text-center p-4"
-          >
-            <h1 class="text-4xl lg:text-6xl font-bold mb-4">
-              {{ item.title }}
-            </h1>
-            <p class="text-lg lg:text-2xl mb-6">{{ item.description }}</p>
-          </div>
-        </div>
+<div class="w-full mt-4 h-[50vh] md:h-[70vh] bg-cover bg-center relative">
+  <!-- Loading Spinner -->
+
+  <!-- Carousel -->
+  <div class="w-full h-[50vh] md:h-[70vh]">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let item of img">
+        <img
+          [src]="imageUrl + item.picurl"
+          alt="Background Image"
+          class="w-full h-[50vh] md:h-[70vh] rounded-lg object-cover object-center"
+        />
       </ng-template>
     </owl-carousel-o>
-    <div class="absolute bottom-0 left-0 w-full h-full">
-      <div class="static-image-before"></div>
-    </div>
   </div>
 </div>

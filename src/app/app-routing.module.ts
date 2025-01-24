@@ -10,6 +10,8 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { MenuListPageComponent } from './pages/menu-list-page/menu-list-page.component';
 import { MapPageComponent } from './pages/map-page/map-page.component';
 import { MenuAboutPageComponent } from './pages/menu-about-page/menu-about-page.component';
+import { ResponsiveHtmlPipe } from './responsive-html.pipe';
+import { MembersComponent } from './components/members/members.component';
 import { AllBooksComponent } from './pages/all-books/all-books.component';
 import { NewsPageComponent } from './pages/news-page/news-page.component';
 import { ContentPageComponent } from './pages/content-page/content-page.component';

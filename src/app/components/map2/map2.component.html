@@ -1,0 +1,37 @@
+<div class="mx-auto mt-16 px-4">
+  <a routerLink="/map">
+    <h1
+      class="relative mb-6 inline-block text-2xl font-lora font-medium text-gray-800 hover:text-[#D4AF37] group"
+    >
+      {{ "Хээрийн судалгаа" | translate }}
+      <!-- Underline -->
+      <span
+        class="absolute inset-x-0 bottom-0 h-[2px] bg-[#D4AF37] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"
+      ></span>
+    </h1>
+  </a>
+  <div class="flex flex-wrap sm:flex-nowrap">
+    <!-- Map Section -->
+    <div
+      style="z-index: 1"
+      id="map"
+      class="w-full sm:w-6/12 h-[200px] sm:h-[300px] bg-gray-200 mt-4 sm:mt-0 sm:mr-4 rounded-lg"
+    >
+      <!-- Placeholder for map content -->
+    </div>
+    <!-- Text Section -->
+    <div
+      class="w-full sm:w-6/12 mt-4 sm:mt-0 font-ptsans text-justify text-base p-4"
+    >
+      <p>
+        ШУА-ийн Археологийн хүрээлэн нь Монгол улсын нутаг дэвсгэрт археологийн
+        судалгааг дагнан гүйцэтгэдэг мэргэжлийн үндсэн байгууллага бөгөөд жил
+        бүр Монгол улсын Соёлын өвийг хамгаалах тухай хуулийн хүрээнд Соёлын
+        яамны дэргэдэх Археологийн мэргэжлийн зөвлөлийн зөвшөөрлөөр ОУ-ын болон
+        үндэсний 40 гаруй хээрийн шинжилгээний экспедиц судалгаа шинжилгээний
+        ажлыг гүйцэтгэж байна.
+        <!-- <a class="text-blue-700" routerLink="map">Группы ОПИ</a> -->
+      </p>
+    </div>
+  </div>
+</div>

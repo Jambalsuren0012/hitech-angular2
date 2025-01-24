@@ -13,6 +13,7 @@ import { HomeHeroComponent } from './components/home-hero/home-hero.component';
 import { NewsCardComponent } from './components/news-card/news-card.component';
 import { NewscardSliderComponent } from './components/newscard-slider/newscard-slider.component';
 import { SearchPipe } from './search.pipe';
+import { NewBookComponent } from './components/new-book/new-book.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { HttpClient } from '@angular/common/http';
 import { appConfig } from './app.config';
@@ -28,6 +29,7 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Map2Component } from './components/map2/map2.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TimelineComponent } from './components/timeline/timeline.component';
@@ -50,10 +52,6 @@ import { GalleryPageComponent } from './pages/gallery-page/gallery-page.componen
 import { SearchresultComponent } from './pages/searchresult/searchresult.component';
 import { FilterPipe } from './filter.pipe';
 import { MembersdetailsComponent } from './pages/membersdetails/membersdetails.component';
-import { AboutCardComponent } from './about-card/about-card.component';
-import { OurToursComponent } from './our-tours/our-tours.component';
-
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -69,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewscardSliderComponent,
     SearchPipe,
     VideoComponent,
+    NewBookComponent,
     HomeHeroComponent,
     TimelineComponent,
     TargetpageComponent,
@@ -79,6 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PrimaryPageComponent,
     SpinnerComponent,
     CarouselComponent,
+    Map2Component,
     SidebarComponent,
     PartnersComponent,
     MenuListPageComponent,
@@ -97,8 +97,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     SearchresultComponent,
     FilterPipe,
     MembersdetailsComponent,
-    AboutCardComponent,
-    OurToursComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,7 +105,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     FontAwesomeModule,
     YouTubePlayerModule,
-
     FormsModule,
     TranslateModule.forRoot({
       loader: {
@@ -123,6 +120,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxImageCompressService,
   ], // Use appConfig providers
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule {}

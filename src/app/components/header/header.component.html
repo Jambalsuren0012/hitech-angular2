@@ -1,326 +1,200 @@
-<div class="bg-[#21492a] hidden md:block">
-  <div class="bg-[#21492a] py-3 flex justify-between max-w-screen-xl mx-auto">
-    <div class="flex gap-4">
-      <h1 class="text-white flex gap-2 font-roboto">
-        <svg
-          class="w-4 h-4 my-1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 384 512"
-          fill="#fdb601"
-        >
-          <path
-            d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"
-          />
-        </svg>
-        <span>
-          Summit Guest House 8A41 Seoul Street Sukhbaatar District Ulaanbaatar,
-          Mongolia
-        </span>
-      </h1>
-      <h1 class="text-white flex gap-2 font-roboto">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4 h-4 my-1"
-          viewBox="0 0 512 512"
-          fill="#fdb601"
-        >
-          <path
-            d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"
-          />
-        </svg>
-        <span> infomail.com </span>
-      </h1>
-    </div>
-    <div class="flex gap-2">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-        fill="white"
-        class="w-5 h-5"
+<header class="w-full mx-auto sticky z-50 top-0">
+  <div class="mx-auto">
+    <!-- First Row: Logo and Flag -->
+    <div class="w-full line1">
+      <div
+        class="flex justify-between max-w-screen-2xl mx-auto mt-1 items-center px-5"
       >
-        <path
-          d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
-        />
-      </svg>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 576 512"
-        fill="white"
-        class="w-7 h-6"
-      >
-        <path
-          d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z"
-        />
-      </svg>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 448 512"
-        fill="white"
-        class="w-6 h-6"
-      >
-        <path
-          d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
-        />
-      </svg>
-    </div>
-  </div>
-</div>
-<nav class="bg-white border-gray-200">
-  <div
-    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:py-6 py-4"
-  >
-    <!-- Logo -->
-    <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img
-        src="https://www.mongoliatravel.net/assets/images/logo/logo-black.png"
-        class="h-8 md:h-11 pl-4 md:pl-0"
-        alt="Flowbite Logo"
-      />
-    </a>
-
-    <!-- Navbar Menu -->
-    <div
-      [class.hidden]="!menuOpen"
-      class="w-full md:block md:w-auto"
-      id="navbar-multi-level"
-    >
-      <ul
-        class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white"
-      >
-        <!-- Menu Items -->
-        <li *ngFor="let item of menuItems" class="relative group">
-          <a
-            href="#"
-            class="block py-2 font-roboto text-[#001a3d] rounded-2xl hover:bg-[#21492a] hover:text-white uppercase"
-            [class.font-medium]="item.subtitle?.length > 0"
-          >
-            {{ item.menuname }}
-          </a>
-
-          <!-- Submenu Dropdown -->
-          <ul
-            *ngIf="item.subtitle?.length"
-            class="absolute z-10 mt-2 hidden group-hover:block font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
-          >
-            <li *ngFor="let subItem of item.subtitle">
-              <a href="#" class="block px-4 py-2 hover:bg-gray-100">
-                {{ subItem.menuname }}
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="sidebar-toggle pr-4 md:pr-2" (click)="toggleMenu()">
-      <a class="bar-icon style-two" [ngClass]="{ active: menuOpen }">
-        <span></span>
-        <span></span>
-        <span></span>
-      </a>
-    </div>
-  </div>
-  <!-- Mobile Menu Toggle and desktop sidebar open -->
-  <div
-    [ngClass]="{ 'translate-x-0': menuOpen, 'translate-x-full': !menuOpen }"
-    class="fixed top-0 right-0 w-full sm:w-1/4 h-full bg-white z-50 p-4 shadow-lg transition-transform duration-300 ease-in-out"
-  >
-    <div class="mx-8">
-      <div class="border-b my-10 border-gray-500 relative">
-        <a href="#" class="">
-          <img
-            src="https://www.mongoliatravel.net/assets/images/logo/logo-black.png"
-            class="h-11 pb-2 mb-4"
-            alt="Flowbite Logo"
-          />
+        <!-- Desktop Logo -->
+        <a routerLink="/">
+          <img [src]="logoUrl" class="w-72 h-26 my-2" alt="Logo" />
         </a>
-        <!-- X Button -->
-        <button
-          type="button"
-          class="absolute top-0 right-0 inline-flex items-center p-2 justify-center w-10 h-10 text-gray-500 hover:text-black bg-transparent hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all duration-300 ease-in-out transform hover:scale-110"
-          (click)="toggleMenu()"
-          aria-label="Close Menu"
-        >
+
+        <!-- Desktop Search Input, hidden on smaller screens -->
+        <div class="relative flex hidden xl:flex w-full xl:w-auto">
+          <input
+            [(ngModel)]="searchText"
+            (change)="onSearchChange()"
+            type="text"
+            [placeholder]="'Хайлт хийх үг' | translate"
+            class="w-full xl:w-80 outline-none border-b-2 bg-white text-gray-600 text-sm px-4 py-2"
+          />
+
+          <button (click)="onSearchChange()" type="button" class="px-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192.904 192.904"
+              width="16px"
+              class="fill-black"
+            >
+              <path
+                d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"
+              ></path>
+            </svg>
+          </button>
+          <!-- Flag for language toggle -->
+          <img
+            class="my-3"
+            [src]="isEnglish ? '/assets/img/en.png' : '/assets/img/mn.png'"
+            alt="Flag"
+            width="40px"
+            height="40px"
+            (click)="toggleFlag()"
+            style="cursor: pointer"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Second Row: Navigation, Search Input, and Mobile Menu Icon -->
+    <div class="bg-[#266ca9] w-full">
+      <nav
+        class="max-w-screen-2xl flex xl:block mx-auto gap-8 px-5 bg-[#266ca9] py-8 items-center"
+      >
+        <!-- Desktop Menu -->
+        <ul class="hidden xl:flex justify-between space-x-8">
+          <li
+            *ngFor="let item of menuItems"
+            class="dropdown relative px-4 cursor-pointer capitalize tracking-wide group"
+          >
+            <a
+              class="flex items-center text-[#FFFFF0] text-lg font-light"
+              [routerLink]="[item.type, item.id]"
+            >
+              {{ item.menuname }}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 15 15"
+                *ngIf="item.subtitle.length > 0"
+                class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180"
+              >
+                <path
+                  fill="currentColor"
+                  d="m13.959 5.18-6.46 6.375L1.04 5.18a.614.614 0 0 0-.862 0 .596.596 0 0 0-.131.656c.03.073.075.14.13.195l6.872 6.784a.642.642 0 0 0 .902 0l6.872-6.783A.595.595 0 0 0 15 5.605a.6.6 0 0 0-.178-.427.614.614 0 0 0-.863 0v.001Z"
+                ></path>
+              </svg>
+            </a>
+            <div
+              class="dropdown-menu absolute hidden group-hover:block bg-[#266ca9] shadow-lg pt-4"
+              *ngIf="item.subtitle.length > 0"
+            >
+              <ul class="p-2 w-80">
+                <li
+                  class="py-1 animate-fade-in"
+                  *ngFor="let sub of item.subtitle; let i = index"
+                  [ngStyle]="{ animationDelay: i * 0.2 + 's' }"
+                >
+                  <a
+                    *ngIf="sub.link == ''"
+                    [routerLink]="[sub.type, sub.id]"
+                    class="block capitalize text-xs font-light border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
+                  >
+                    {{ sub.menuname }}</a
+                  >
+                  <a
+                    *ngIf="sub.link != ''"
+                    [href]="sub.link"
+                    target="_blank"
+                    class="block text-xs font-semibold border-b border-gray-400 py-1 text-white hover:text-[#D4AF37] cursor-pointer"
+                  >
+                    {{ sub.menuname }}</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <!-- Mobile Search Input -->
+        <div class="flex items-center w-full xl:w-auto xl:hidden">
+          <input
+            type="text"
+            placeholder="Таны хайх түлхүүр үг"
+            class="w-full xl:w-80 outline-none border-b-2 bg-white text-gray-600 text-sm px-4 py-2"
+          />
+          <button type="button" class="px-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 192.904 192.904"
+              width="16px"
+              class="fill-white"
+            >
+              <path
+                d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <!-- Mobile Menu Icon -->
+        <button class="xl:hidden" (click)="toggleMobileMenu()">
           <svg
-            class="w-5 h-5"
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            fill="white"
             viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
+            class="w-8 h-8 text-white"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
+              fill="white"
+              d="M3 6h18M3 12h18m-18 6h18"
+              stroke="white"
+              stroke-width="2"
             />
           </svg>
         </button>
-      </div>
-      <div class="mb-6">
-        <h1 class="font-semibold font-roboto text-[#001a3d] text-4xl mb-4">
-          About Us
-        </h1>
-        <p class="text-gray-500 mb-4 hover:text-[#257135]">
-          We bring you immersive travel experiences that explore amazing
-          destinations, inspire the sense of adventure, and engage our audience
-          from the get-go. Follow us
-        </p>
-      </div>
-      <h1 class="font-semibold font-roboto text-[#001a3d] text-4xl mb-4">
-        Contact info
-      </h1>
-      <ul class="space-y-8">
-        <li class="flex items-center space-x-3">
-          <div class="group">
-            <div
-              class="flex justify-center border-2 items-center w-10 h-10 rounded-full flex-shrink-0 group-hover:bg-[#21492a] group-hover:border-[#21492a] transition-all ease-in duration-300"
+        <!-- mobile menu  -->
+        <div
+          [ngClass]="{ 'mobile-menu ': true, open: isMobileMenuOpen }"
+          class="fixed top-48 right-0 flex flex-col bg-[#266ca9] shadow-lg transition-transform duration-300 ease-in-out xl:hidden"
+          style="max-height: calc(100vh - 4rem); overflow-y: auto; width: 60vw"
+        >
+          <ul class="p-4">
+            <li
+              *ngFor="let item of menuItems"
+              class="dropdown px-4 py-2 cursor-pointer uppercase tracking-wide"
             >
-              <!-- SVG Icon -->
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-6 h-5 m-1 group-hover:text-white text-[#001229]"
+              <a
+                class="flex justify-between text-white items-center font-medium"
+                (click)="toggleMobileCat(item.id)"
               >
-                <path
-                  d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z"
-                  stroke="currentcolor"
-                  stroke-width="1.536"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-                <path
-                  d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z"
-                  stroke="currentcolor"
-                  stroke-width="1.536"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <span class="text-gray-800 hover:text-[#257135]">
-            Summit Guest <br />
-            House 8A41 Seoul Street Sukhbaatar District Ulaanbaatar, Mongolia
-          </span>
-        </li>
-
-        <li class="flex items-center space-x-3">
-          <div class="group">
-            <div
-              class="flex justify-center items-center w-10 h-10 rounded-full border-2 flex-shrink-0 group-hover:bg-[#21492a] group-hover:border-[#21492a] transition-all ease-in duration-300"
-            >
-              <!-- SVG Icon -->
-              <svg
-                width="136px"
-                height="136px"
-                viewBox="0 0 24.00 24.00"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                stroke="#0012229"
-                stroke-width="0.00024000000000000003"
-                transform="rotate(0)"
-                class="h-6 w-6 m-1 group-hover:text-white"
-              >
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke="currentColor"
-                  stroke-width="0.048"
-                ></g>
-
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M5.73268 2.043C6.95002 0.832583 8.95439 1.04804 9.9737 2.40962L11.2347 4.09402C12.0641 5.20191 11.9909 6.75032 11.0064 7.72923L10.7676 7.96665C10.7572 7.99694 10.7319 8.09215 10.76 8.2731C10.8232 8.6806 11.1635 9.545 12.592 10.9654C14.02 12.3853 14.8905 12.7253 15.3038 12.7887C15.4911 12.8174 15.5891 12.7906 15.6194 12.78L16.0274 12.3743C16.9026 11.5041 18.2475 11.3414 19.3311 11.9305L21.2416 12.9691C22.8775 13.8584 23.2909 16.0821 21.9505 17.4148L20.53 18.8273C20.0824 19.2723 19.4805 19.6434 18.7459 19.7119C16.9369 19.8806 12.7187 19.6654 8.28659 15.2584C4.14868 11.144 3.35462 7.556 3.25415 5.78817L4.00294 5.74562L3.25415 5.78817C3.20335 4.89426 3.62576 4.13796 4.16308 3.60369L5.73268 2.043ZM8.77291 3.30856C8.26628 2.63182 7.322 2.57801 6.79032 3.10668L5.22072 4.66737C4.8908 4.99542 4.73206 5.35695 4.75173 5.70307C4.83156 7.10766 5.47286 10.3453 9.34423 14.1947C13.4057 18.2331 17.1569 18.3536 18.6067 18.2184C18.9029 18.1908 19.1975 18.0369 19.4724 17.7636L20.8929 16.3511C21.4704 15.777 21.343 14.7315 20.5252 14.2869L18.6147 13.2484C18.0871 12.9616 17.469 13.0562 17.085 13.438L16.6296 13.8909L16.1008 13.359C16.6296 13.8909 16.6289 13.8916 16.6282 13.8923L16.6267 13.8937L16.6236 13.8967L16.6171 13.903L16.6025 13.9166C16.592 13.9262 16.5799 13.9367 16.5664 13.948C16.5392 13.9705 16.5058 13.9959 16.4659 14.0227C16.3858 14.0763 16.2801 14.1347 16.1472 14.1841C15.8764 14.285 15.5192 14.3392 15.0764 14.2713C14.2096 14.1384 13.0614 13.5474 11.5344 12.0291C10.0079 10.5113 9.41194 9.36834 9.2777 8.50306C9.20906 8.06061 9.26381 7.70331 9.36594 7.43225C9.41599 7.29941 9.47497 7.19378 9.5291 7.11389C9.5561 7.07405 9.58179 7.04074 9.60446 7.01368C9.6158 7.00015 9.6264 6.98817 9.63604 6.9777L9.64977 6.96312L9.65606 6.95666L9.65905 6.95363L9.66051 6.95217C9.66122 6.95146 9.66194 6.95075 10.1908 7.48258L9.66194 6.95075L9.94875 6.66556C10.3774 6.23939 10.4374 5.53194 10.0339 4.99297L8.77291 3.30856Z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <span class="text-gray-800 hover:text-[#257135]">
-            +976 80888314
-          </span>
-        </li>
-        <li class="flex items-center space-x-3">
-          <div class="group">
-            <div
-              class="flex justify-center items-center w-10 h-10 rounded-full border-2 flex-shrink-0 group-hover:bg-[#21492a] group-hover:border-[#21492a] transition-all ease-in duration-300"
-            >
-              <!-- SVG Icon -->
-              <svg
-                class="w-5 h-5 m-1 group-hover:text-white text-[#001229]"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"
-                />
-              </svg>
-            </div>
-          </div>
-          <span class="text-gray-800 hover:text-[#257135]">
-            Travel.monGOlia.com
-          </span>
-        </li>
-      </ul>
-
-      <h1 class="font-semibold mt-6 font-roboto text-[#001a3d] text-3xl mb-4">
-        Subscribe & Follow
-      </h1>
-
-      <div class="flex gap-2 mb-4">
-        <div class="group">
-          <div
-            class="rounded-full border-2 text-[#001229] group-hover:bg-[#21492a] transition-all ease-in duration-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 320 512"
-              fill="currentColor"
-              class="w-4 h-4 m-2 text-[#001229] group-hover:text-white"
-            >
-              <path
-                d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
-              />
-            </svg>
-          </div>
+                {{ item.menuname | translate }}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 15 15"
+                  class="w-4 h-4 ml-1 transition-transform duration-300"
+                  [ngClass]="{ 'rotate-180': activeItemId === item.id }"
+                >
+                  <path
+                    fill="currentColor"
+                    d="m13.959 5.18-6.46 6.375L1.04 5.18a.614.614 0 0 0-.862 0 .596.596 0 0 0-.131.656c.03.073.075.14.13.195l6.872 6.784a.642.642 0 0 0 .902 0l6.872-6.783A.595.595 0 0 0 15 5.605a.6.6 0 0 0-.178-.427.614.614 0 0 0-.863 0v.001Z"
+                  ></path>
+                </svg>
+              </a>
+              <ul class="mt-2" *ngIf="activeItemId === item.id">
+                <li class="py-2 text-white" *ngFor="let sub of item.subtitle">
+                  <a
+                    (click)="toggleMobileMenu()"
+                    [routerLink]="[sub.type, sub.id]"
+                    class="block uppercase text-white pl-1 text-xs cursor-pointer"
+                    >-{{ sub.menuname | translate }}</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-        <div class="group">
-          <div
-            class="rounded-full border-2 text-[#001229] group-hover:bg-[#21492a] transition-all ease-in duration-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 576 512"
-              fill="currentColor"
-              class="w-4 h-4 m-2 group-hover:text-white"
-            >
-              <path
-                d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z"
-              />
-            </svg>
-          </div>
-        </div>
-        <div class="group">
-          <div
-            class="rounded-full border-2 text-[#001229] group-hover:bg-[#21492a] transition-all ease-in duration-300"
-          >
-            <svg
-              fill="currentColor"
-              class="w-4 h-4 m-2 group-hover:text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-            >
-              <path
-                d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
+      </nav>
     </div>
   </div>
-</nav>
+  <!-- Dropdown for filtered items -->
+  <div *ngIf="term">
+    <div *ngFor="let item of filteredItems">
+      <!-- Conditionally hide the border and title if the item was clicked -->
+      <ng-container *ngIf="clickedItemId !== item.id">
+        <hr class="border-b-0 border-gray" />
+        <a [routerLink]="['/book', item.id]">
+          <p>{{ item.title }}</p>
+        </a>
+      </ng-container>
+    </div>
+  </div>
+</header>
