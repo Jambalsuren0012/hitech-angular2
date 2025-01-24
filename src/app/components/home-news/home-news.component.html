@@ -1,53 +1,16 @@
-<div class="w-full mx-auto mt-16">
+<div class="max-w-screen-xl mx-auto">
   <!-- Sidebar Section -->
   <a routerLink="/news">
-    <h1
-      class="relative mb-4 inline-block text-2xl font-lora font-medium text-gray-800 hover:text-[#D4AF37] group"
-    >
-      {{ "Мэдээ, Мэдээлэл" | translate }}
-
+    <h1 class="relative mb-4 inline-block text-2xl font-medium text-gray-800">
+      <!-- {{ "Мэдээ, Мэдээлэл" | translate }} -->
+      Plan your journey
       <!-- Underline -->
-      <span
-        class="absolute inset-x-0 bottom-0 h-[2px] bg-[#D4AF37] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"
-      ></span>
     </h1>
   </a>
   <div class="lg:flex lg:flex-row">
     <!-- Main content area for the sidebar -->
     <div class="lg:w-3/4 p-4">
       <!-- Showing only the most recent news (1 data) -->
-      <a
-        [routerLink]="['/news-details', news.id]"
-        *ngFor="let news of lastNews; trackBy: trackById"
-        class="flex flex-col lg:flex-row h-auto lg:h-[20vw]"
-      >
-        <!-- Text section on the left -->
-        <div
-          class="lg:w-1/4 lg:h-full bg-[#266ca9] p-4 flex flex-col justify-between"
-        >
-          <h1 class="text-lg font-ptsans text-white line-clamp-4">
-            {{ news.title | translate }}
-          </h1>
-          <p class="text-white font-ptsans text-base line-clamp-5">
-            {{ news.description | translate }}
-          </p>
-          <h6 class="flex gap-2 text-xs text-[#D4AF37]">
-            <fa-icon class="text-lg text-[#D4AF37]" [icon]="faClock"></fa-icon>
-            <p class="text-[#D4AF37] text-lg">
-              {{ news.created_at | date: "yyyy-MM-dd" }}
-            </p>
-          </h6>
-        </div>
-
-        <!-- Image section on the right -->
-        <div class="lg:w-3/4 lg:h-full">
-          <img
-            class="w-full h-full object-cover"
-            [src]="imageUrl + news.picurl"
-            alt="News image"
-          />
-        </div>
-      </a>
 
       <!-- News Card Section for last 1-3 created_at news -->
       <div class="mt-8 flex flex-col lg:flex-row gap-8">
@@ -69,15 +32,9 @@
             >
               {{ news.title }}
             </h3>
-            <p class="text-[#D4AF37] text-lg px-2">
-              {{ news.created_at | date: "yyyy-MM-dd" }}
-            </p>
           </div>
         </a>
       </div>
     </div>
-
-    <!-- Sidebar content on the right for large screens (Top 5 readcount news) -->
-    <app-sidebar></app-sidebar>
   </div>
 </div>

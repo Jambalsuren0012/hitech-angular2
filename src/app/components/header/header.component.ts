@@ -1,9 +1,7 @@
 import {
   ChangeDetectorRef,
   Component,
-  effect,
   OnInit,
-  Signal,
   HostListener,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,27 +9,25 @@ import { MenuService } from '../../service/menu.service';
 import { Router } from '@angular/router';
 import { TranslateServiceService } from '../../service/translate-service.service';
 import { ContentSearchService } from '../../service/content-search.service';
-import { NgZone } from '@angular/core';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
-  isMobileMenuOpen = false;
-  isMobileMenuCat = false;
+export class HeaderComponent implements OnInit {
+  menuOpen = false; // Control for mobile menu
+  dropdownOpen = false; // Control for dropdown
+  sidebarOpen = false; // Control for mobile menu
+
   activeItemId: number | null = null;
   isEnglish: boolean = true;
   menuItems: any = [];
-  lang: any = 'mn';
+  slicedMenuItems: any[] = []; // Array to store th
+  lang: string = 'mn';
   searchText: string = '';
-  content: any = [];
-  filteredContent: any[] = [];
-  term: any;
-  filteredItems: { id: any; title: string }[] = [];
   contentItems: any = [];
   logoUrl: string = '/assets/img/logo.png';
-  clickedItemId: any = null;
 
   constructor(
     private translate: TranslateService,
@@ -40,55 +36,62 @@ export class HeaderComponent {
     private contentSearchService: ContentSearchService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private ngZone: NgZone,
   ) {}
 
   ngOnInit() {
-    this.langService.loadLang.subscribe((lang: any) => {
+    const savedLang = localStorage.getItem('lang') || 'mn';
+    this.lang = savedLang;
+    this.isEnglish = savedLang === 'mn';
+    this.translate.use(savedLang);
+    this.loadmenu();
+    this.updateLogo(savedLang);
+
+    this.langService.loadLang.subscribe((lang: string) => {
       this.lang = lang;
       this.isEnglish = lang === 'mn';
+      this.updateLogo(lang);
       this.loadmenu();
-
-      // Set the initial logo based on language
-      this.logoUrl =
-        lang === 'mn'
-          ? '/assets/img/mas_logo_mng.png'
-          : '/assets/img/mas_logo_eng.png';
     });
-    this.contentSearchService.getAllContentSearch().subscribe(
-      (data) => {
-        this.contentItems = data;
+    this.slicedMenuItems = this.menuItems.slice(0, 4);
 
-        console.log('Content search fetched', this.contentItems);
+    this.contentSearchService.getAllContentSearch().subscribe({
+      next: (data) => {
+        this.contentItems = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching content search', error);
       },
-    );
+    });
   }
-
   loadmenu() {
     this.menuService.menulist(this.lang).subscribe({
       next: (data) => {
-        this.menuItems = data;
+        console.log('Menu Items:', data); // Log menuItems to verify the structure
+        this.menuItems = data.map((item: any) => ({
+          ...item,
+          dropdownOpen: false, // Add `dropdownOpen` property for each menu item
+        }));
       },
       error: (err) => {
-        console.error('Error fetching menu:', err); // Log any errors
+        console.error('Error fetching menu:', err);
+        this.menuItems = [];
       },
     });
   }
 
   toggleFlag() {
-    const lang = this.lang == 'mn' ? 'en' : 'mn';
+    const lang = this.lang === 'mn' ? 'en' : 'mn';
     this.isEnglish = lang === 'mn';
-    localStorage.setItem('lang', lang || 'mn');
+    localStorage.setItem('lang', lang);
     this.langService.setLanguage();
     this.translate.use(lang);
     this.lang = lang;
-    this.router.navigate(['home', { lang: lang }]);
+    this.router.navigate(['home', { lang }]);
     this.loadmenu();
+    this.updateLogo(lang);
+  }
 
-    // Change the logo based on language
+  private updateLogo(lang: string) {
     this.logoUrl =
       lang === 'mn'
         ? '/assets/img/mas_logo_mng.png'
@@ -96,24 +99,33 @@ export class HeaderComponent {
   }
 
   toggleMobileCat(itemId: number) {
-    // Toggle the active item id
-    if (this.activeItemId === itemId) {
-      this.activeItemId = null; // Close if the same item is clicked
-    } else {
-      this.activeItemId = itemId; // Open the submenu for the clicked item
-    }
-  }
-
-  toggleMobileMenu() {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    this.activeItemId = this.activeItemId === itemId ? null : itemId;
   }
 
   onSearchChange() {
-    this.router.navigate(['/search', this.searchText]);
+    this.searchText = this.searchText.trim();
+    if (this.searchText) {
+      this.router.navigate(['/search', this.searchText]);
+    }
   }
-  onSelectItem(item: any): void {
-    this.term = `${item.title} ${item.info} ${item.description}`;
-    this.filteredItems = []; // Clear dropdown
-    console.log('Selected item:', item);
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+  toggleDropdown(item: any) {
+    this.menuItems.forEach((menuItem: any) => {
+      if (menuItem !== item) {
+        menuItem.dropdownOpen = false; // Close other dropdowns
+      }
+    });
+    item.dropdownOpen = !item.dropdownOpen; // Toggle the clicked dropdown
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.dropdown-menu')) {
+      this.dropdownOpen = false;
+    }
   }
 }
