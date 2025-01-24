@@ -1,40 +1,4 @@
-.mobile-menu {
-  transform: translateX(100%); /* Off-screen to the right */
-  opacity: 0; /* Hidden initially */
-}
-
-.mobile-menu.open {
-  transform: translateX(0); /* On-screen */
-  opacity: 1; /* Fully visible */
-}
-
-.transition-transform {
-  transition:
-    transform 0.3s ease-in-out,
-    opacity 0.3s ease-in-out;
-}
-.custom-w {
-  max-width: 1920px;
-}
-.dropdown-menu {
-  z-index: 10 !important;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 1s ease forwards;
-}
-.line1 ::before {
+/* .line1 ::before {
   content: "";
   position: absolute;
   top: 0;
@@ -42,12 +6,108 @@
   width: 100%;
   height: 100%;
   background: url("/assets/img/line1.png") repeat center;
-  opacity: 100; /* Adjust opacity of the image */
-  z-index: -1; /* Places the image behind content */
-  pointer-events: none; /* Prevent interaction with the pseudo-element */
+  opacity: 100;
+  pointer-events: none;
 }
 .line1 {
-  position: relative; /* Required for positioning the pseudo-element */
-  /* background-color: #ffffff !important ;  */
-  z-index: 1; /* Keeps content above the pseudo-element */
+  position: relative;
+  z-index: 1;
+} */
+/* Smooth transition for submenu */
+.navbar ul li ul {
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+}
+
+.navbar ul li:hover ul {
+  opacity: 1;
+  visibility: visible;
+}
+.bar-icon {
+  width: 28px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.bar-icon.style-two span {
+  width: 100%;
+  height: 2px;
+  background-color: #001a3d;
+  display: inline-block;
+  transition:
+    width 0.3s ease-in-out,
+    transform 0.3s ease-in-out; /* Target width and transform */
+}
+
+.bar-icon.style-two span:nth-child(1) {
+  width: 100%;
+}
+
+.bar-icon.style-two span:nth-child(2) {
+  width: 90%;
+}
+
+.bar-icon.style-two span:nth-child(3) {
+  width: 85%;
+}
+
+.bar-icon.style-two:hover span:nth-child(1),
+.bar-icon.style-two:hover span:nth-child(2),
+.bar-icon.style-two:hover span:nth-child(3) {
+  width: 100%; /* Expanding the bars to full width on hover */
+}
+
+/* Added styles for the active state (for transforming into an X) */
+.bar-icon.active span:nth-child(1) {
+  transform: rotate(45deg);
+  position: relative;
+  top: 5px;
+}
+
+.bar-icon.active span:nth-child(2) {
+  opacity: 0; /* Hides the middle bar */
+}
+
+.bar-icon.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  position: relative;
+  bottom: 5px;
+}
+
+.sidebar-toggle {
+  cursor: pointer;
+}
+/* Sidebar Style */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 9;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Open Sidebar */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* Overlay for background */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
 }

@@ -10,6 +10,8 @@ module.exports = {
         ptsans: ["PT Sans", "sans-serif"],
         playfair: ["Playfair Display", "serif"],
         titillium: ["Titillium Web", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
+        Oswald: ["Oswald", "sans-serif"],
       },
     },
   },
