@@ -54,6 +54,7 @@ import { AboutCardComponent } from './about-card/about-card.component';
 import { OurToursComponent } from './our-tours/our-tours.component';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { TopToursComponent } from './top-tours/top-tours.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -99,6 +100,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MembersdetailsComponent,
     AboutCardComponent,
     OurToursComponent,
+    TopToursComponent,
   ],
   imports: [
     BrowserModule,
