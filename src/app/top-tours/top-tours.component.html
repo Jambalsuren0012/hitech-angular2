@@ -2,7 +2,9 @@
   <!-- Background Section -->
   <div class="relative z-10">
     <div class="max-w-screen-2xl mx-auto my-10 md:my-20">
-      <div class="my-10 py-10 mx-4 md:mx-10 lg:mx-20 flex justify-between">
+      <div
+        class="my-10 py-10 mx-4 md:mx-10 lg:mx-20 flex flex-wrap justify-between"
+      >
         <div>
           <h3
             class="text-lg uppercase font-roboto text-green-900 font-semibold"
@@ -36,7 +38,7 @@
       <div
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 mx-4 md:mx-10 lg:mx-20"
       >
-        <div *ngFor="let item of toursData">
+        <div class="my-8" *ngFor="let item of toursData">
           <div
             [ngStyle]="{ 'background-image': 'url(' + item.imageUrl + ')' }"
             class="group bg-gray-50 hover:bg-[#21492a] hover:text-white bg-cover bg-center shadow-md p-6 rounded-t-lg flex flex-col transition-all duration-700 ease-in-out min-h-[200px] relative"

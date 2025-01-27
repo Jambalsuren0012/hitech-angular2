@@ -1,0 +1,34 @@
+.border-green-500 {
+  border: 2px solid #38a169; /* Adjust green color as needed */
+  transition: border-color 0.3s ease-in-out;
+}
+
+.border-gray-300 {
+  border: 1px solid #d1d5db; /* Default border */
+}
+/* For the Owl Carousel container */
+.owl-carousel-o {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ensure the container height is 100% of its parent */
+}
+
+.owl-carousel-o .owl-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ensuring cards inside carousel are centered */
+.owl-carousel-o .owl-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ensure items are vertically aligned */
+}
+
+/* Optional: Add some padding to the cards for better spacing */
+.card {
+  padding: 16px;
+}

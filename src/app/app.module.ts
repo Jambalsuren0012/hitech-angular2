@@ -55,6 +55,8 @@ import { OurToursComponent } from './our-tours/our-tours.component';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TopToursComponent } from './top-tours/top-tours.component';
+import { ReviewComponent } from './review/review.component';
+import { SubscribeComponent } from './subscribe/subscribe.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -101,6 +103,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AboutCardComponent,
     OurToursComponent,
     TopToursComponent,
+    ReviewComponent,
+    SubscribeComponent,
   ],
   imports: [
     BrowserModule,

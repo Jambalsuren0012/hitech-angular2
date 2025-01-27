@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {
+      animation: {
+        spinslow: "spin 3s linear infinite",
+      },
       fontFamily: {
         sans: ["Inter", "Arial", "sans-serif"],
         lora: ["Lora", "serif"],
@@ -11,12 +14,11 @@ module.exports = {
         playfair: ["Playfair Display", "serif"],
         titillium: ["Titillium Web", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
-        Oswald: ["Oswald", "sans-serif"],
+        oswald: ["Oswald", "sans-serif"],
       },
     },
   },
-  plugins: [require("tailwind-scrollbar")],
-  variants: {
-    scrollbar: ["rounded"],
-  },
+  plugins: [
+    require("tailwind-scrollbar")({ nocompatible: true }), // Ensure scrollbar plugin works properly
+  ],
 };

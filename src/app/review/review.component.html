@@ -1,0 +1,37 @@
+<div class="p-6 bg-gray-100 py-24">
+  <div class="items-center text-center pb-12">
+    <p class="text-green-900 text-xl font-roboto uppercase">Testimonials</p>
+    <h2 class="text-5xl font-bold text-[#001a3d] mb-4 font-Oswald">
+      Customer Reviews
+    </h2>
+  </div>
+  <owl-carousel-o
+    [options]="carouselOptions"
+    (translated)="onTranslated($event)"
+    class="rounded-lg shadow-lg bg-white"
+  >
+    <ng-container *ngFor="let item of customerData; let i = index">
+      <ng-template class="justify-center" carouselSlide>
+        <div
+          class="p-4 border rounded-lg"
+          [class.border-green-500]="i === middleCardIndex"
+          [class.border-gray-300]="i !== middleCardIndex"
+        >
+          <div class="flex justify-start w-24 items-center gap-4">
+            <img
+              class="rounded-full w-16 h-16 object-cover"
+              [src]="item.imageUrl"
+              alt="{{ item.name }}"
+            />
+            <h2 class="text-xl font-semibold text-gray-800">
+              {{ item.name }}
+            </h2>
+          </div>
+          <div>
+            <p class="text-base text-gray-600">{{ item.description }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>
