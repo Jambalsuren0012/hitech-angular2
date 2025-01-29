@@ -16,6 +16,27 @@ import { ContentSearchService } from '../../service/content-search.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  menudata = [
+    {
+      menuname: 'SERVICE INDUSTRY',
+      subtitle: [{ menuname: 'Guest House' }, { menuname: 'Tourist Camp' }],
+    },
+    {
+      menuname: 'TOURS',
+      subtitle: [
+        { menuname: 'Mountaineering Tours' },
+        { menuname: 'Trekking and Hiking Tours' },
+        { menuname: 'Rock Climbing Trips' },
+        { menuname: 'Experience Tour' },
+      ],
+    },
+    { menuname: 'FAQ', subtitle: [] },
+    { menuname: 'ABOUT', subtitle: [] },
+    { menuname: 'BLOG', subtitle: [] },
+    { menuname: 'CONTACT US', subtitle: [] },
+  ];
+  openMenuIndex: number | null = null; // Track the open menu index
+
   menuOpen = false; // Control for mobile menu
   dropdownOpen = false; // Control for dropdown
   sidebarOpen = false; // Control for mobile menu
@@ -127,5 +148,8 @@ export class HeaderComponent implements OnInit {
     if (!target.closest('.dropdown-menu')) {
       this.dropdownOpen = false;
     }
+  }
+  togglemobileMenu(index: number) {
+    this.openMenuIndex = this.openMenuIndex === index ? null : index;
   }
 }
