@@ -1,9 +1,14 @@
 <div class="w-full h-[70vh] md:h-screen bg-cover bg-center relative">
   <!-- Carousel Container -->
   <div class="w-full h-full relative">
-    <owl-carousel-o [options]="customOptions" class="h-full">
+    <!-- Overlay -->
+
+    <!-- This is the overlay -->
+
+    <owl-carousel-o [options]="customOptions" class="h-full z-20">
       <ng-template carouselSlide *ngFor="let item of img2">
         <!-- Slide Container -->
+        <div class="absolute inset-0 bg-sky-300 bg-opacity-20 z-10"></div>
         <div class="relative h-full slide-animation">
           <!-- Fullscreen Image -->
           <img
@@ -13,7 +18,7 @@
           />
           <!-- Overlay Content -->
           <div
-            class="absolute inset-0 flex flex-col justify-center items-center text-white bg-black bg-opacity-30 text-center p-4"
+            class="absolute inset-0 flex flex-col justify-center items-center text-white bg-black bg-opacity-30 text-center p-4 z-20"
           >
             <h1 class="text-4xl lg:text-6xl font-bold mb-4">
               {{ item.title }}

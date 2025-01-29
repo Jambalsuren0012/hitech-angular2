@@ -2,7 +2,9 @@
   <!-- Background Section -->
   <div class="relative z-10">
     <div class="max-w-screen-2xl mx-auto my-10 md:my-20">
-      <div class="my-10 py-10 mx-4 md:mx-10 lg:mx-20 flex justify-between">
+      <div
+        class="md:my-4 lg:my-8 my-2 pt-24 sm:pt-28 md:pt-32 lg:pt-36 mx-4 md:mx-10 lg:mx-20 flex flex-wrap justify-between"
+      >
         <div>
           <h3
             class="text-lg uppercase font-roboto text-green-900 font-semibold"
@@ -34,9 +36,12 @@
       </div>
 
       <!-- Owl Carousel -->
-      <div class="relative overflow-visible">
-        <owl-carousel-o [options]="carouselOptions">
-          <ng-container *ngFor="let item of toursData">
+      <div class="relative overflow-visible mx-4 sm:mx-10 md:mx-16 lg:mx-20">
+        <owl-carousel-o
+          (translated)="onTranslated($event)"
+          [options]="carouselOptions"
+        >
+          <ng-container *ngFor="let item of toursData" let i="index">
             <ng-template carouselSlide>
               <div
                 class="group hover:text-white mb-32 p-6 rounded-lg flex flex-col transition-all duration-700 ease-in-out min-h-[300px] bg-cover bg-center relative overflow-visible"
@@ -44,7 +49,7 @@
                 <!-- Zoomable Background -->
                 <div class="overflow-hidden rounded-lg group">
                   <div
-                    class="absolute inset-0 portfolio-item transition-transform duration-700 ease-in-out bg-cover bg-center scale-100"
+                    class="absolute inset-0 portfolio-item transition-transform rounded-lg duration-700 ease-in-out bg-cover bg-center scale-100"
                     [ngStyle]="{
                       'background-image': 'url(' + item.imageUrl + ')',
                     }"
@@ -78,7 +83,7 @@
                           d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"
                         />
                       </svg>
-                      <p class="text-green-900">By:{{ item.posted }}</p>
+                      <p class="text-green-900">By: {{ item.posted }}</p>
                     </div>
                     <a
                       class="group font-roboto font-medium text-[#001229] text-xl transition-all duration-300 ease-in-out"
@@ -90,7 +95,7 @@
                         {{ item.title }}
                       </span>
                     </a>
-                    <div class="group mt-6">
+                    <div class="group mt-2">
                       <button
                         class="bg-transparent border-2 border-green-900 hover:bg-green-900 bg text-green-900 hover:text-white font-bold py-4 px-6 rounded-full flex items-center"
                       >
