@@ -1,0 +1,7 @@
+.owl-carousel .owl-stage {
+  overflow: visible;
+}
+.portfolio-item:hover {
+  transform: scale(1.5);
+  transition: all 2s ease-in;
+}

@@ -45,8 +45,8 @@ export class ReviewComponent {
     loop: true,
     margin: 10,
     nav: false,
-    autoplay: false,
-    autoplayTimeout: 3000,
+    autoplay: true,
+    autoplayTimeout: 9000,
     autoplayHoverPause: true,
     responsive: {
       0: { items: 1 },
