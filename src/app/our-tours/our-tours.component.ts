@@ -59,29 +59,22 @@ export class OurToursComponent {
     swiper.slidePrev();
   }
 
-  customOptions = {
+  carouselOptions = {
     loop: true,
-    margin: 10,
-    responsiveClass: true,
-    mouseDrag: false, // Enable mouse dragging
-    touchDrag: true, // Enable touch dragging
-    pullDrag: true, // Enable pull dragging
-    freeDrag: false, // Disable free dragging (optional)
-    button: false,
+    margin: 20,
+    nav: false,
+    dots: true,
+    mouseDrag: false,
     responsive: {
       0: {
         items: 1,
       },
-      640: {
+      768: {
         items: 2,
       },
       1024: {
         items: 4,
       },
     },
-    nav: false,
-    dots: true,
-    autoplay: false,
-    autoplayTimeout: 3000,
   };
 }
