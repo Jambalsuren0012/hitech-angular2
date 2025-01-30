@@ -50,7 +50,7 @@ import { GalleryPageComponent } from './pages/gallery-page/gallery-page.componen
 import { SearchresultComponent } from './pages/searchresult/searchresult.component';
 import { FilterPipe } from './filter.pipe';
 import { MembersdetailsComponent } from './pages/membersdetails/membersdetails.component';
-import { AboutCardComponent } from './about-card/about-card.component';
+import { AboutCardComponent } from './components/about-card/about-card.component';
 import { OurToursComponent } from './our-tours/our-tours.component';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -58,6 +58,7 @@ import { TopToursComponent } from './top-tours/top-tours.component';
 import { ReviewComponent } from './review/review.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { OurBlogComponent } from './our-blog/our-blog.component';
+import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -107,6 +108,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReviewComponent,
     SubscribeComponent,
     OurBlogComponent,
+    ContactPageComponent,
   ],
   imports: [
     BrowserModule,

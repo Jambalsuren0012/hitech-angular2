@@ -16,9 +16,11 @@ import { ContentPageComponent } from './pages/content-page/content-page.componen
 import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
 import { SearchresultComponent } from './pages/searchresult/searchresult.component';
 import { MembersdetailsComponent } from './pages/membersdetails/membersdetails.component';
+import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 
 const routes: Routes = [
   { path: 'map/:id', component: TargetpageComponent },
+  { path: 'contact', component: ContactPageComponent },
   { path: '', component: HomePageComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'home:/:lang', component: HomePageComponent },

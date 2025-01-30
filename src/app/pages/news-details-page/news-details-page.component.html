@@ -1,71 +1,43 @@
-<div class="bg-gray-100">
-  <div *ngIf="newsDetails" class="max-w-screen-2xl mx-auto px-4 py-8">
-    <div
-      class="flex justify-between border-t border-b border-gray-600 py-2 mb-4"
-    >
-      <h6>
-        <fa-icon [icon]="faClock"></fa-icon>
-        {{ getFormattedDate(newsDetails.created_at) }}
-      </h6>
-      <div class="flex gap-4">
-        <a
-          [href]="
-            'https://www.facebook.com/sharer/sharer.php?u=' + currentPageUrl
-          "
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            class="h-8 w-8"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1024px-2021_Facebook_icon.svg.png"
-            alt="Share on Facebook"
-          />
-        </a>
-        <a
-          [href]="'https://x.com/intent/tweet?url=' + currentPageUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            class="h-8 w-8"
-            src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-black-icon.png"
-            alt="Share on X"
-          />
-        </a>
-      </div>
+<div class="relative">
+  <div
+    class="relative w-full h-[600px] overflow-hidden flex items-center justify-center"
+  >
+    <img
+      class="w-full object-cover"
+      [src]="imageUrl + newsDetails.picurl"
+      alt="News Image"
+    />
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4 md:p-6">
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl text-center font-medium font-oswald text-white sm:text-left mb-4"
+      >
+        {{ newsDetails.title | translate | slice: 0 : 50 }}
+      </h1>
     </div>
-    <div class="bg-white rounded shadow-md">
-      <div class="p-4 md:p-6">
-        <h1
-          class="text-xl sm:text-2xl md:text-3xl text-justify font-medium font-lora sm:text-left mb-4"
-        >
-          {{ newsDetails.title | translate }}
-        </h1>
-      </div>
-    </div>
+  </div>
+  <div *ngIf="newsDetails" class="max-w-screen-xl mx-auto px-4 py-8">
+    <div class="bg-white"></div>
     <!-- Title Section -->
 
     <!-- Date and Share Section -->
 
     <!-- News Content and Sidebar Section -->
-    <div class="flex flex-col lg:flex-row gap-4 my-4">
+    <div class="flex flex-col lg:flex-row">
       <div>
         <!-- Image Section Above News Content -->
-        <div class="bg-white rounded shadow-md w-full mb-4">
-          <div class="p-4 md:p-6">
-            <img
-              class="w-full object-cover"
-              [src]="imageUrl + newsDetails.picurl"
-              alt="News Image"
-            />
-          </div>
-        </div>
+        <div class="w-full"></div>
         <!-- News Content -->
-        <div class="w-full mb-4 lg:mb-0">
-          <div class="bg-white rounded shadow-md">
-            <div class="p-4 md:p-6">
+        <div class="w-full">
+          <div class="">
+            <div class="">
+              <h1
+                class="text-xl md:text-2xl font-oswald lg:text-3xl font-semibold md:my-4 lg:my-8 my-2 text-[#001a3d]"
+              >
+                {{ newsDetails.title | translate }}
+              </h1>
               <p
-                class="text-justify px-2 font-ptsans lg:px-0 md:p-4 text-lg news-content"
+                class="text-justify text-[#4f5d6a] font-roboto text-lg"
                 [innerHTML]="newsDetails?.info | translate"
               ></p>
             </div>
@@ -73,7 +45,6 @@
         </div>
       </div>
       <!-- Sidebar Section -->
-      <app-sidebar></app-sidebar>
     </div>
   </div>
 </div>

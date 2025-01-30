@@ -1,92 +1,47 @@
-<div class="bg-gray-100">
+<!-- Background Image Section with Overlay -->
+<div
+  class="relative w-full h-[600px] overflow-hidden flex items-center justify-center"
+>
+  <!-- Background Image -->
   <div
-    *ngIf="aboutUsData && aboutUsData.length"
-    class="max-w-screen-2xl mx-auto px-4 py-8"
+    *ngIf="aboutUsData[0]?.picurl"
+    class="absolute inset-0 bg-cover bg-center"
+    [ngStyle]="{
+      'background-image': 'url(' + imageUrl + aboutUsData[0]?.picurl + ')',
+    }"
+  ></div>
+
+  <!-- Dark Overlay for Readability -->
+  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+
+  <!-- Centered Title -->
+  <h1
+    class="absolute text-white text-2xl font-oswald sm:text-4xl md:text-5xl font-medium text-center"
   >
-    <!-- Title Section -->
-    <div class="flex flex-col md:flex-row gap-4">
-      <div>
-        <!-- Sidebar -->
-        <div
-          class="max-w-full sticky top-20 md:max-w-80 min-w-72 custom-height bg-white border border-gray-200 rounded-lg shadow-md flex-shrink-0"
-        >
-          <!-- Header -->
-          <div class="flex items-center gap-3 p-4 border-b border-gray-200">
-            <img
-              src="/assets/img/logomob.png"
-              alt="Logo"
-              class="w-10 h-10 object-contain"
-            />
-            <span class="text-lg font-bold text-gray-800">
-              {{ selectedItem?.parent?.menuname }}
-            </span>
-          </div>
+    {{ aboutUsData[0]?.title }}
+  </h1>
+</div>
 
-          <ul class="divide-y divide-gray-200">
-            <li
-              *ngFor="let subtitle of selectedItem?.subtitle"
-              class="px-4 py-3 text-gray-700 hover:bg-gray-100"
-            >
-              <a [routerLink]="['/aboutus', subtitle.id]" class="block">
-                {{ subtitle.menuname }}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="flex-1 bg-white border border-gray-200 rounded-lg shadow-md">
+<div
+  *ngIf="aboutUsData && aboutUsData.length"
+  class="max-w-screen-xl mx-auto mb-10 px-4"
+>
+  <!-- Title Section -->
+  <div class="flex flex-col md:flex-row">
+    <div>
+      <div class="flex-1 bg-white overflow-hidden">
         <!-- Main Content -->
-        <div class="p-4 md:p-6">
-          <div class="mb-4">
-            <h1 class="text-xl font-lora sm:text-2xl md:text-3xl font-medium">
+        <div class="">
+          <div>
+            <h1
+              class="text-xl md:text-2xl lg:text-3xl font-semibold md:my-4 lg:my-8 my-2 text-[#001a3d]"
+            >
               {{ aboutUsData[0]?.title }}
             </h1>
-          </div>
-
-          <!-- Image Section -->
-          <div *ngIf="aboutUsData[0]?.picurl" class="mb-4 w-full">
-            <img
-              class="w-full object-cover rounded"
-              [src]="imageUrl + aboutUsData[0]?.picurl"
-              alt="News Image"
-            />
-          </div>
-
-          <div>
             <p
-              class="text-justify font-ptsans text-lg"
+              class="text-justify text-[#4f5d6a] font-roboto text-lg"
               [innerHTML]="aboutUsData[0]?.info || 'Content details go here.'"
             ></p>
-          </div>
-
-          <!-- Members Section -->
-
-          <h2 class="text-lg font-bold my-4 text-gray-800 mb-4">
-            {{ "Судлаачид" | translate }}
-          </h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div
-              *ngFor="let member of selectedItem.members"
-              class="border rounded-md overflow-hidden"
-              (click)="viewMemberDetails(member.id)"
-            >
-              <img
-                *ngIf="member.picurl"
-                [src]="imageUrl + member.picurl"
-                alt="Member Image"
-                class="w-full h-60 object-contain object-top bg-gray-200"
-              />
-
-              <div class="p-4">
-                <h4 class="text-gray-800 text-base font-bold">
-                  {{ member.title }}
-                </h4>
-                <p class="text-gray-600 text-xs mt-1">
-                  {{ member.description }}
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
