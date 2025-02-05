@@ -17,6 +17,7 @@ import { GalleryPageComponent } from './pages/gallery-page/gallery-page.componen
 import { SearchresultComponent } from './pages/searchresult/searchresult.component';
 import { MembersdetailsComponent } from './pages/membersdetails/membersdetails.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { AccordionComponent } from './pages/accordion/accordion.component';
 
 const routes: Routes = [
   { path: 'map/:id', component: TargetpageComponent },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'book', component: AllBooksComponent },
   { path: 'gallery/:id', component: GalleryPageComponent },
   { path: 'search/:term', component: SearchresultComponent },
+  { path: 'accordion/:id', component: AccordionComponent },
   { path: '', redirectTo: '/map2', pathMatch: 'full' },
 ];
 @NgModule({

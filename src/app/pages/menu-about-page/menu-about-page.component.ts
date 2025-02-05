@@ -14,7 +14,8 @@ import { Router } from '@angular/router'; // Import Router to navigate
 })
 export class MenuAboutPageComponent implements OnInit {
   selectedItem: any;
-  aboutUsData: any = {}; // Initialize with an empty object
+  aboutUsData: any[] = []; // Ensure it is an array
+
   selectedContent: any; // Newly added property
   lang = 'mn';
   menuid: any;
@@ -38,16 +39,22 @@ export class MenuAboutPageComponent implements OnInit {
 
       // Fetch the menu list from the API
       this.menuService.menulist().subscribe((menuItems) => {
+        console.log('Fetched Menu Items:', menuItems); // Log full menu list
+
         // Find the selected parent item based on the `id`
         this.selectedItem = menuItems.find((menu: any) =>
           menu.subtitle.some((subtitle: { id: string }) => subtitle.id === id),
         );
+
+        console.log('Selected Parent Item:', this.selectedItem);
 
         if (this.selectedItem) {
           // Find the specific `subtitle` matching the `id`
           const subtitle = this.selectedItem.subtitle.find(
             (subtitle: { id: string }) => subtitle.id === id,
           );
+
+          console.log('Selected Subtitle:', subtitle);
 
           if (subtitle) {
             // Assign parent to subtitle if it exists
@@ -57,7 +64,7 @@ export class MenuAboutPageComponent implements OnInit {
             this.selectedItem = { ...this.selectedItem, ...subtitle };
             this.menuid = subtitle?.id;
 
-            console.log('Selected Item:', this.selectedItem);
+            console.log('Final Selected Item:', this.selectedItem);
 
             // Fetch and assign the about us content
             if (this.menuid) {
@@ -74,9 +81,13 @@ export class MenuAboutPageComponent implements OnInit {
     const data = { lang: this.lang, menuid: this.menuid ?? null };
     this.aboutusService.getAllAboutus(data).subscribe(
       (response: any) => {
-        this.aboutUsData = response;
-        this.selectedContent = response; // Assign the fetched data to `selectedContent`
-        console.log('Fetched About Us Data:', this.aboutUsData);
+        console.log('Fetched About Us Data:', response);
+
+        // Ensure response is an array before assigning it
+        this.aboutUsData = Array.isArray(response) ? response : [response];
+        console.log('About Us Data:', this.aboutUsData);
+
+        this.selectedContent = this.aboutUsData[0] || {}; // Assign first item if available
       },
       (error) => {
         console.error('Error fetching About Us data:', error);
@@ -86,7 +97,7 @@ export class MenuAboutPageComponent implements OnInit {
 
   fetchAllMembers(): void {
     // Ensure `menuid` is available and valid
-    if (!this.menuid) {
+    if (this.menuid) {
       console.error('No menuid available. Cannot fetch members.');
       return; // Stop if menuid is not set
     }
@@ -112,8 +123,5 @@ export class MenuAboutPageComponent implements OnInit {
         console.error('Error fetching About Members:', error);
       },
     );
-  }
-  viewMemberDetails(memberId: string): void {
-    this.router.navigate([`/member-details/${memberId}`]); // Navigate to member-details route with memberId
   }
 }

@@ -1,0 +1,53 @@
+<!-- Background Image Section with Overlay -->
+<!-- <div
+  class="relative w-full h-[600px] overflow-hidden flex items-center justify-center"
+>
+
+  <div
+    *ngIf="aboutUsData[0]?.picurl"
+    class="absolute inset-0 bg-cover bg-center"
+    [ngStyle]="{
+      'background-image': 'url(' + imageUrl + aboutUsData[0]?.picurl + ')',
+    }"
+  ></div>
+
+
+  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+
+  <h1
+    class="absolute text-white text-2xl font-oswald sm:text-4xl md:text-5xl font-medium text-center"
+  >
+    {{ aboutUsData[0]?.title }}
+  </h1>
+</div> -->
+<div class="w-full max-w-lg mx-auto">
+  <div *ngFor="let item of accordionItems; let i = index">
+    <button
+      class="w-full flex justify-between items-center px-4 py-3 bg-gray-100 border border-gray-300 rounded-md"
+      (click)="toggleAccordion(i)"
+    >
+      <span class="text-lg font-semibold">{{ item.title }}</span>
+      <svg
+        class="w-5 h-5 transition-transform"
+        [ngClass]="{ 'rotate-180': activeIndex === i }"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M19 9l-7 7-7-7"
+        ></path>
+      </svg>
+    </button>
+    <div
+      *ngIf="activeIndex === i"
+      class="px-4 py-2 bg-white border border-gray-300 rounded-b-md"
+    >
+      <p>{{ item.content }}</p>
+    </div>
+  </div>
+</div>

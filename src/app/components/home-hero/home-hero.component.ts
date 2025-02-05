@@ -35,6 +35,8 @@ export class HomeHeroComponent implements OnInit {
   img: Array<{
     picurl: any;
     url: string;
+    title: string;
+    info: string;
     compressedUrl?: string;
   }> = [];
   imageUrl = environment.imgUrl;

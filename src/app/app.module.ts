@@ -59,6 +59,7 @@ import { ReviewComponent } from './review/review.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { OurBlogComponent } from './our-blog/our-blog.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { AccordionComponent } from './pages/accordion/accordion.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -109,6 +110,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SubscribeComponent,
     OurBlogComponent,
     ContactPageComponent,
+    AccordionComponent,
   ],
   imports: [
     BrowserModule,
