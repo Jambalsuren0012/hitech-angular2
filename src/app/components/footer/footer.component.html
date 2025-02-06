@@ -16,7 +16,7 @@
             alt=""
           />
         </a>
-        <div class="mt-6 lg:max-w-sm">
+        <div class="my-6 mb-10 lg:max-w-sm">
           <p class="text-sm text-[#808581]">
             We bring you immersive travel experiences that explore amazing
             destinations, inspire the sense of adventure and engage our audience
@@ -82,32 +82,39 @@
           <!-- {{ "Холбоо барих" | translate }} -->
           Company
         </p>
-        <div class="flex">
-          <p class="mr-1 text-[#808581]">Утасны дугаар:</p>
-          <a
-            href="tel:850-123-5021"
-            aria-label="Our phone"
-            title="Our phone"
-            class="transition-colors text-[#808581] duration-300 hover:text-deep-purple-400"
-            >850-123-5021</a
-          >
-        </div>
+        <ul class="">
+          <li *ngFor="let item of menuItems">
+            <a
+              class="transition-colors text-base text-[#808581] duration-300 group"
+            >
+              <span
+                class="bg-left-bottom bg-gradient-to-r from-green-900 to-green-900 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
+              >
+                {{ item.menuname }}
+              </span></a
+            >
+          </li>
+        </ul>
       </div>
       <div class="space-y-2 text-sm">
         <p class="text-xl font-bold text-[#001a3d] tracking-wide">
           <!-- {{ "Холбоо барих" | translate }} -->
           Tours
         </p>
-        <div class="flex">
-          <p class="mr-1 text-[#808581]">Утасны дугаар:</p>
-          <a
-            href="tel:850-123-5021"
-            aria-label="Our phone"
-            title="Our phone"
-            class="transition-colors text-[#808581] duration-300 hover:text-deep-purple-400"
-            >850-123-5021</a
-          >
-        </div>
+        <ul class="">
+          <li *ngFor="let subitem of filteredMenuItems">
+            <a
+              href="#"
+              class="transition-colors text-base text-[#808581] duration-300 group"
+            >
+              <span
+                class="bg-left-bottom bg-gradient-to-r from-green-900 to-green-900 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
+              >
+                {{ subitem.menuname }}
+              </span>
+            </a>
+          </li>
+        </ul>
       </div>
       <div class="space-y-2 text-sm">
         <p class="text-xl font-bold text-[#001a3d] tracking-wide">
@@ -129,7 +136,12 @@
           </div>
           <div>
             <h1 class="text-xl text-[#001a3d]">Speak our expert at:</h1>
-            <p class="text-green-900 text-lg">+976 88201246</p>
+            <a
+              href="tel:+976 88119911"
+              class="text-green-900 hover:text-[#ffbc36] text-lg"
+            >
+              +976 88119911
+            </a>
           </div>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { SlidesOutputData } from 'ngx-owl-carousel-o';
+import { MembersService } from '../service/members.service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-review',
@@ -7,6 +9,7 @@ import { SlidesOutputData } from 'ngx-owl-carousel-o';
   styleUrl: './review.component.css',
 })
 export class ReviewComponent {
+  membersdata: any;
   customerData = [
     {
       name: 'Ethan Mitchel',
@@ -41,6 +44,7 @@ export class ReviewComponent {
         'Thank  stage to on-site follow-up was really helpful for me, as I dont have any language skills. Being able to communicate in Japanese for everything from email exchanges during the preparation stage to on-site follow-up was really helpful for me, as I dont have any language skills.',
     },
   ];
+  imageUrl = environment.imgUrl;
   carouselOptions = {
     loop: true,
     margin: 10,
@@ -59,7 +63,9 @@ export class ReviewComponent {
   ngOnInit(): void {
     // Initially set the middle card index to the first card
     this.middleCardIndex = Math.floor(this.customerData.length / 2);
+    this.fetchMemberData();
   }
+  constructor(private membersService: MembersService) {}
 
   onTranslated(event: SlidesOutputData): void {
     // Ensure event.slides is defined and activeIndex is found
@@ -70,5 +76,16 @@ export class ReviewComponent {
       this.middleCardIndex =
         event.startPosition + Math.floor(visibleSlides / 2);
     }
+  }
+  fetchMemberData() {
+    this.membersService.getAllMembers().subscribe({
+      next: (data) => {
+        // console.log('Fetched Slider Data:', data); // Debugging point
+        this.membersdata = data; // Assign the data to `img`
+      },
+      error: (err) => {
+        console.error('Error fetching member data:', err);
+      },
+    });
   }
 }

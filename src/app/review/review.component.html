@@ -12,7 +12,7 @@
     (translated)="onTranslated($event)"
     class="rounded-lg shadow-lg bg-white"
   >
-    <ng-container *ngFor="let item of customerData; let i = index">
+    <ng-container *ngFor="let item of membersdata; let i = index">
       <ng-template class="justify-center" carouselSlide>
         <div
           class="p-4 border rounded-lg mx-4 sm:mx-4 md:mx-2 lg:mx-2 mb-20"
@@ -22,15 +22,17 @@
           <div class="flex justify-start w-24 items-center gap-4 my-4">
             <img
               class="rounded-full w-16 h-16 object-cover"
-              [src]="item.imageUrl"
-              alt="{{ item.name }}"
+              [src]="imageUrl + item.picurl"
+              alt="{{ item.title }}"
             />
             <h2 class="text-xl font-semibold text-gray-800">
-              {{ item.name }}
+              {{ item.title }}
             </h2>
           </div>
           <div>
-            <p class="text-base text-gray-600">{{ item.description }}</p>
+            <p class="text-base text-gray-600" [innerHTML]="item.info">
+              <!-- {{ item.info }} -->
+            </p>
           </div>
         </div>
       </ng-template>
