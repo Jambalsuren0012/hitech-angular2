@@ -1,5 +1,5 @@
-<div class="bg-[#21492a] hidden md:block">
-  <div class="bg-[#21492a] py-3 flex justify-between max-w-screen-xl mx-auto">
+<div class="bg-[#1254ca] hidden md:block">
+  <div class="bg-[#1254ca] py-3 flex justify-between max-w-screen-xl mx-auto">
     <div class="flex gap-4">
       <h1 class="text-white flex gap-2 font-roboto">
         <svg
@@ -28,7 +28,7 @@
             d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"
           />
         </svg>
-        <span> infomail.com </span>
+        <span>worldcruise.mgl&#64;gmail.com </span>
       </h1>
     </div>
     <div class="flex gap-2">
@@ -72,8 +72,8 @@
     <!-- Logo -->
     <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img
-        src="https://www.mongoliatravel.net/assets/images/logo/logo-black.png"
-        class="h-8 md:h-11 pl-4 md:pl-0"
+        src="assets/img/logo/logo.jpg"
+        class="h-10 md:h-14 pl-4 md:pl-0"
         alt="Flowbite Logo"
       />
     </a>
@@ -88,7 +88,7 @@
           <li *ngFor="let item of menuItems" class="relative group">
             <a
               [routerLink]="[item.type, item.id]"
-              class="block py-2 px-4 font-roboto mx-0 rounded-full text-[#001a3d] hover:bg-[#21492a] hover:text-white uppercase flex items-center"
+              class="block py-2 px-4 font-roboto mx-0 rounded-full text-[#001a3d] hover:bg-[#1254ca] hover:text-white uppercase flex items-center"
               [class.font-medium]="item.subtitle?.length > 0"
             >
               {{ item.menuname }}
@@ -127,7 +127,7 @@
               <li *ngFor="let subItem of item.subtitle">
                 <a
                   [routerLink]="[item.type, item.id]"
-                  class="block text-[#001a3d] font-roboto px-4 py-2 hover:text-green-900 hover:scale-110 transition-all ease-in-out duration-300"
+                  class="block text-[#001a3d] font-roboto px-4 py-2 hover:text-[#1254ca] hover:scale-110 transition-all ease-in-out duration-300"
                 >
                   {{ subItem.menuname }}
                 </a>
@@ -160,8 +160,8 @@
       <div class="border-b my-10 border-gray-500 relative">
         <a href="#" class="">
           <img
-            src="https://www.mongoliatravel.net/assets/images/logo/logo-black.png"
-            class="h-11 pb-2 mb-4"
+            src="assets/img/logo/logo.jpg"
+            class="h-14 pb-2 mb-4"
             alt="Flowbite Logo"
           />
         </a>
@@ -199,7 +199,7 @@
             <a
               class="uppercase font-roboto font-medium mb-2 flex justify-between items-center cursor-pointer"
               [ngClass]="{
-                'text-green-600': openMenuIndex === i,
+                'text-[#1254ca]': openMenuIndex === i,
                 'text-[#001a3d]': openMenuIndex !== i,
               }"
               (click)="togglemobileMenu(i)"
@@ -255,7 +255,7 @@
         <h1 class="font-semibold font-roboto text-[#001a3d] text-4xl mb-4">
           About Us
         </h1>
-        <p class="text-gray-500 mb-4 hover:text-[#257135]">
+        <p class="text-gray-500 mb-4 hover:text-[#1254ca]">
           We bring you immersive travel experiences that explore amazing
           destinations, inspire the sense of adventure, and engage our audience
           from the get-go. Follow us
@@ -268,7 +268,7 @@
         <li class="flex items-center space-x-3">
           <div class="group">
             <div
-              class="flex justify-center border-2 items-center w-10 h-10 rounded-full flex-shrink-0 group-hover:bg-[#21492a] group-hover:border-[#21492a] transition-all ease-in duration-300"
+              class="flex justify-center border-2 items-center w-10 h-10 rounded-full flex-shrink-0 group-hover:bg-[#1254ca] group-hover:border-[#1254ca] transition-all ease-in duration-300"
             >
               <!-- SVG Icon -->
               <svg
@@ -294,7 +294,7 @@
               </svg>
             </div>
           </div>
-          <span class="text-gray-800 hover:text-[#257135]">
+          <span class="text-gray-800 hover:text-[#1254ca]">
             Summit Guest <br />
             House 8A41 Seoul Street Sukhbaatar District Ulaanbaatar, Mongolia
           </span>
@@ -303,7 +303,7 @@
         <li class="flex items-center space-x-3">
           <div class="group">
             <div
-              class="flex justify-center items-center w-10 h-10 rounded-full border-2 flex-shrink-0 group-hover:bg-[#21492a] group-hover:border-[#21492a] transition-all ease-in duration-300"
+              class="flex justify-center items-center w-10 h-10 rounded-full border-2 flex-shrink-0 group-hover:bg-[#1254ca] group-hover:border-[#1254ca] transition-all ease-in duration-300"
             >
               <!-- SVG Icon -->
               <svg
@@ -334,14 +334,14 @@
               </svg>
             </div>
           </div>
-          <span class="text-gray-800 hover:text-[#257135]">
-            +976 80888314
+          <span class="text-gray-800 hover:text-[#1254ca]">
+            +976-91069595
           </span>
         </li>
         <li class="flex items-center space-x-3">
           <div class="group">
             <div
-              class="flex justify-center items-center w-10 h-10 rounded-full border-2 flex-shrink-0 group-hover:bg-[#21492a] group-hover:border-[#21492a] transition-all ease-in duration-300"
+              class="flex justify-center items-center w-10 h-10 rounded-full border-2 flex-shrink-0 group-hover:bg-[#1254ca] group-hover:border-[#1254ca] transition-all ease-in duration-300"
             >
               <!-- SVG Icon -->
               <svg
@@ -356,8 +356,8 @@
               </svg>
             </div>
           </div>
-          <span class="text-gray-800 hover:text-[#257135]">
-            Travel.monGOlia.com
+          <span class="text-gray-800 hover:text-[#1254ca]">
+            worldcruise.mgl&#64;gmail.com
           </span>
         </li>
       </ul>
@@ -369,7 +369,7 @@
       <div class="flex gap-2 mb-4">
         <div class="group">
           <div
-            class="rounded-full border-2 text-[#001229] group-hover:bg-[#21492a] transition-all ease-in duration-300"
+            class="rounded-full border-2 text-[#001229] group-hover:bg-[#1254ca] transition-all ease-in duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -385,7 +385,7 @@
         </div>
         <div class="group">
           <div
-            class="rounded-full border-2 text-[#001229] group-hover:bg-[#21492a] transition-all ease-in duration-300"
+            class="rounded-full border-2 text-[#001229] group-hover:bg-[#1254ca] transition-all ease-in duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -401,7 +401,7 @@
         </div>
         <div class="group">
           <div
-            class="rounded-full border-2 text-[#001229] group-hover:bg-[#21492a] transition-all ease-in duration-300"
+            class="rounded-full border-2 text-[#001229] group-hover:bg-[#1254ca] transition-all ease-in duration-300"
           >
             <svg
               fill="currentColor"
