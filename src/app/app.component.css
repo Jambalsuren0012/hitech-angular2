@@ -1,0 +1,36 @@
+ng-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.35s ease-out;
+}
+.phone-btn {
+  background: #34c759; /* iOS Green */
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: white !important;
+  font-weight: 600;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(52, 199, 89, 0.45);
+}
+
+.phone-btn:hover {
+  background: #2fb44f;
+  box-shadow: 0 0 25px rgba(52, 199, 89, 0.9);
+  transform: translateY(-2px);
+}

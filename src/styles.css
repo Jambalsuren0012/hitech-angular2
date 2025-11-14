@@ -13,3 +13,55 @@
 .leaflet-control {
   display: none !important;
 }
+@font-face {
+  font-family: "NotoSansCyr";
+  src: url("/assets/fonts/noto-sans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0400-04FF, U+0500-052F; /* Cyrillic */
+}
+
+@font-face {
+  font-family: "PTSerifCyr";
+  src: url("/assets/fonts/pt-serif.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0400-04FF, U+0500-052F;
+}
+
+/* глобал тохиргоо */
+:root {
+  --ui-font: "NotoSansCyr", system-ui, sans-serif;
+  --heading-font: "PTSerifCyr", Georgia, serif;
+}
+
+body {
+  font-family: var(--ui-font);
+}
+h1,
+h2,
+h3 {
+  font-family: var(--heading-font);
+}
+:root {
+  --ui-font: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --heading-font: "PT Serif", Georgia, "Times New Roman", serif;
+}
+
+html,
+body {
+  font-family: var(--ui-font);
+  font-display: swap; /* энэ шингээлтийн зөвлөмж — google fonts-д илүү хамаарна */
+}
+h1,
+h2,
+h3 {
+  font-family: var(--heading-font);
+}
+html,
+body {
+  height: 100%;
+}

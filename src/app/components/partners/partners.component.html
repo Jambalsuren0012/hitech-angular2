@@ -1,44 +1,51 @@
-<div>
-  <h1
-    class="relative mb-6 inline-block text-2xl font-lora font-medium text-gray-800 hover:text-[#D4AF37] group"
-  >
-    {{ "Харилцагч Байгууллага" | translate }}
-    <!-- Underline -->
-    <span
-      class="absolute inset-x-0 bottom-0 h-[2px] bg-[#D4AF37] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"
-    ></span>
-  </h1>
-  <div class="relative">
-    <!-- Title -->
+<section class="w-full min-h-[420px] text-white bg-black py-16 px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <!-- Subtitle -->
+    <p class="text-base font-montserrat text-red-500 font-medium mb-3">
+      Бидний түншүүд​
+    </p>
 
-    <!-- Carousel -->
-    <owl-carousel-o #carousel [options]="customOptions" class="mt-12">
-      <ng-container *ngFor="let item of partners">
-        <ng-template carouselSlide>
-          <div class="flex justify-center px-4">
-            <div
-              class="relative flex flex-col my-6 transform hover:scale-105 ease-out duration-300 bg-white shadow-sm border border-slate-200 rounded-lg w-60 h-40"
-            >
-              <div
-                class="flex justify-center items-center w-full h-full overflow-hidden p-5"
-              >
-                <a
-                  *ngIf="item.link"
-                  [href]="item.link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="{{ imageUrl + item.picurl }}"
-                    alt="card-image"
-                    class="max-w-full max-h-full transition-transform duration-300 ease-in-out transform group-hover:scale-110"
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-        </ng-template>
+    <!-- Heading -->
+    <h2
+      class="text-4xl font-montserrat sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-10"
+    >
+      Дэлхий даяар 15+ гаруй хамтрагчид
+    </h2>
+
+    <!-- Partners grid -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 items-center"
+    >
+      <!-- Partner logos -->
+      <ng-container *ngFor="let p of visiblePartners()">
+        <div
+          class="flex items-center justify-center font-montserrat h-20 rounded-lg bg-[#121212] backdrop-blur-sm shadow-sm p-4"
+        >
+          <img
+            [src]="p.logo"
+            [alt]="p.alt || p.name"
+            class="max-h-10 object-contain"
+          />
+        </div>
       </ng-container>
-    </owl-carousel-o>
+
+      <!-- +more (Only visible on mobile) -->
+      <button
+        *ngIf="moreCount() > 0"
+        (click)="showMore()"
+        class="flex md:hidden items-center justify-center h-20 rounded-lg p-4 text-lg font-medium text-white/70 bg-[#111111] hover:bg-[#1a1a1a] transition"
+      >
+        +{{ moreCount() }} more
+      </button>
+
+      <!-- Show less (Only visible on mobile) -->
+      <button
+        *ngIf="allShown() && partners.length > initialVisible"
+        (click)="showLess()"
+        class="flex md:hidden items-center justify-center h-20 rounded-lg p-4 text-lg font-medium text-white/70 bg-[#111111] hover:bg-[#1a1a1a] transition"
+      >
+        Show less
+      </button>
+    </div>
   </div>
-</div>
+</section>

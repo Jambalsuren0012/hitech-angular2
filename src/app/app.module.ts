@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import {
   BrowserModule,
   provideClientHydration,
@@ -60,6 +61,15 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
 import { OurBlogComponent } from './our-blog/our-blog.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { AccordionComponent } from './pages/accordion/accordion.component';
+import { Hero2Component } from './hero2/hero2.component';
+import { ImgLeftComponent } from './img-left/img-left.component';
+import { OurServiceComponent } from './our-service/our-service.component';
+import { CertifateComponent } from './components/certifate/certifate.component';
+import { StatsSectionComponent } from './stats-section/stats-section.component';
+import { GlobeComponent } from './globe/globe.component';
+import { ExperiencesComponent } from './experience/experience.component';
+import { Hero3Component } from './hero3/hero3.component';
+import { KeypadComponent } from './keypad/keypad.component';
 
 // Function to create the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -111,6 +121,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     OurBlogComponent,
     ContactPageComponent,
     AccordionComponent,
+    Hero2Component,
+    ImgLeftComponent,
+    OurServiceComponent,
+    CertifateComponent,
+    StatsSectionComponent,
+    GlobeComponent,
+    ExperiencesComponent,
+    Hero3Component,
+    KeypadComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,7 +138,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     FontAwesomeModule,
     YouTubePlayerModule,
-
     FormsModule,
     TranslateModule.forRoot({
       loader: {

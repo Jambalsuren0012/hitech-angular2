@@ -27,6 +27,7 @@
 .bar-icon {
   width: 28px;
   height: 20px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,7 +38,7 @@
 .bar-icon.style-two span {
   width: 100%;
   height: 2px;
-  background-color: #001a3d;
+  background-color: #ffffff;
   display: inline-block;
   transition:
     width 0.3s ease-in-out,
@@ -89,7 +90,7 @@
   left: 0;
   width: 250px;
   height: 100%;
-  background-color: #ffffff;
+  background-color: #8dffc6;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   z-index: 9;
   transform: translateX(-100%);

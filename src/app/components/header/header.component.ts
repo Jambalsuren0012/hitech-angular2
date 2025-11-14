@@ -16,6 +16,13 @@ import { ContentSearchService } from '../../service/content-search.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  sections = [
+    { id: 'hero', icon: 'fa-solid fa-house' },
+    { id: 'services', icon: 'fa-solid fa-gears' },
+    { id: 'partners', icon: 'fa-solid fa-handshake' },
+    { id: 'certificate', icon: 'fa-solid fa-certificate' },
+    { id: 'experience', icon: 'fa-solid fa-briefcase' },
+  ];
   menudata = [
     {
       menuname: 'SERVICE INDUSTRY',
@@ -24,10 +31,13 @@ export class HeaderComponent implements OnInit {
     {
       menuname: 'TOURS',
       subtitle: [
-        { menuname: 'Mountaineering Tours' },
-        { menuname: 'Trekking and Hiking Tours' },
-        { menuname: 'Rock Climbing Trips' },
-        { menuname: 'Experience Tour' },
+        { menuname: 'Мэдээллийн аюулгүй байдлын цогц систем' },
+        { menuname: 'Microsoft 365 үйлчилгээ' },
+        {
+          menuname:
+            'Байгууллагын домэйн сүлжээ, дундын файл дамжуулалтын систем​',
+        },
+        { menuname: 'Серверийн техникийн өрөөний нүүлгэх, шийдэл' },
       ],
     },
     { menuname: 'FAQ', subtitle: [] },

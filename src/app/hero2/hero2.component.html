@@ -1,0 +1,181 @@
+<section
+  class="relative w-screen min-h-screen flex items-center justify-center bg-black overflow-hidden"
+>
+  <!-- Particles -->
+  <canvas
+    id="heroParticles"
+    class="absolute inset-0 w-full h-full opacity-[0.45]"
+  ></canvas>
+
+  <!-- Scanning Light -->
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,140,255,0.12),transparent_65%)] animate-scan"
+  ></div>
+
+  <!-- Floating Grid -->
+  <div class="absolute bottom-0 left-0 w-full h-[50vh] overflow-hidden">
+    <div class="w-full h-full neon-grid"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 flex flex-col items-center text-center select-none">
+    <img
+      src="assets/img/logo/logoonly.png"
+      class="w-40 neon-logo floating-slow"
+      alt="Logo"
+    />
+
+    <h1
+      class="mt-10 title-holo uppercase font-montserrat text-5xl md:text-7xl font-bold tracking-tight"
+    >
+      HiTech Solution
+    </h1>
+
+    <p class="mt-4 text-gray-400 text-lg md:text-xl hologram-line">
+      Digital Future — Engineered.
+    </p>
+  </div>
+</section>
+
+<style>
+  /* Neon Logo Glow */
+  .neon-logo {
+    filter: drop-shadow(0 0 20px rgba(0, 180, 255, 0.7))
+      drop-shadow(0 0 50px rgba(0, 180, 255, 0.4));
+    animation: neonPulse 4s ease-in-out infinite;
+  }
+
+  /* Title Gradient Flicker */
+  .title-holo {
+    background: linear-gradient(90deg, #38bdf8, #60a5fa, #a855f7);
+    -webkit-background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 20px rgba(0, 150, 255, 0.4));
+    animation: holoFlicker 3.5s infinite alternate;
+  }
+
+  /* Neon Grid */
+  .neon-grid {
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(0, 180, 255, 0.25) 0,
+        rgba(0, 180, 255, 0.25) 1px,
+        transparent 2px,
+        transparent 90px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(0, 180, 255, 0.25) 0,
+        rgba(0, 180, 255, 0.25) 1px,
+        transparent 2px,
+        transparent 90px
+      );
+    transform: perspective(600px) rotateX(65deg);
+    transform-origin: top;
+    animation: gridMove 6s linear infinite;
+    opacity: 0.32;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    background: #0ea5e9;
+    padding: 10px 25px;
+    border-radius: 50px;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.5);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 35px rgba(0, 180, 255, 0.9);
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(150, 150, 150, 0.5);
+    padding: 10px 25px;
+    border-radius: 50px;
+    color: #d1d5db;
+    transition: 0.3s;
+  }
+  .btn-outline:hover {
+    border-color: #0ea5e9;
+    color: #0ea5e9;
+  }
+
+  /* Animations */
+  @keyframes neonPulse {
+    0%,
+    100% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+  @keyframes holoFlicker {
+    0% {
+      filter: drop-shadow(0 0 15px rgba(0, 170, 255, 0.4));
+    }
+    100% {
+      filter: drop-shadow(0 0 40px rgba(0, 170, 255, 0.9));
+    }
+  }
+  @keyframes gridMove {
+    0% {
+      background-position-y: 0;
+    }
+    100% {
+      background-position-y: 100px;
+    }
+  }
+  @keyframes scan {
+    0%,
+    100% {
+      opacity: 0.18;
+    }
+    50% {
+      opacity: 0.32;
+    }
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById("heroParticles");
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  for (let i = 0; i < 70; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2,
+      speedX: (Math.random() - 0.5) * 0.5,
+      speedY: (Math.random() - 0.5) * 0.5,
+    });
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(56,189,248,0.25)";
+    particles.forEach((p) => {
+      p.x += p.speedX;
+      p.y += p.speedY;
+      if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+</script>

@@ -1,0 +1,83 @@
+<div
+  class="w-full min-h-screen bg-[url('https://static.vecteezy.com/system/resources/previews/005/861/631/non_2x/simple-black-abstract-background-dark-geometric-illustration-free-vector.jpg')] bg-cover bg-center bg-no-repeat relative py-24"
+>
+  <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+
+  <section class="relative max-w-7xl mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-20">
+      <h2
+        class="text-4xl md:text-6xl font-bold text-white bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-cyan-300"
+      >
+        Бидний туршлага
+      </h2>
+      <p class="max-w-2xl mx-auto text-gray-300 mt-4 text-lg">
+        Бид олон салбарт мэдээллийн технологийн цогц шийдэл, суурилуулалт,
+        дижитал үйлчилгээ үзүүлсэн туршлагатай.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-2 gap-10">
+      <div
+        *ngFor="let f of features"
+        class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 transition-all duration-500 hover:border-sky-400/60 hover:shadow-[0_0_50px_-5px_rgba(56,189,248,0.4)] hover:-translate-y-2"
+      >
+        <!-- <ng-container *ngFor="let logo of f.logos">
+          <img
+            [src]="logo"
+            class="absolute w-12 h-12 animate-bounce-slow opacity-50"
+            [ngStyle]="generateRandomPosition()"
+            alt="logo"
+          />
+        </ng-container> -->
+        <div class="flex items-start gap-6">
+          <div
+            class="w-16 h-16 flex items-center justify-center rounded-xl bg-gradient-to-br from-sky-500/40 to-cyan-400/40 group-hover:from-sky-400/60 group-hover:to-cyan-300/60 transition-all"
+          >
+            <div
+              class="w-12 h-12 bg-dark-800 rounded-xl flex items-center justify-center"
+              [innerHTML]="f.svg"
+            ></div>
+          </div>
+          <div class="flex-1">
+            <h3
+              class="text-2xl font-montserrat font-semibold text-white mb-3 group-hover:text-sky-300 transition-all"
+            >
+              {{ f.title }}
+            </h3>
+
+            <p
+              *ngIf="f.desc"
+              class="text-gray-300 font-montserrat text-base leading-relaxed mb-4"
+            >
+              {{ f.desc }}
+            </p>
+
+            <ul
+              *ngIf="f.list"
+              class="text-gray-300 space-y-2 font-montserrat leading-relaxed text-[15px]"
+            >
+              <li *ngFor="let item of f.list" class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-sky-400 group-hover:text-cyan-300 transition-all"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
