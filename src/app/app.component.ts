@@ -31,10 +31,10 @@ export class AppComponent implements AfterViewInit {
   }
 
   sections = [
-    { id: 'hero', icon: this.faHouse, title: 'Home' },
+    { id: 'hero', icon: this.faHouse, title: 'Hүүр хуудас' },
     { id: 'services', icon: this.faGears, title: 'Үйлчилгээ' },
     { id: 'partners', icon: this.faHandshake, title: 'Харилцагч' },
-    { id: 'certificate', icon: this.faCertificate, title: 'Туршлага' },
+    { id: 'certificate', icon: this.faCertificate, title: 'Чадамж' },
     { id: 'experience', icon: this.faBriefcase, title: 'Туршлага' },
   ];
   mobileMenuOpen = false;

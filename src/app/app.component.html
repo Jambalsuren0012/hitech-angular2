@@ -24,7 +24,7 @@
     <ng-container *ngFor="let item of sections">
       <button
         (click)="scrollToSection(item.id, $event)"
-        class="px-4 py-1 rounded-md text-sm transition-all duration-300"
+        class="px-4 py-1 rounded-md uppercase font-montserrat text-sm transition-all duration-300"
         [ngClass]="{
           'text-[#01aafd] font-semibold ': activeSection === item.id,
           'text-white/70 hover:text-white ': activeSection !== item.id,
@@ -47,7 +47,7 @@
 <!-- 🔹 Mobile Bottom Curved Nav -->
 <!-- Mobile Bottom Curved Nav -->
 <div
-  class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-[420px] h-20 bg-white/10 backdrop-blur-xl rounded-3xl flex items-center justify-around shadow-2xl overflow-visible border border-white/20"
+  class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 md:hidden w-[90%] max-w-[420px] h-20 bg-white/10 backdrop-blur-xl rounded-3xl flex items-center justify-around shadow-2xl overflow-visible border border-white/20"
 >
   <!-- Floating Bubble -->
   <div
@@ -64,8 +64,10 @@
         'text-white/50 hover:text-sky-400': activeSection !== item.id,
       }"
     >
-      <fa-icon [icon]="item.icon" class="text-xl"></fa-icon>
-      <span class="text-xs mt-1">{{ item.title }}</span>
+      <fa-icon [icon]="item.icon" class="text-2xl"></fa-icon>
+      <!-- <span class="text-xs font-montserrat uppercase mt-1">
+        {{ item.title.split(" ")[0] }}
+      </span> -->
     </button>
   </ng-container>
 </div>
